@@ -896,9 +896,8 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
   width: 128px; border-radius: 12px; overflow: hidden; background: var(--card-bg, #fff);
   box-shadow: 0 10px 22px rgba(22,21,29,0.14); transition: transform .25s ease, box-shadow .25s ease;
 }
-.pantone-card:nth-child(odd) { transform: rotate(-2deg); }
-.pantone-card:nth-child(even) { transform: rotate(2deg); }
-.pantone-card:hover { transform: scale(1.06) rotate(0deg); box-shadow: 0 16px 30px rgba(22,21,29,0.18); }
+.pantone-card:nth-child(odd):hover { transform: scale(1.06) rotate(-2deg); box-shadow: 0 16px 30px rgba(22,21,29,0.18); }
+.pantone-card:nth-child(even):hover { transform: scale(1.06) rotate(2deg); box-shadow: 0 16px 30px rgba(22,21,29,0.18); }
 .pantone-fill { height: 108px; }
 .pantone-tab { padding: 10px 12px 12px; }
 .pantone-tab .name { font-size: 12px; font-weight: 700; color: var(--ink); }
