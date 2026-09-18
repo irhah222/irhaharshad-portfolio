@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Imagin8 V Park &middot; Irhah Arshad Siddiqui</title>
+<title>Imagin8v Park &middot; Irhah Arshad Siddiqui</title>
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Neucha&display=swap">
 <link rel="icon" href="data:,">
 </head>
-<body style="--accent:#3f7d52; --accent-tint:#f3f7f5; --accent-tint-strong:#e6eee9;">
+<body style="--accent:#2478c9; --accent-tint:#f2f7fc; --accent-tint-strong:#e3edf8;">
 
 <nav class="site-nav">
   <div class="nav-row">
@@ -43,7 +44,7 @@
   <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
   <div class="dot" data-target="challenge"><span class="dot-label">Challenge</span></div>
   <div class="dot" data-target="story"><span class="dot-label">The Story</span></div>
-  <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
+  <div class="dot" data-target="gallery"><span class="dot-label">Gallery</span></div>
 </div>
 
 <main class="wrap">
@@ -52,76 +53,285 @@
     <div class="cs-header-main">
       <span class="tag-pill">Experience Design</span>
       <span class="tag-outline">UX/UI Design, Civic Design, Educational Gaming</span>
-      <h1>Imagin8 V Park</h1>
-      <p class="hmw">What if we had the time to imagine, and the audacity to dream? A question posed by collaborators during ideation that shaped the whole project.</p>
+      <h1>Imagin8v Park</h1>
+      <p class="lead">Building a video game as a stepping stone to help high schoolers understand the housing crisis, and to spark real community engagement along the way.</p>
       <div class="quick-facts">
         <div class="fact"><div class="label">Role</div><div class="value">UX Designer, Motion Designer, Researcher, Creative Direction</div></div>
         <div class="fact"><div class="label">Timeline</div><div class="value">Fall 2025 to Present</div></div>
         <div class="fact"><div class="label">Tools</div><div class="value">Figma, Adobe Creative Suite, Procreate</div></div>
+        <div class="fact"><div class="label">Team</div><div class="value">With Allie Rudnitsky, Erin Grisar, and Kyle Vang &middot; MS Design + Innovation</div></div>
       </div>
       <div class="cs-header-actions">
-        <!-- replace href with your real Figma prototype link -->
-        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">View Prototype</a>
+        <a class="btn btn-primary" href="https://www.figma.com/proto/77ONhTV07mksJaPSzD5hJn?embed_origin=cdn.embedly.com&kind=proto&node-id=1-9&page-id=0%3A1&scaling=contain&starting-point-node-id=1%3A9&fuid=1210860888766018113" target="_blank" rel="noopener">View Prototype</a>
       </div>
     </div>
     <div class="cs-hero-image">
-      <!-- assets/imagin8-v-park-hero.jpg, replace with your real project image -->
-      <div style="aspect-ratio:16/9; background:var(--bg-soft); display:flex; align-items:center; justify-content:center; color:var(--ink-faint); font-size:13px;">Imagin8 V Park hero image</div>
+      <img src="../assets/imagin8-v-park/portal-hero.jpg" alt="Imagin8v Park portal artwork: a glowing blue swirling gate in a park at dusk, with Terry, the ghost dog, running toward it" style="width:100%; height:100%; object-fit:cover; border-radius:var(--radius,12px);">
     </div>
   </header>
 
+  <section class="reveal">
+    <div class="spark-night-card">
+      <div class="spark-haze"></div>
+      <span class="spark-star" style="width:2px;height:2px; top:14px; left:10%; animation-delay:0s;"></span>
+      <span class="spark-star" style="width:3px;height:3px; top:30px; left:22%; animation-delay:.5s;"></span>
+      <span class="spark-star" style="width:2px;height:2px; top:20px; right:16%; animation-delay:1s;"></span>
+      <span class="spark-star" style="width:2px;height:2px; top:46px; right:28%; animation-delay:1.6s;"></span>
+      <span class="spark-star" style="width:3px;height:3px; top:60px; left:8%; animation-delay:.8s;"></span>
+      <span class="spark-star" style="width:2px;height:2px; top:16px; left:48%; animation-delay:2s;"></span>
+      <span class="spark-star" style="width:2px;height:2px; top:70px; right:10%; animation-delay:1.3s;"></span>
+      <span class="spark-star" style="width:2px;height:2px; bottom:70px; left:14%; animation-delay:.3s;"></span>
+      <span class="spark-star" style="width:2px;height:2px; bottom:60px; right:20%; animation-delay:1.9s;"></span>
+      <div class="spark-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+      </div>
+      <blockquote>What if we had the time to imagine, and the audacity to dream?</blockquote>
+      <cite class="spark-cite">Posed by our collaborators &middot; sparked the entire ideation process</cite>
+    </div>
+  </section>
+
   <section id="challenge" class="cs-section reveal">
     <h2>The Challenge</h2>
-    <p>Imagin8 V Park is a digital empathy engine for civic transformation, an attempt to make the wicked problem of the housing crisis legible to middle and high school students and the wider community, without flattening it into something simplistic. The goal was an accessible, interactive way into a policy issue that's usually discussed only in rooms most people never get into.</p>
+    <p>Imagin8v Park is a digital empathy engine for civic transformation, an attempt to make the wicked problem of the housing crisis legible to middle and high school students and the wider community, without flattening it into something simplistic. The goal was an accessible, interactive way into a policy issue that's usually discussed only in rooms most people never get into.</p>
   </section>
 
   <section class="cs-section reveal">
     <h2>The Solution</h2>
-    <p>The core of the experience is an interactive, scenario-based simulation built as a high-fidelity Figma prototype, letting users digitally visualize and customize community spaces while picking up civic and housing concepts along the way.</p>
+    <p>The core of the experience is an interactive, scenario-based simulation built as a high-fidelity Figma prototype, letting users digitally visualize and customize community spaces while picking up civic and housing concepts along the way. A physical portal doorway, a laser-cut silhouette of Terry the ghost dog, and printed worksheets carried the world off the screen and into the exhibit space, so visitors walked through the story instead of just clicking through it.</p>
+
+    <div class="figma-embed-frame">
+      <div class="fef-chrome">
+        <span class="fef-dot" style="background:#ff5f57;"></span>
+        <span class="fef-dot" style="background:#febc2e;"></span>
+        <span class="fef-dot" style="background:#28c840;"></span>
+        <span class="fef-chrome-title">Imagin8v Park &middot; Figma Prototype</span>
+      </div>
+      <iframe
+        class="fef-iframe"
+        src="https://www.figma.com/proto/77ONhTV07mksJaPSzD5hJn?embed_origin=cdn.embedly.com&kind=proto&node-id=1-9&page-id=0%3A1&scaling=contain&starting-point-node-id=1%3A9&fuid=1210860888766018113"
+        allowfullscreen
+        loading="lazy"
+        title="Imagin8v Park interactive Figma prototype">
+      </iframe>
+    </div>
+    <p class="fef-caption">Play the full click-and-play prototype right here, or <a href="https://www.figma.com/proto/77ONhTV07mksJaPSzD5hJn?embed_origin=cdn.embedly.com&kind=proto&node-id=1-9&page-id=0%3A1&scaling=contain&starting-point-node-id=1%3A9&fuid=1210860888766018113" target="_blank" rel="noopener">open it in Figma</a>. All motion and interaction in the prototype, including the portal intro, was designed and animated by hand.</p>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Visual Identity</span>
+    <h2>Branding</h2>
+
+    <h3 class="brand-block-label">Logo</h3>
+    <div class="logo-showcase">
+      <img src="../assets/imagin8-v-park/logo-wordmark-full.png" alt="The Imagin8v Park hand-drawn wordmark: dimensional white letters with black outlines, arced across the top, with a glowing blue watercolor infinity symbol and 'A' filled in with a starry night-sky texture">
+    </div>
+
+    <h3 class="brand-block-label">Color Palette</h3>
+    <div class="pantone-row">
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#0f2a44;"></div>
+        <div class="pantone-tab"><div class="name">Navy</div><div class="hex">#0F2A44</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#2478c9;"></div>
+        <div class="pantone-tab"><div class="name">Portal Blue</div><div class="hex">#2478C9</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#574c8a;"></div>
+        <div class="pantone-tab"><div class="name">Dusk Violet</div><div class="hex">#574C8A</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#75a140;"></div>
+        <div class="pantone-tab"><div class="name">Garden Green</div><div class="hex">#75A140</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#9fc1e5;"></div>
+        <div class="pantone-tab"><div class="name">Soft Sky</div><div class="hex">#9FC1E5</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#ffffff; border-bottom:1px solid var(--border);"></div>
+        <div class="pantone-tab"><div class="name">Paper White</div><div class="hex">#FFFFFF</div></div>
+      </div>
+    </div>
+
+    <h3 class="brand-block-label">Fonts</h3>
+    <div class="brand-type-row">
+      <div class="brand-type-card tinted-navy">
+        <div class="btc-label">Display</div>
+        <div class="btc-sample" style="font-family:'Sweet and Salty',cursive;">Imagin8v Park</div>
+        <div class="btc-name">Sweet and Salty</div>
+      </div>
+      <div class="brand-type-card tinted-accent">
+        <div class="btc-label">UI &amp; Dialogue</div>
+        <div class="btc-sample" style="font-family:'Neucha',cursive;">Hmm, which house first?</div>
+        <div class="btc-name">Neucha</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Process</span>
+    <h2>Five Phases, One Prototype</h2>
+    <p>We moved from rough storyboards to a click-and-play prototype in five structured phases, checking in with partners like Adams Garden Park, CR8TV House, and Adam Carr along the way.</p>
+    <div class="process-arc-diagram accent-arc" data-process-arc>
+      <svg class="pad-svg" viewBox="0 0 1160 760" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="padFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:var(--accent)"/>
+            <stop offset="100%" style="stop-color:var(--accent)"/>
+          </linearGradient>
+        </defs>
+        <path class="pad-arc" data-arc="1" pathLength="100" d="M12,167 Q122,111 244,255"/>
+        <path class="pad-arc" data-arc="2" pathLength="100" d="M244,255 Q365,198 487,342"/>
+        <path class="pad-arc" data-arc="3" pathLength="100" d="M487,342 Q609,286 731,429"/>
+        <path class="pad-arc" data-arc="4" pathLength="100" d="M731,429 Q853,373 974,517"/>
+      </svg>
+      <div class="pad-node" data-step="1" style="--x:1%; --y:22%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="1"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">01)</span> Storyboarding</h3><p>Mapped how players move through the game and where they learn.</p></div>
+      </div>
+      <div class="pad-node" data-step="2" style="--x:21%; --y:33.5%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="2"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">02)</span> Cohesive Design System</h3><p>Locked in color, type, icons, and character style.</p></div>
+      </div>
+      <div class="pad-node" data-step="3" style="--x:42%; --y:45%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="3"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">03)</span> Low-Fidelity Prototyping</h3><p>Tested structure and mechanics with simple wireframes.</p></div>
+      </div>
+      <div class="pad-node" data-step="4" style="--x:63%; --y:56.5%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="4"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">04)</span> High-Fidelity Prototyping</h3><p>Pushed toward final visuals, guided by partner feedback.</p></div>
+      </div>
+      <div class="pad-node" data-step="5" style="--x:84%; --y:68%;">
+        <span class="pad-rail"><span class="pad-dot"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">05)</span> Final Draft</h3><p>Refined and finalized the handoff-ready prototype.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Core Mechanic</span>
+    <h2>Customizing the Community</h2>
+    <p>Players start on a digital map of a neighborhood showing real, visible problems: locked buildings and lots waiting to be addressed. Clicking into one unlocks a task, and completing it reflects back on the map itself, so the neighborhood visibly improves as players learn, turning an abstract policy issue into something they can see themselves changing.</p>
+    <div class="cubot-gallery cols-1">
+      <figure>
+        <img src="../assets/imagin8-v-park/map-community-hub.jpg" alt="The in-game community map: a blueprint-style illustration of Office, Community Hub, Science Lab, Restaurant, and Orchard buildings, each marked with a lock icon except the completed Community Hub">
+        <figcaption>The community map: each location starts locked, and unlocks as players complete its task.</figcaption>
+      </figure>
+    </div>
+    <div class="cubot-gallery cols-3" style="margin-top:20px;">
+      <figure>
+        <img src="../assets/imagin8-v-park/screenshot-house-selection.jpg" alt="Gameplay screenshot: three houses on a street with the prompt 'Hmm which house should I go to first?'">
+        <figcaption>Choosing which house to visit first.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/imagin8-v-park/screenshot-task1-holding-company.jpg" alt="Gameplay screenshot: Barry standing in front of a For Sale sign, explaining what a real estate holding company is">
+        <figcaption>Learning about real estate holding companies at the Absentee House.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/imagin8-v-park/screenshot-orchard-npc.jpg" alt="Gameplay screenshot: an elderly neighbor character talking about her dream of a shared community orchard">
+        <figcaption>Meeting a neighbor who dreams of turning her garden into a shared community orchard.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Cast</span>
+    <h2>Meet the Guides</h2>
+    <p>Five characters carry players through the story: Cherry and Barry, the two guides who work with players to improve their community and, in doing so, improve their own future too, plus Peach, Remy, and Granny Smith, who round out the cast of neighbors players meet along the way.</p>
+    <div class="cubot-gallery">
+      <figure>
+        <img src="../assets/imagin8-v-park/character-sheet.jpg" alt="Character sheet for Imagin8v Park showing five illustrated characters: Cherry in blue overalls, Barry in a baseball cap and polo shirt, Peach a small girl in a strawberry hat holding a lollipop, Remy a mustached chef holding a rolling pin, and Granny Smith, an elderly woman in glasses and a purple sweater holding an apple">
+        <figcaption>The core cast: Cherry, Barry, Peach, Remy the chef, and Granny Smith.</figcaption>
+      </figure>
+    </div>
+
+    <div class="terry-callout">
+      <div class="terry-photos">
+        <img src="../assets/imagin8-v-park/terry-running.png" alt="Terry the ghost dog running, rendered as a glowing white silhouette with a cyan collar">
+      </div>
+      <div class="terry-text">
+        <div class="terry-eyebrow">Special Mention</div>
+        <h3>Terry</h3>
+        <p>The dog who acts as the catalyst for starting the player&rsquo;s journey in the game.</p>
+      </div>
+    </div>
+
+    <div class="stakeholder-callout">
+      <div class="sc-photos">
+        <img src="../assets/imagin8-v-park/sharon-adams-framed.png" alt="Portrait of Sharon Adams in an ornate pink frame">
+        <img src="../assets/imagin8-v-park/larry-adams-framed.png" alt="Portrait of Larry Adams in an ornate blue frame">
+      </div>
+      <div class="sc-text">
+        <div class="sc-eyebrow">Real-World Inspiration</div>
+        <p>Cherry and Barry are grounded in real people: Sharon and Larry Adams, whose continued work at <a class="sc-link" href="https://www.agpmke.com/" target="_blank" rel="noopener">Adams Garden Park</a> has been turning blighted lots into community space since 2020.</p>
+      </div>
+    </div>
   </section>
 
   <section id="story" class="cs-section reveal">
     <span class="eyebrow" style="display:block; margin-bottom:14px;">Narrative Design</span>
     <h2>The Story</h2>
-    <div class="process-arc-diagram" data-process-arc>
-      <svg class="pad-svg" viewBox="0 0 1160 760" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="padFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:var(--ink)"/>
-            <stop offset="100%" style="stop-color:var(--ink-faint)"/>
-          </linearGradient>
-        </defs>
-        <path class="pad-arc" data-arc="1" pathLength="100" d="M93,198 Q232,138 371,289"/>
-        <path class="pad-arc" data-arc="2" pathLength="100" d="M371,289 Q510,233 650,380"/>
-        <path class="pad-arc" data-arc="3" pathLength="100" d="M650,380 Q800,318 951,486"/>
-      </svg>
-      <div class="pad-node" data-step="1" style="--x:8%; --y:26%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="1"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">01)</span> Dystopian Present</h3><p>Players start in a neighborhood in decline, the wicked problem made visible and personal.</p></div>
-      </div>
-      <div class="pad-node" data-step="2" style="--x:32%; --y:38%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="2"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">02)</span> Meet Cherry &amp; Barry</h3><p>Two guides pull players back in time to where the decline began.</p></div>
-      </div>
-      <div class="pad-node" data-step="3" style="--x:56%; --y:50%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="3"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">03)</span> Community Tasks</h3><p>Players take on civic engagement tasks, learning housing concepts by doing.</p></div>
-      </div>
-      <div class="pad-node" data-step="4" style="--x:82%; --y:64%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="4"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">04)</span> Thriving Present</h3><p>Players return to a present day neighborhood shaped directly by their decisions.</p></div>
+    <p>A four-beat arc carries players from the problem to their own hand in the solution, told through Cherry and Barry as guides rather than a wall of text.</p>
+    <div class="portal-path">
+      <div class="pp-row">
+        <div class="pp-stop">
+          <div class="pp-ring">01</div>
+          <h3>Dystopian Present</h3>
+          <p>Players start in a neighborhood in decline, the wicked problem made visible and personal.</p>
+        </div>
+        <div class="pp-stop">
+          <div class="pp-ring">02</div>
+          <h3>Meet Cherry &amp; Barry</h3>
+          <p>Players get pulled back in time and meet their guides, right where the decline began.</p>
+        </div>
+        <div class="pp-stop">
+          <div class="pp-ring">03</div>
+          <h3>Community Tasks</h3>
+          <p>Players take on civic engagement tasks, learning housing concepts by doing.</p>
+        </div>
+        <div class="pp-stop">
+          <div class="pp-ring">04</div>
+          <h3>Thriving Present</h3>
+          <p>Players return to a present day neighborhood shaped directly by their decisions.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="outcome" class="cs-section reveal">
-    <h2>The Outcome</h2>
-    <p>The result is a polished, fully interactive click-and-play prototype ready for partner handoff and deployment. Alongside it: a validated model checked against real-world precedents, an established deployment roadmap, and a clear list of next steps and potential partnerships to take it further.</p>
+  <section id="gallery" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Exhibit</span>
+    <h2>Gallery</h2>
+    <div class="exhibition-gallery">
+      <figure>
+        <img src="../assets/imagin8-v-park/event-team-portal-cutout.jpg" alt="Four team members standing behind a physical cardboard portal cutout of the Imagin8v Park doorway, holding a sign with the project logo" loading="lazy">
+        <figcaption><span class="eg-tag">Exhibit</span><span class="eg-cap">The team behind the physical portal cutout we built for the exhibit.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/imagin8-v-park/event-kiosk-setup.jpg" alt="The exhibit kiosk: a monitor showing the Imagin8v Park Begin Journey screen, a laser-cut acrylic silhouette of Terry the ghost dog, our printed process book, a laptop, and a worksheet introducing stakeholders Sharon and Larry Adams of Adams Garden Park" loading="lazy">
+        <figcaption><span class="eg-tag">Exhibit</span><span class="eg-cap">The kiosk setup: the Begin Journey prototype, a laser-cut silhouette of Terry the ghost dog, our printed process book, and the Adams Garden Park stakeholder page.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/imagin8-v-park/event-kiosk-conversation.jpg" alt="A visitor leaning over the exhibit table to look at the laptop screen while two team members explain the project" loading="lazy">
+        <figcaption><span class="eg-tag">Exhibit</span><span class="eg-cap">Walking a visitor through the prototype at the exhibit table.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/imagin8-v-park/event-worksheets.jpg" alt="Stacks of printed Imagin8v Park Community Redesign Challenge worksheet booklets laid out on the exhibit table" loading="lazy">
+        <figcaption><span class="eg-tag">Exhibit</span><span class="eg-cap">Printed Community Redesign Challenge worksheets for visitors to take the exercise home.</span></figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="cs-section reveal">
-    <h2>Reflection</h2>
-    <p>[Your voice goes here: a short, honest reflection on what you'd carry forward or do differently next time.]</p>
+    <div class="key-takeaways-card">
+      <h2>Reflection</h2>
+      <ul>
+        <li>Learning directly from stakeholders like Sharon and Larry Adams made the whole project feel grounded, and worth the ambition of building a full game around it.</li>
+        <li>Taking that on in a single short semester meant picking up new techniques fast, and getting a much clearer sense of what&rsquo;s actually realistic in that kind of timeframe.</li>
+        <li>The biggest lesson was how to get an idea moving no matter what stage it&rsquo;s at, instead of waiting for the conditions to feel perfect before starting.</li>
+        <li>I&rsquo;m still open to developing Imagin8v Park further, including building it out on other game engines.</li>
+      </ul>
+    </div>
   </section>
 
   <div class="next-project reveal">

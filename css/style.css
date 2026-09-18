@@ -609,10 +609,22 @@ strong { color: var(--ink); font-weight: 700; }
 /* ---------- Cubot evolution gallery (process sketches, prototype photos, video) ---------- */
 .cubot-gallery { display: grid; grid-template-columns: 1fr; gap: 18px; margin: 28px 0; }
 .cubot-gallery.cols-2 { grid-template-columns: 1fr 1fr; }
-@media (max-width: 640px) { .cubot-gallery.cols-2 { grid-template-columns: 1fr; } }
+.cubot-gallery.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cubot-gallery.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .cubot-gallery.cols-4, .cubot-gallery.cols-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .cubot-gallery.cols-2, .cubot-gallery.cols-4, .cubot-gallery.cols-3 { grid-template-columns: 1fr; } }
 .cubot-gallery figure { margin: 0; }
 .cubot-gallery img, .cubot-gallery video { width: 100%; display: block; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--bg-soft); }
 .cubot-gallery figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.5; }
+
+/* ---------- Process phase grid (numbered step cards) ---------- */
+.process-phase-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 24px; }
+@media (max-width: 900px) { .process-phase-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .process-phase-grid { grid-template-columns: 1fr; } }
+.process-phase-card { border: 1px solid var(--border); border-radius: var(--r-md); padding: 18px 16px; background: var(--bg-soft); }
+.process-phase-card .ppc-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.process-phase-card h4 { font-size: 14.5px; margin: 6px 0 8px; color: var(--ink); }
+.process-phase-card p { font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
 @keyframes cubot-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 .cubot-cherub { display: block; margin: 0 auto 36px; max-width: 760px; width: 100%; animation: cubot-float 5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .cubot-cherub { animation: none; } }
@@ -787,4 +799,190 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Imagin8 V Park: "The Spark" night-sky card ---------- */
+.spark-night-card {
+  position: relative; margin: var(--gap-lg) 0; padding: 44px 48px; border-radius: 24px; overflow: hidden;
+  text-align: center;
+  background: linear-gradient(180deg, #453a78 0%, #574c8a 30%, #6a5490 55%, #85578a 78%, #9c5f83 100%);
+  box-shadow: 0 18px 44px rgba(69,58,120,0.35);
+}
+.spark-haze { position: absolute; inset: 0; background: radial-gradient(circle at 50% 8%, rgba(255,255,255,0.10), transparent 55%); pointer-events: none; }
+.spark-star { position: absolute; border-radius: 50%; background: #fff; animation: spark-tw 2.6s ease-in-out infinite; }
+@keyframes spark-tw { 0%, 100% { opacity: 0.15; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1); } }
+.spark-icon-wrap {
+  position: relative; width: 46px; height: 46px; border-radius: 50%; margin: 0 auto 18px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.35);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 18px rgba(255,255,255,0.35);
+}
+.spark-icon-wrap svg { width: 22px; height: 22px; color: #fff; animation: spark-rot 7s linear infinite; filter: drop-shadow(0 0 5px rgba(255,255,255,0.7)); }
+@keyframes spark-rot { to { transform: rotate(360deg); } }
+.spark-night-card blockquote {
+  position: relative; margin: 0 auto; max-width: 62ch; font-size: clamp(20px, 2.6vw, 27px); font-weight: 600; font-style: italic;
+  line-height: 1.5; color: #fdfbff; text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+.spark-night-card .spark-cite {
+  position: relative; display: block; margin-top: 18px; font-style: normal; font-weight: 700;
+  font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.72);
+}
+@media (max-width: 640px) { .spark-night-card { padding: 30px 26px; } }
+
+/* ---------- Imagin8 V Park: embedded Figma prototype "big screen" ---------- */
+.figma-embed-frame {
+  margin: var(--gap-lg) 0 12px; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--border); box-shadow: 0 18px 40px rgba(22,21,29,0.10);
+  background: #1c1c22;
+}
+.fef-chrome {
+  display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #26262e;
+}
+.fef-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.fef-chrome-title {
+  margin-left: 10px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fef-iframe { display: block; width: 100%; height: 640px; border: 0; background: #fff; }
+.fef-caption { font-size: 13px; color: var(--ink-faint); margin-top: 4px; }
+.fef-caption a { color: var(--accent); font-weight: 600; }
+@media (max-width: 640px) {
+  .fef-iframe { height: 420px; }
+}
+
+/* ---------- Imagin8 V Park: "The Story" portal path ---------- */
+.portal-path {
+  position: relative; margin-top: var(--gap-lg); padding: 44px 30px 34px; border-radius: 20px;
+  background: linear-gradient(160deg, #0f2a44, #1c3f66); overflow: hidden;
+}
+.portal-path::before {
+  content: ""; position: absolute; top: 24%; left: 6%; right: 6%; height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(127,196,255,0.5) 0 8px, transparent 8px 16px);
+}
+.pp-row { position: relative; display: flex; justify-content: space-between; gap: 14px; }
+.pp-stop { flex: 1; text-align: center; }
+.pp-ring {
+  width: 46px; height: 46px; border-radius: 50%; margin: 0 auto 16px;
+  background: radial-gradient(circle, #7fc4ff, #2478c9 70%); box-shadow: 0 0 18px rgba(127,196,255,0.7);
+  display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 13px;
+}
+.pp-stop h3 { color: #fff; font-size: 15px; margin: 0 0 8px; }
+.pp-stop p { color: rgba(255,255,255,0.68); font-size: 12.5px; line-height: 1.55; margin: 0; }
+@media (max-width: 780px) {
+  .portal-path::before { display: none; }
+  .pp-row { flex-direction: column; gap: 28px; }
+  .pp-stop { text-align: left; display: flex; align-items: flex-start; gap: 16px; }
+  .pp-ring { margin: 0; flex-shrink: 0; }
+}
+
+/* ---------- Imagin8 V Park: stakeholder callout (Sharon & Larry Adams) ---------- */
+.stakeholder-callout {
+  display: flex; align-items: center; gap: 24px; margin-top: 22px; padding: 22px 26px;
+  border-radius: 16px; background: var(--accent-tint);
+}
+.sc-photos { display: flex; flex-shrink: 0; gap: 4px; }
+.sc-photos img { width: 130px; height: auto; display: block; }
+.sc-eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.sc-text p { margin: 0; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+.sc-link { font-weight: 700; color: var(--accent); }
+@media (max-width: 560px) {
+  .stakeholder-callout { flex-direction: column; align-items: flex-start; }
+  .sc-photos img { width: 105px; }
+}
+
+/* ---------- Imagin8 V Park: Branding section ---------- */
+.pantone-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
+.pantone-card {
+  width: 128px; border-radius: 12px; overflow: hidden; background: var(--card-bg, #fff);
+  box-shadow: 0 10px 22px rgba(22,21,29,0.14); transition: transform .25s ease, box-shadow .25s ease;
+}
+.pantone-card:nth-child(odd) { transform: rotate(-2deg); }
+.pantone-card:nth-child(even) { transform: rotate(2deg); }
+.pantone-card:hover { transform: scale(1.06) rotate(0deg); box-shadow: 0 16px 30px rgba(22,21,29,0.18); }
+.pantone-fill { height: 108px; }
+.pantone-tab { padding: 10px 12px 12px; }
+.pantone-tab .name { font-size: 12px; font-weight: 700; color: var(--ink); }
+.pantone-tab .hex { font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; }
+.brand-palette-caption { font-size: 13px; color: var(--ink-faint); margin: 4px 0 0; max-width: 62ch; }
+.brand-type-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 32px; }
+.brand-type-card { padding: 26px 24px; border-radius: 16px; }
+.btc-label { font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+.btc-sample { font-size: 28px; line-height: 1.3; margin-bottom: 10px; word-break: break-word; }
+.btc-name { font-size: 13px; font-weight: 700; }
+.brand-type-card.tinted-navy { background: #0f2a44; }
+.brand-type-card.tinted-navy .btc-label { color: rgba(255,255,255,0.55); }
+.brand-type-card.tinted-navy .btc-sample { color: #fff; }
+.brand-type-card.tinted-navy .btc-name { color: #fff; }
+.brand-type-card.tinted-accent { background: var(--accent-tint); }
+.brand-type-card.tinted-accent .btc-label { color: var(--accent); }
+.brand-type-card.tinted-accent .btc-sample { color: #16151d; }
+.brand-type-card.tinted-accent .btc-name { color: var(--accent); }
+@media (max-width: 640px) { .brand-type-row { grid-template-columns: 1fr; } }
+
+/* ---------- Imagin8 V Park: Process diagram recolored to the page accent ---------- */
+.process-arc-diagram.accent-arc .pad-arc { stroke: var(--accent); }
+.process-arc-diagram.accent-arc .pad-dot { background: var(--accent); }
+.process-arc-diagram.accent-arc .pad-idx { color: var(--accent); }
+@media (max-width: 900px) {
+  .process-arc-diagram.accent-arc .pad-line {
+    background-image: repeating-linear-gradient(to bottom, var(--accent-tint-strong) 0, var(--accent-tint-strong) 3px, transparent 3px, transparent 9px);
+  }
+}
+
+/* ---------- Imagin8 V Park: "Sweet & Salty" display font (logo/wordmark typeface) ---------- */
+@font-face {
+  font-family: 'Sweet and Salty';
+  src: url('../assets/imagin8-v-park/sweet-and-salty.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Imagin8 V Park: full wordmark logo showcase ---------- */
+.logo-showcase {
+  position: relative; margin: var(--gap-lg) 0 12px; padding: 56px 40px;
+  border-radius: 22px; border: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 45%, rgba(36,120,201,0.10), transparent 70%),
+    var(--card-bg, #fff);
+  box-shadow: 0 18px 40px rgba(22,21,29,0.08);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-showcase img { width: 100%; max-width: 480px; display: block; }
+@media (max-width: 640px) { .logo-showcase { padding: 32px 20px; } }
+
+/* ---------- Imagin8 V Park: Branding section spacing + block labels ---------- */
+.brand-block-label {
+  font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 16px;
+}
+.logo-showcase { margin-top: 8px; margin-bottom: 56px; }
+.pantone-row { margin-top: 8px; margin-bottom: 56px; }
+.brand-type-row { margin-top: 8px; }
+
+/* ---------- Imagin8 V Park: Process diagram spacing fix ---------- */
+/* match the container's aspect ratio to the SVG viewBox (1160x760) instead of
+   the shared component's default 1160/560, so nodes get the vertical room
+   the coordinates were designed for, and allow two-line headings so text
+   doesn't run into the next node's path */
+.process-arc-diagram.accent-arc { aspect-ratio: 1160 / 760; margin-top: 28px; }
+.process-arc-diagram.accent-arc .pad-node { width: 20%; min-width: 175px; }
+.process-arc-diagram.accent-arc .pad-label h3 { white-space: normal; max-width: 175px; line-height: 1.3; }
+
+/* ---------- Imagin8 V Park: Terry the ghost dog special mention ---------- */
+/* Terry's art is white/glow linework on a transparent background, so it needs
+   a dark backdrop to read at all in light mode; kept fixed-dark regardless of
+   theme so it looks the same and stays legible either way. */
+.terry-callout {
+  display: flex; align-items: center; gap: 24px; margin-top: 18px; padding: 22px 26px;
+  border-radius: 16px; background: #0f2a44;
+}
+.terry-photos { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.terry-photos img { width: 150px; height: auto; display: block; }
+.terry-eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7fc4ff; margin-bottom: 4px; }
+.terry-text h3 { font-size: 17px; color: #fff; margin: 0 0 6px; }
+.terry-text p { margin: 0; font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.55; }
+@media (max-width: 560px) {
+  .terry-callout { flex-direction: column; align-items: flex-start; }
+  .terry-photos img { width: 120px; }
 }
