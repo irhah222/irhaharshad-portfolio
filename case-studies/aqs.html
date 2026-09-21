@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AQS &middot; Irhah Arshad Siddiqui</title>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css?v=3">
 <link rel="icon" href="data:,">
 <style>
   #mark .logo-showcase {
@@ -21,22 +21,30 @@
   #process-aqs .pad-node {
     position: static; left: auto; top: auto; width: auto; min-width: 0;
     display: flex; align-items: flex-start; gap: 18px;
-    opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease;
   }
   #process-aqs .pad-node.in { opacity: 1; transform: translateY(0); }
+  #process-aqs .pad-dot { transition-duration: 0.5s; }
   /* The list is short enough that every step can enter the viewport at
-     once, so without an explicit stagger they'd all just pop in together
-     instead of cascading like the other case studies' process diagrams. */
+     once, so without a wide explicit stagger they'd all just pop in
+     together instead of cascading like the other case studies' process
+     diagrams — each step (and its dot + connector) is held back further
+     than the last so the reveal reads as a clear top-to-bottom sequence. */
   #process-aqs .pad-node:nth-child(1),
-  #process-aqs .pad-node:nth-child(1) .pad-line { transition-delay: 0ms; }
+  #process-aqs .pad-node:nth-child(1) .pad-line,
+  #process-aqs .pad-node:nth-child(1) .pad-dot { transition-delay: 0ms; }
   #process-aqs .pad-node:nth-child(2),
-  #process-aqs .pad-node:nth-child(2) .pad-line { transition-delay: 90ms; }
+  #process-aqs .pad-node:nth-child(2) .pad-line,
+  #process-aqs .pad-node:nth-child(2) .pad-dot { transition-delay: 180ms; }
   #process-aqs .pad-node:nth-child(3),
-  #process-aqs .pad-node:nth-child(3) .pad-line { transition-delay: 180ms; }
+  #process-aqs .pad-node:nth-child(3) .pad-line,
+  #process-aqs .pad-node:nth-child(3) .pad-dot { transition-delay: 360ms; }
   #process-aqs .pad-node:nth-child(4),
-  #process-aqs .pad-node:nth-child(4) .pad-line { transition-delay: 270ms; }
+  #process-aqs .pad-node:nth-child(4) .pad-line,
+  #process-aqs .pad-node:nth-child(4) .pad-dot { transition-delay: 540ms; }
   #process-aqs .pad-node:nth-child(5),
-  #process-aqs .pad-node:nth-child(5) .pad-line { transition-delay: 360ms; }
+  #process-aqs .pad-node:nth-child(5) .pad-line,
+  #process-aqs .pad-node:nth-child(5) .pad-dot { transition-delay: 720ms; }
   #process-aqs .pad-rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; flex-shrink: 0; }
   #process-aqs .pad-rail .pad-dot { margin-bottom: 0; flex-shrink: 0; }
   #process-aqs .pad-line {
@@ -57,7 +65,9 @@
   #process-aqs .pad-label h3 { white-space: normal; max-width: none; }
   #process-aqs .pad-label p { max-width: 60ch; }
 
-  /* Palette: straight, evenly spaced polaroid-style cards */
+  /* Palette: straight, evenly spaced polaroid-style cards. On mobile the
+     row wraps at a fixed card width; from tablet width up the cards grow
+     to fill the full section width instead of clustering to the left. */
   #mark .pantone-row { display: flex; flex-wrap: wrap; gap: 28px; padding: 22px 4px 32px; }
   #mark .pantone-card {
     width: 140px; padding: 10px 10px 14px; border-radius: 14px; background: var(--card-bg, #fff);
@@ -69,6 +79,11 @@
   #mark .pantone-tab { padding: 0; }
   @media (max-width: 640px) {
     #mark .pantone-row { gap: 16px; padding: 16px 0 24px; }
+  }
+  @media (min-width: 641px) {
+    #mark .pantone-row { flex-wrap: nowrap; gap: 44px; padding: 26px 4px 36px; }
+    #mark .pantone-card { flex: 1 1 0; width: auto; }
+    #mark .pantone-fill { height: 118px; }
   }
 </style>
 </head>
@@ -310,6 +325,6 @@
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script src="../js/main.js?v=3"></script>
 </body>
 </html>
