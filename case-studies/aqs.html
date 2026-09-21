@@ -13,57 +13,27 @@
   }
   #mark .logo-showcase img { max-width: 640px; }
 
-  /* Process: force the clean vertical list layout (same component used on
-     mobile) at every width, instead of the diagonal SVG cascade — simpler,
-     and there's no way for the connector to ever cross the label text. */
-  #process-aqs .process-arc-diagram { aspect-ratio: auto; max-width: none; margin-top: 28px; }
-  #process-aqs .pad-svg { display: none; }
-  #process-aqs .pad-node {
-    position: static; left: auto; top: auto; width: auto; min-width: 0;
-    display: flex; align-items: flex-start; gap: 18px;
-    opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease;
+  /* Process: same diagonal cascading arc diagram component as WayHome and
+     Imagin8 V Park (desktop), falling back to the shared vertical-list
+     layout on mobile — no page-specific layout override needed, just a
+     taller canvas since AQS has one more step than WayHome's. */
+  @media (min-width: 901px) {
+    #process-aqs .process-arc-diagram.accent-arc { aspect-ratio: 1160 / 500; }
+    #process-aqs .pad-node { width: 15%; min-width: 145px; }
+    #process-aqs .pad-label h3 { max-width: 145px; }
   }
-  #process-aqs .pad-node.in { opacity: 1; transform: translateY(0); }
-  #process-aqs .pad-dot { transition-duration: 0.5s; }
-  /* The list is short enough that every step can enter the viewport at
-     once, so without a wide explicit stagger they'd all just pop in
-     together instead of cascading like the other case studies' process
-     diagrams — each step (and its dot + connector) is held back further
-     than the last so the reveal reads as a clear top-to-bottom sequence. */
-  #process-aqs .pad-node:nth-child(1),
-  #process-aqs .pad-node:nth-child(1) .pad-line,
-  #process-aqs .pad-node:nth-child(1) .pad-dot { transition-delay: 0ms; }
-  #process-aqs .pad-node:nth-child(2),
-  #process-aqs .pad-node:nth-child(2) .pad-line,
-  #process-aqs .pad-node:nth-child(2) .pad-dot { transition-delay: 180ms; }
-  #process-aqs .pad-node:nth-child(3),
-  #process-aqs .pad-node:nth-child(3) .pad-line,
-  #process-aqs .pad-node:nth-child(3) .pad-dot { transition-delay: 360ms; }
-  #process-aqs .pad-node:nth-child(4),
-  #process-aqs .pad-node:nth-child(4) .pad-line,
-  #process-aqs .pad-node:nth-child(4) .pad-dot { transition-delay: 540ms; }
-  #process-aqs .pad-node:nth-child(5),
-  #process-aqs .pad-node:nth-child(5) .pad-line,
-  #process-aqs .pad-node:nth-child(5) .pad-dot { transition-delay: 720ms; }
-  #process-aqs .pad-rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; flex-shrink: 0; }
-  #process-aqs .pad-rail .pad-dot { margin-bottom: 0; flex-shrink: 0; }
-  #process-aqs .pad-line {
-    display: block; flex: 1; width: 2px; margin-top: 6px; min-height: 18px;
-    background-image: repeating-linear-gradient(to bottom, var(--accent) 0, var(--accent) 3px, transparent 3px, transparent 9px);
-    background-size: 2px 18px; background-repeat: repeat-y;
-    transform: scaleY(0); transform-origin: top; transition: transform 0.6s ease;
-  }
-  #process-aqs .pad-node.in .pad-line { transform: scaleY(1); }
-  #process-aqs .pad-node:last-child .pad-line { display: none; }
-  /* padding-bottom lives on rail + label (not the node) so the stretched
-     rail — and the connector line inside it — actually reaches down into
-     the gap toward the next dot, instead of stopping short at the label's
-     own text height. */
-  #process-aqs .pad-label { padding-bottom: 28px; }
-  #process-aqs .pad-node:last-child .pad-label { padding-bottom: 0; }
-  #process-aqs .pad-label { flex: 1; min-width: 0; padding-top: 1px; }
-  #process-aqs .pad-label h3 { white-space: normal; max-width: none; }
-  #process-aqs .pad-label p { max-width: 60ch; }
+  /* The whole diagram is short enough that every step crosses the reveal
+     threshold in the same scroll tick, so without an explicit stagger
+     they'd all just pop in together instead of cascading. */
+  #process-aqs .pad-node:nth-of-type(1), #process-aqs .pad-node:nth-of-type(1) .pad-dot, #process-aqs .pad-node:nth-of-type(1) .pad-line { transition-delay: 0ms; }
+  #process-aqs .pad-node:nth-of-type(2), #process-aqs .pad-node:nth-of-type(2) .pad-dot, #process-aqs .pad-node:nth-of-type(2) .pad-line { transition-delay: 160ms; }
+  #process-aqs .pad-node:nth-of-type(3), #process-aqs .pad-node:nth-of-type(3) .pad-dot, #process-aqs .pad-node:nth-of-type(3) .pad-line { transition-delay: 320ms; }
+  #process-aqs .pad-node:nth-of-type(4), #process-aqs .pad-node:nth-of-type(4) .pad-dot, #process-aqs .pad-node:nth-of-type(4) .pad-line { transition-delay: 480ms; }
+  #process-aqs .pad-node:nth-of-type(5), #process-aqs .pad-node:nth-of-type(5) .pad-dot, #process-aqs .pad-node:nth-of-type(5) .pad-line { transition-delay: 640ms; }
+  #process-aqs .pad-arc[data-arc="1"] { transition-delay: 160ms; }
+  #process-aqs .pad-arc[data-arc="2"] { transition-delay: 320ms; }
+  #process-aqs .pad-arc[data-arc="3"] { transition-delay: 480ms; }
+  #process-aqs .pad-arc[data-arc="4"] { transition-delay: 640ms; }
 
   /* Palette: straight, evenly spaced polaroid-style cards. On mobile the
      row wraps at a fixed card width; from tablet width up the cards grow
@@ -202,23 +172,35 @@
     <h2>Idea to Finished Film</h2>
     <p>Five stages carried AQS from a rough idea to a finished piece, each one feeding the next. Most of it happened during COVID, so nearly all of it, including directing the voice actor, had to be done remotely.</p>
     <div class="process-arc-diagram accent-arc" data-process-arc>
-      <div class="pad-node" data-step="1">
+      <svg class="pad-svg" viewBox="0 0 1160 500" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="padFlowGradAqs" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:var(--accent)"/>
+            <stop offset="100%" style="stop-color:var(--accent)"/>
+          </linearGradient>
+        </defs>
+        <path class="pad-arc" data-arc="1" pathLength="100" d="M46.4,50 Q234.4,31.8 278.4,130"/>
+        <path class="pad-arc" data-arc="2" pathLength="100" d="M278.4,130 Q466.4,111.7 510.4,210"/>
+        <path class="pad-arc" data-arc="3" pathLength="100" d="M510.4,210 Q698.4,191.7 742.4,290"/>
+        <path class="pad-arc" data-arc="4" pathLength="100" d="M742.4,290 Q963.8,231.1 974.4,460"/>
+      </svg>
+      <div class="pad-node" data-step="1" style="--x:4%; --y:10%;">
         <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="1"></span></span>
         <div class="pad-label"><h3><span class="pad-idx">01)</span> Research &amp; Interviews</h3><p>Interviews with local experts, UNDP &amp; PCRWR reports</p></div>
       </div>
-      <div class="pad-node" data-step="2">
+      <div class="pad-node" data-step="2" style="--x:24%; --y:26%;">
         <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="2"></span></span>
         <div class="pad-label"><h3><span class="pad-idx">02)</span> Storywriting</h3><p>Shahmir's journey, the spirit world's rules</p></div>
       </div>
-      <div class="pad-node" data-step="3">
+      <div class="pad-node" data-step="3" style="--x:44%; --y:42%;">
         <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="3"></span></span>
         <div class="pad-label"><h3><span class="pad-idx">03)</span> Storyboarding</h3><p>Every shot and beat, before final art</p></div>
       </div>
-      <div class="pad-node" data-step="4">
+      <div class="pad-node" data-step="4" style="--x:64%; --y:58%;">
         <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="4"></span></span>
         <div class="pad-label"><h3><span class="pad-idx">04)</span> Illustration &amp; Voice Direction</h3><p>Procreate, scene by scene, while directing the voice actor remotely over email</p></div>
       </div>
-      <div class="pad-node" data-step="5">
+      <div class="pad-node" data-step="5" style="--x:84%; --y:92%;">
         <span class="pad-rail"><span class="pad-dot"></span></span>
         <div class="pad-label"><h3><span class="pad-idx">05)</span> Animation</h3><p>After Effects: camera, particles, light</p></div>
       </div>
