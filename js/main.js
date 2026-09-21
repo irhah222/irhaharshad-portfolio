@@ -74,38 +74,29 @@
   document.querySelectorAll("[data-process-arc]").forEach(function (diagram) {
     var nodes = Array.prototype.slice.call(diagram.querySelectorAll(".pad-node"));
     var arcs = Array.prototype.slice.call(diagram.querySelectorAll(".pad-arc, .pad-line"));
-    nodes.sort(function (a, b) { return (+a.dataset.step) - (+b.dataset.step); });
     var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var stepMs = reduced ? 0 : 300;
     function arcsAfter(step) {
       return arcs.filter(function (a) { return +a.dataset.arc === step; });
     }
     function revealArc(arc) {
       arc.classList.add("in");
       if (!reduced) {
-        setTimeout(function () { arc.classList.add("flow"); }, 1100);
+        setTimeout(function () { arc.classList.add("flow"); }, 700);
       }
     }
-    function play() {
-      var t = 0;
-      nodes.forEach(function (node, i) {
-        (function (node, delay) { setTimeout(function () { node.classList.add("in"); }, delay); })(node, t);
-        arcsAfter(i + 1).forEach(function (arc) {
-          (function (arc, delay) { setTimeout(function () { revealArc(arc); }, delay); })(arc, t + stepMs * 0.5);
-        });
-        t += stepMs * 1.7;
-      });
+    function revealNode(node) {
+      node.classList.add("in");
+      arcsAfter(+node.dataset.step).forEach(revealArc);
     }
     if ("IntersectionObserver" in window) {
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) { play(); obs.unobserve(entry.target); }
+          if (entry.isIntersecting) { revealNode(entry.target); obs.unobserve(entry.target); }
         });
-      }, { threshold: 0.25 });
-      obs.observe(diagram);
+      }, { threshold: 0.4, rootMargin: "0px 0px -10% 0px" });
+      nodes.forEach(function (n) { obs.observe(n); });
     } else {
-      nodes.forEach(function (n) { n.classList.add("in"); });
-      arcs.forEach(function (a) { a.classList.add("in"); if (!reduced) a.classList.add("flow"); });
+      nodes.forEach(revealNode);
     }
   });
 

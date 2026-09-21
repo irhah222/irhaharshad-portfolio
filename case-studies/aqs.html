@@ -6,6 +6,71 @@
 <title>AQS &middot; Irhah Arshad Siddiqui</title>
 <link rel="stylesheet" href="../css/style.css">
 <link rel="icon" href="data:,">
+<style>
+  #mark .logo-showcase {
+    background: radial-gradient(ellipse 60% 70% at 50% 45%, rgba(130,244,254,0.14), transparent 70%), #0F2038;
+    border-color: rgba(130,244,254,0.18);
+  }
+  #mark .logo-showcase img { max-width: 640px; }
+
+  /* Process: force the clean vertical list layout (same component used on
+     mobile) at every width, instead of the diagonal SVG cascade — simpler,
+     and there's no way for the connector to ever cross the label text. */
+  #process-aqs .process-arc-diagram { aspect-ratio: auto; max-width: none; margin-top: 28px; }
+  #process-aqs .pad-svg { display: none; }
+  #process-aqs .pad-node {
+    position: static; left: auto; top: auto; width: auto; min-width: 0;
+    display: flex; align-items: flex-start; gap: 18px;
+    opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  #process-aqs .pad-node.in { opacity: 1; transform: translateY(0); }
+  /* The list is short enough that every step can enter the viewport at
+     once, so without an explicit stagger they'd all just pop in together
+     instead of cascading like the other case studies' process diagrams. */
+  #process-aqs .pad-node:nth-child(1),
+  #process-aqs .pad-node:nth-child(1) .pad-line { transition-delay: 0ms; }
+  #process-aqs .pad-node:nth-child(2),
+  #process-aqs .pad-node:nth-child(2) .pad-line { transition-delay: 90ms; }
+  #process-aqs .pad-node:nth-child(3),
+  #process-aqs .pad-node:nth-child(3) .pad-line { transition-delay: 180ms; }
+  #process-aqs .pad-node:nth-child(4),
+  #process-aqs .pad-node:nth-child(4) .pad-line { transition-delay: 270ms; }
+  #process-aqs .pad-node:nth-child(5),
+  #process-aqs .pad-node:nth-child(5) .pad-line { transition-delay: 360ms; }
+  #process-aqs .pad-rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; flex-shrink: 0; }
+  #process-aqs .pad-rail .pad-dot { margin-bottom: 0; flex-shrink: 0; }
+  #process-aqs .pad-line {
+    display: block; flex: 1; width: 2px; margin-top: 6px; min-height: 18px;
+    background-image: repeating-linear-gradient(to bottom, var(--accent) 0, var(--accent) 3px, transparent 3px, transparent 9px);
+    background-size: 2px 18px; background-repeat: repeat-y;
+    transform: scaleY(0); transform-origin: top; transition: transform 0.6s ease;
+  }
+  #process-aqs .pad-node.in .pad-line { transform: scaleY(1); }
+  #process-aqs .pad-node:last-child .pad-line { display: none; }
+  /* padding-bottom lives on rail + label (not the node) so the stretched
+     rail — and the connector line inside it — actually reaches down into
+     the gap toward the next dot, instead of stopping short at the label's
+     own text height. */
+  #process-aqs .pad-label { padding-bottom: 28px; }
+  #process-aqs .pad-node:last-child .pad-label { padding-bottom: 0; }
+  #process-aqs .pad-label { flex: 1; min-width: 0; padding-top: 1px; }
+  #process-aqs .pad-label h3 { white-space: normal; max-width: none; }
+  #process-aqs .pad-label p { max-width: 60ch; }
+
+  /* Palette: straight, evenly spaced polaroid-style cards */
+  #mark .pantone-row { display: flex; flex-wrap: wrap; gap: 28px; padding: 22px 4px 32px; }
+  #mark .pantone-card {
+    width: 140px; padding: 10px 10px 14px; border-radius: 14px; background: var(--card-bg, #fff);
+    box-shadow: 0 10px 24px rgba(22,21,29,0.16); position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  #mark .pantone-card:hover { transform: translateY(-6px); box-shadow: 0 18px 34px rgba(22,21,29,0.24); }
+  #mark .pantone-fill { width: 100%; height: 96px; border-radius: 10px; margin: 0 0 10px; }
+  #mark .pantone-tab { padding: 0; }
+  @media (max-width: 640px) {
+    #mark .pantone-row { gap: 16px; padding: 16px 0 24px; }
+  }
+</style>
 </head>
 <body style="--accent:#2f6f8f; --accent-tint:#f3f6f8; --accent-tint-strong:#e4ecf0;">
 
@@ -41,9 +106,11 @@
 
 <div class="section-rail">
   <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
-  <div class="dot" data-target="challenge"><span class="dot-label">Challenge</span></div>
+  <div class="dot" data-target="character"><span class="dot-label">Character</span></div>
+  <div class="dot" data-target="research"><span class="dot-label">Research</span></div>
+  <div class="dot" data-target="process-aqs"><span class="dot-label">Process</span></div>
+  <div class="dot" data-target="gallery"><span class="dot-label">Gallery</span></div>
   <div class="dot" data-target="mark"><span class="dot-label">The Mark</span></div>
-  <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
 </div>
 
 <main class="wrap">
@@ -53,50 +120,169 @@
       <span class="tag-pill">Visual &amp; Brand Design</span>
       <span class="tag-outline">Motion Comic, Film Direction, Illustration</span>
       <h1>AQS</h1>
-      <p class="hmw">Aqs means reflection, a fitting name for a story about water, and about what happens when we stop paying attention to it.</p>
+      <p class="hmw">AQS is a motion comic that gives Pakistan's water crisis a human face: a water spirit myth rooted in Balochistan's folklore, real research, and watching my own hometown run dry.</p>
       <div class="quick-facts">
         <div class="fact"><div class="label">Role</div><div class="value">Storyteller, Illustrator, Motion Designer</div></div>
         <div class="fact"><div class="label">Timeline</div><div class="value">December 2020 &middot; Capstone, Indus Valley School of Art &amp; Architecture</div></div>
         <div class="fact"><div class="label">Tools</div><div class="value">Adobe Creative Suite, Procreate</div></div>
       </div>
-      <div class="cs-header-actions">
-        <!-- replace href with your real film link (YouTube/Vimeo) -->
-        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Watch the Film</a>
-      </div>
     </div>
     <div class="cs-hero-image">
-      <!-- assets/aqs-hero.jpg, replace with your real project image -->
-      <div style="aspect-ratio:16/9; background:var(--bg-soft); display:flex; align-items:center; justify-content:center; color:var(--ink-faint); font-size:13px;">AQS hero image</div>
+      <img src="../assets/aqs/hero-title-card.jpg" alt="AQS title card: an extreme close-up on Shahmir's eyes, a glowing shrine silhouetted on a hill below, with the AQS logo mark" style="width:100%; display:block;">
     </div>
   </header>
 
-  <section id="challenge" class="cs-section reveal">
-    <h2>The Challenge</h2>
-    <p>AQS is a motion comic exploring Pakistan's water crisis through a speculative lens. It follows Shahmir, a man grappling with the loss of biodiversity in a world where the spirits of nature have turned against mankind &mdash; using speculative fiction to make an environmental crisis feel immediate rather than abstract. The hardest part was grounding a high-concept, speculative narrative in reality, which meant researching the water crisis in Balochistan directly. As a designer from Pakistan, this was personal: I wanted to advocate for a story that rarely gets told, and do it justice.</p>
+  <section class="cs-section reveal">
+    <div class="trailer-layout">
+      <div class="trailer-video-wrap">
+        <iframe src="https://www.youtube.com/embed/Sd7elLzf3LM" title="AQS &middot; Motion Comic" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="trailer-copy">
+        <h2>Watch the Film</h2>
+        <p>AQS is a motion comic exploring Pakistan's water crisis through a speculative lens. It's inspired by the ongoing water shortages and the unavailability of Sui gas in Balochistan, Pakistan.</p>
+        <p style="margin-top:14px; font-size:13.5px; color:var(--ink-soft); line-height:1.6;">Viewers are urged to contribute in whatever way they can towards the environment, for a better and safer future. A few organizations that help: <a class="sc-link" href="https://alkhidmat.org/clean-water/" target="_blank" rel="noopener">Alkhidmat Clean Water</a> and <a class="sc-link" href="https://www.charitywater.org/" target="_blank" rel="noopener">charity: water</a>.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="cs-section reveal">
-    <h2>The Solution</h2>
-    <p>I used the motion comic format to blend illustration, film direction, and design research into a single piece. Data from sources like the UNDP anchored the narrative in fact, while the visual storytelling made it emotionally immediate &mdash; the goal was something that felt both researched and felt.</p>
+  <section id="character" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:16px;">Character Design</span>
+    <h2>Building Shahmir</h2>
+    <p>Shahmir needed to read instantly as grounded and local, since the story asks the audience to believe a very ordinary man is the one who goes looking for a water spirit. I designed him in a traditional shalwar kameez rather than anything stylized, and kept the palette and line work simple. Part of that was a deliberate minimalist choice, and part of it was practical: this was my first time animating a character across an entire film.</p>
+    <div class="cubot-gallery cols-1">
+      <figure>
+        <img src="../assets/aqs/character-turnaround.jpg" alt="Pencil character turnaround of Shahmir: two full-body sketches in a shalwar kameez, plus front and profile face studies">
+        <figcaption>Early turnaround sketches, working out Shahmir's silhouette, proportions, and face from the front and profile.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="research" class="cs-section reveal">
+    <h2>The Challenge</h2>
+    <p>The hardest part was grounding a high concept, speculative narrative in reality. I grew up in Quetta and watched Hanna Lake dry up firsthand, so the story is built on real research too: interviews with Hayatullah Durrani, an environmentalist and founder of the Hayat Durrani Water Sports Academy, and Sikander Bizenjo, a development economist and Climate Reality Leader, both working on Balochistan's water crisis, plus reports from the UNDP and Pakistan's Council of Research in Water Resources. That's what let the myth carry real weight instead of just being invented.</p>
+    <div class="cubot-gallery cols-1">
+      <figure>
+        <img src="../assets/aqs/ref-compare-dry.webp" alt="Illustrated frame of a shrine on a hill above a dry, cracked lakebed, next to a real photograph of the same kind of shrine surrounded by parched ground">
+        <figcaption>The film's central shrine, illustrated (left), next to the real drought stricken reservoir it's based on (right): this is what Shahmir actually finds when he reaches the lake.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/aqs/ref-compare-water.webp" alt="Illustrated frame of the same shrine reflected in a full lake at night, next to a real daytime photograph of a shrine surrounded by water">
+        <figcaption>The shrine as Shahmir hallucinates it, full of water. His thirst and desperation are what conjure this image, not anything he actually finds there.</figcaption>
+      </figure>
+    </div>
+    <div class="cubot-gallery cols-1">
+      <figure>
+        <img src="../assets/aqs/frame-desert.jpg" alt="Wide establishing shot of a desolate desert landscape at sunset with distant mountains">
+        <figcaption>Setting the world after the war: a barren Balochistan landscape, its resources depleted and its people displaced.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/aqs/skull-illustration.jpg" alt="Illustration of a bleached animal skull lying on cracked orange desert ground">
+        <figcaption>A small environmental detail doing a lot of the storytelling: what the land looks like once the water is gone.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="process-aqs" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Process</span>
+    <h2>Idea to Finished Film</h2>
+    <p>Five stages carried AQS from a rough idea to a finished piece, each one feeding the next. Most of it happened during COVID, so nearly all of it, including directing the voice actor, had to be done remotely.</p>
+    <div class="process-arc-diagram accent-arc" data-process-arc>
+      <div class="pad-node" data-step="1">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="1"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">01)</span> Research &amp; Interviews</h3><p>Interviews with local experts, UNDP &amp; PCRWR reports</p></div>
+      </div>
+      <div class="pad-node" data-step="2">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="2"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">02)</span> Storywriting</h3><p>Shahmir's journey, the spirit world's rules</p></div>
+      </div>
+      <div class="pad-node" data-step="3">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="3"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">03)</span> Storyboarding</h3><p>Every shot and beat, before final art</p></div>
+      </div>
+      <div class="pad-node" data-step="4">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="4"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">04)</span> Illustration &amp; Voice Direction</h3><p>Procreate, scene by scene, while directing the voice actor remotely over email</p></div>
+      </div>
+      <div class="pad-node" data-step="5">
+        <span class="pad-rail"><span class="pad-dot"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">05)</span> Animation</h3><p>After Effects: camera, particles, light</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="cs-section reveal">
+    <h2>Gallery</h2>
+    <p>A selection of frames from across the film.</p>
+    <div class="exhibition-gallery">
+      <figure>
+        <img src="../assets/aqs/frame-present-day.jpg" alt="Close-up of Shahmir indoors, lit by window blinds, looking serious">
+      </figure>
+      <figure>
+        <img src="../assets/aqs/frame-awakening.jpg" alt="Shahmir with hands raised to his face, surrounded by electric blue cracks of light and floating sparks">
+      </figure>
+      <figure>
+        <img src="../assets/aqs/frame-dream-walk.jpg" alt="A small figure in white walking through dark blue draped, cracked folds of light, seen from above">
+      </figure>
+      <figure>
+        <img src="../assets/aqs/frame-shrine-water-solo.jpg" alt="The shrine at night, fully surrounded by rippling water, glowing faintly, reflected below">
+      </figure>
+      <figure>
+        <img src="../assets/aqs/frame-altar-climax.jpg" alt="A tiny silhouetted figure stands before a glowing orb cradled by four dark, tentacle-like forms, under an aurora-lit sky">
+      </figure>
+      <figure>
+        <img src="../assets/aqs/hero-title-card.jpg" alt="AQS title card: an extreme close-up on Shahmir's eyes, a glowing shrine silhouetted on a hill below, with the AQS logo mark">
+      </figure>
+    </div>
   </section>
 
   <section id="mark" class="cs-section reveal">
     <span class="eyebrow" style="display:block; margin-bottom:16px;">Identity</span>
     <h2>The Mark</h2>
-    <p>The logo needed a local touch, so I experimented with Urdu type and circular forms until I found a shape that could carry the story's themes on its own. It leans on circles to represent both the water cycle and the broader cycle of life &mdash; a quiet echo of the word the whole project is named for.</p>
-    <div class="turning-point" style="padding: 28px 0 0; border-top: none;">
-      <blockquote style="max-width:56ch;">&ldquo;Aqs&rdquo; means reflection &mdash; the water theme was built into the name before it was built into a single frame.</blockquote>
+    <p>The logo needed a local touch, so I experimented with Urdu type and circular forms until I found a shape that could carry the story's themes on its own. It leans on circles to represent both the water cycle and the broader cycle of life, a quiet echo of the word the whole project is named for: &ldquo;Aqs&rdquo; means reflection.</p>
+    <div class="logo-showcase">
+      <img src="../assets/aqs/aqs-logo.webp" alt="Final AQS logo: a cyan spiral of concentric wave-like arcs above the wordmark AQS">
+    </div>
+    <div class="cubot-gallery cols-2">
+      <figure>
+        <img src="../assets/aqs/logo-sketch-process.webp" alt="Pencil sketches: the word Aqs written in Urdu script, next to two early circular wave-mark studies">
+        <figcaption>Starting from the Urdu script for &ldquo;Aqs,&rdquo; then working the circular wave motif by hand.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/aqs/logo-motion-frame.jpg" alt="The finished spiral wave mark next to its underlying circular construction guide">
+        <figcaption>The final spiral, built on a precise ring construction so it could animate cleanly.</figcaption>
+      </figure>
+    </div>
+    <span class="eyebrow" style="display:block; margin:36px 0 14px;">Palette</span>
+    <p>Pulled straight from the film itself: the spirit world's cyan glow, the deep navy of its night skies, and the sun bleached ochre and bone of the drought stricken land.</p>
+    <div class="pantone-row">
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#82F4FE;"></div>
+        <div class="pantone-tab"><div class="name">Reflection Cyan</div><div class="hex">#82F4FE</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#0F2038;"></div>
+        <div class="pantone-tab"><div class="name">Spirit Navy</div><div class="hex">#0F2038</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#6E4220;"></div>
+        <div class="pantone-tab"><div class="name">Drought Ochre</div><div class="hex">#6E4220</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#E2C19E;"></div>
+        <div class="pantone-tab"><div class="name">Bone Sand</div><div class="hex">#E2C19E</div></div>
+      </div>
+      <div class="pantone-card">
+        <div class="pantone-fill" style="background:#16151D;"></div>
+        <div class="pantone-tab"><div class="name">Line Ink</div><div class="hex">#16151D</div></div>
+      </div>
     </div>
   </section>
 
-  <section id="outcome" class="cs-section reveal">
-    <h2>The Outcome</h2>
-    <p>As a capstone project, AQS set out to show that motion graphics, film direction, and design research together can shift perspective &mdash; proof that design can be advocacy, not just decoration. The final piece blends illustration, film direction, and research into a story that's both researched and felt.</p>
-  </section>
-
   <section class="cs-section reveal">
-    <h2>Reflection</h2>
-    <p>Proof that design can be advocacy: making the narrative both researched and felt was always the real goal of this project, more than any single frame of it.</p>
+    <div class="key-takeaways-card">
+      <h2>Outcome &amp; Reflection</h2>
+      <p style="margin-top:14px;">As a capstone project, AQS set out to show that motion graphics, film direction, and design research together can shift perspective. It's proof that design can be advocacy, not just decoration. Making the narrative both researched and felt was always the real goal, more than any single frame of it.</p>
+    </div>
   </section>
 
   <div class="next-project reveal">
