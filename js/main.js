@@ -74,29 +74,38 @@
   document.querySelectorAll("[data-process-arc]").forEach(function (diagram) {
     var nodes = Array.prototype.slice.call(diagram.querySelectorAll(".pad-node"));
     var arcs = Array.prototype.slice.call(diagram.querySelectorAll(".pad-arc, .pad-line"));
+    nodes.sort(function (a, b) { return (+a.dataset.step) - (+b.dataset.step); });
     var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var stepMs = reduced ? 0 : 300;
     function arcsAfter(step) {
       return arcs.filter(function (a) { return +a.dataset.arc === step; });
     }
     function revealArc(arc) {
       arc.classList.add("in");
       if (!reduced) {
-        setTimeout(function () { arc.classList.add("flow"); }, 700);
+        setTimeout(function () { arc.classList.add("flow"); }, 1100);
       }
     }
-    function revealNode(node) {
-      node.classList.add("in");
-      arcsAfter(+node.dataset.step).forEach(revealArc);
+    function play() {
+      var t = 0;
+      nodes.forEach(function (node, i) {
+        (function (node, delay) { setTimeout(function () { node.classList.add("in"); }, delay); })(node, t);
+        arcsAfter(i + 1).forEach(function (arc) {
+          (function (arc, delay) { setTimeout(function () { revealArc(arc); }, delay); })(arc, t + stepMs * 0.5);
+        });
+        t += stepMs * 1.7;
+      });
     }
     if ("IntersectionObserver" in window) {
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) { revealNode(entry.target); obs.unobserve(entry.target); }
+          if (entry.isIntersecting) { play(); obs.unobserve(entry.target); }
         });
-      }, { threshold: 0.4, rootMargin: "0px 0px -10% 0px" });
-      nodes.forEach(function (n) { obs.observe(n); });
+      }, { threshold: 0.25 });
+      obs.observe(diagram);
     } else {
-      nodes.forEach(revealNode);
+      nodes.forEach(function (n) { n.classList.add("in"); });
+      arcs.forEach(function (a) { a.classList.add("in"); if (!reduced) a.classList.add("flow"); });
     }
   });
 
@@ -152,169 +161,64 @@
     }
   }
 
-  /* ---------- Hero chroma text reveal + cursor halo ---------- */
+  /* ---------- Hero text reveal ---------- */
   (function heroChroma() {
     var heroText = document.getElementById("heroText");
     if (!heroText) return;
-    var heroSection = heroText.closest(".hero");
-
-    var PALETTES = {
-      light: [
-        { t: 0,    c: "#e8b84b" },
-        { t: 0.35, c: "#ef8b5c" },
-        { t: 0.65, c: "#e23f74" },
-        { t: 1,    c: "#8f6fd8" }
-      ],
-      dark: [
-        { t: 0,    c: "#ff9a66" },
-        { t: 0.35, c: "#c988ff" },
-        { t: 0.65, c: "#7c8cff" },
-        { t: 1,    c: "#e8ecff" }
-      ]
-    };
-
-    function hexToRgb(hex) {
-      var v = hex.replace("#", "");
-      return [parseInt(v.substr(0, 2), 16), parseInt(v.substr(2, 2), 16), parseInt(v.substr(4, 2), 16)];
-    }
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function colorAt(stops, t) {
-      t = Math.max(0, Math.min(1, t));
-      for (var i = 0; i < stops.length - 1; i++) {
-        var a = stops[i], b = stops[i + 1];
-        if (t >= a.t && t <= b.t) {
-          var lt = (t - a.t) / (b.t - a.t || 1);
-          var ca = hexToRgb(a.c), cb = hexToRgb(b.c);
-          return "rgb(" + Math.round(lerp(ca[0], cb[0], lt)) + "," + Math.round(lerp(ca[1], cb[1], lt)) + "," + Math.round(lerp(ca[2], cb[2], lt)) + ")";
-        }
-      }
-      return stops[stops.length - 1].c;
-    }
 
     var text = heroText.textContent;
     heroText.textContent = "";
     heroText.classList.add("chroma-text");
     var chars = text.split("");
-    var colorable = chars.filter(function (c) { return c !== " "; }).length;
     var spans = [];
-    var colorIdx = 0;
+    // Each letter is its own inline-block span (for the per-char blur
+    // reveal), which would otherwise let the browser break a line between
+    // any two letters, not just at spaces. Grouping each run of non-space
+    // characters into a nowrap "word" wrapper keeps wraps at real word
+    // boundaries while the individual letters still animate independently.
+    var wordWrap = null;
     chars.forEach(function (ch) {
       var span = document.createElement("span");
       span.className = "char";
-      span.textContent = ch === " " ? " " : ch;
+      span.textContent = ch;
       span.dataset.isSpace = ch === " " ? "1" : "0";
-      span.dataset.t = ch !== " " ? (colorable > 1 ? colorIdx / (colorable - 1) : 0) : 0;
-      if (ch !== " ") colorIdx++;
-      heroText.appendChild(span);
+      if (ch === " ") {
+        wordWrap = null;
+        heroText.appendChild(span);
+      } else {
+        if (!wordWrap) {
+          wordWrap = document.createElement("span");
+          wordWrap.className = "word";
+          heroText.appendChild(wordWrap);
+        }
+        wordWrap.appendChild(span);
+      }
       spans.push(span);
     });
 
-    function restColor() {
-      var v = getComputedStyle(document.documentElement).getPropertyValue("--ink-faint");
-      return v ? v.trim() : "#94929f";
-    }
-    function applyPalette() {
-      var stops = currentIsDark() ? PALETTES.dark : PALETTES.light;
-      spans.forEach(function (span) {
-        if (span.dataset.isSpace !== "1") span.dataset.chroma = colorAt(stops, parseFloat(span.dataset.t));
-      });
-    }
-    applyPalette();
-
     function play() {
-      applyPalette();
-      var rest = restColor();
       // Cap the total stagger so longer headlines don't take proportionally
       // longer to finish revealing; short text keeps the original 50ms feel.
       var stepMs = Math.min(50, 900 / spans.length);
       spans.forEach(function (span, i) {
         span.className = "char";
-        span.style.color = "";
         void span.offsetWidth;
         span.style.animationDelay = (i * stepMs / 1000) + "s";
         span.classList.add("animate");
-        if (span.dataset.chroma) span.style.color = span.dataset.chroma;
       });
       clearTimeout(play._t);
       play._t = setTimeout(function () {
         spans.forEach(function (span) {
           span.classList.remove("animate");
           span.classList.add("settled");
-          span.style.color = rest;
         });
       }, spans.length * stepMs + 1350);
     }
 
     var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var canHover = !reduceMotion && heroSection && window.matchMedia &&
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    if (canHover) {
-      var glow = document.createElement("div");
-      glow.className = "hero-glow";
-      heroSection.appendChild(glow);
-
-      var mouse = { x: 0, y: 0, active: false };
-      var glowPos = { x: 0, y: 0 };
-
-      heroSection.addEventListener("mousemove", function (e) {
-        var r = heroSection.getBoundingClientRect();
-        mouse.x = e.clientX - r.left;
-        mouse.y = e.clientY - r.top;
-        mouse.active = true;
-      });
-      heroSection.addEventListener("mouseleave", function () { mouse.active = false; });
-
-      (function tick() {
-        glowPos.x = lerp(glowPos.x, mouse.x, 0.32);
-        glowPos.y = lerp(glowPos.y, mouse.y, 0.32);
-        var w = heroSection.clientWidth || 1;
-        var stops = currentIsDark() ? PALETTES.dark : PALETTES.light;
-        var color = colorAt(stops, glowPos.x / w);
-        glow.style.background = "radial-gradient(circle, " + color + " 0%, " + color + "55 40%, transparent 72%)";
-        glow.style.transform = "translate(" + (glowPos.x - 70) + "px," + (glowPos.y - 70) + "px)";
-        glow.style.opacity = mouse.active ? "0.6" : "0";
-        requestAnimationFrame(tick);
-      })();
-
-      heroText.addEventListener("mousemove", function (e) {
-        var rest = restColor();
-        spans.forEach(function (span) {
-          if (!span.classList.contains("settled")) return;
-          var r = span.getBoundingClientRect();
-          var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-          var dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-          span.style.color = (dist < 60 && span.dataset.chroma) ? span.dataset.chroma : rest;
-        });
-      });
-      heroText.addEventListener("mouseleave", function () {
-        var rest = restColor();
-        spans.forEach(function (span) {
-          if (span.classList.contains("settled")) span.style.color = rest;
-        });
-      });
-    }
-
-    function onThemeChange() {
-      applyPalette();
-      var rest = restColor();
-      spans.forEach(function (span) {
-        if (span.classList.contains("settled")) span.style.color = rest;
-      });
-    }
-    new MutationObserver(onThemeChange).observe(document.documentElement, {
-      attributes: true, attributeFilter: ["data-theme"]
-    });
-    if (window.matchMedia) {
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", onThemeChange);
-    }
 
     if (reduceMotion) {
-      applyPalette();
-      spans.forEach(function (span) {
-        span.classList.add("settled");
-        span.style.color = restColor();
-      });
+      spans.forEach(function (span) { span.classList.add("settled"); });
     } else {
       setTimeout(play, 150);
     }
@@ -386,5 +290,155 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeLightbox();
     });
+  })();
+
+  /* ---------- Hero: keep .hero-art tall enough for the card ----------
+     The card is absolutely positioned and centered inside .hero-art via
+     width: min(275px, 78%), so its actual rendered size depends on
+     .hero-art's own width. A fixed CSS min-height can't track that (a
+     percentage height resolves against the parent, not this element's
+     own width), so this computes it directly from the card's max size
+     at the current layout, padded for the float animation's rotation +
+     bob (id-card-float, css/style.css) so the card can never poke out
+     of .hero-art at any point in the cycle — on any breakpoint, stacked
+     or side-by-side. */
+  (function sizeHeroArt() {
+    var heroArt = document.querySelector(".hero-art");
+    if (!heroArt) return;
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function apply() {
+      var artWidth = heroArt.getBoundingClientRect().width;
+      if (!artWidth) return;
+      var cardWidth = Math.min(275, 0.78 * artWidth);
+      var cardHeight = cardWidth * (402 / 275);
+      // Reduced motion drops the bob and settles at a static -4deg tilt
+      // (see the prefers-reduced-motion override on .id-card-wrap).
+      var angle = reduceMotion ? 4 : 5;
+      var bobPad = reduceMotion ? 0 : 16;
+      var rotationPad = cardWidth * Math.sin(angle * Math.PI / 180);
+      heroArt.style.minHeight = Math.round(cardHeight + 2 * rotationPad + 2 * bobPad) + "px";
+    }
+
+    apply();
+    var resizeRaf = null;
+    window.addEventListener("resize", function () {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(apply);
+    });
+  })();
+
+  (function initCardTilt() {
+    var heroArt = document.querySelector(".hero-art");
+    var card = document.getElementById("idCard");
+    if (!heroArt || !card) return;
+    var sheen = card.querySelector(".sheen");
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var canHover = !reduceMotion && window.matchMedia &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!canHover) return;
+
+    var raf = null;
+    function onMove(e) {
+      var rect = heroArt.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      var rotateY = x * 16;
+      var rotateX = -y * 16;
+      card.classList.add("hovering");
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        card.style.transform = "rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg)";
+        if (sheen) sheen.style.backgroundPosition = ((x + 0.5) * 100) + "% " + ((y + 0.5) * 100) + "%";
+      });
+    }
+    function onLeave() {
+      card.classList.remove("hovering");
+      if (raf) cancelAnimationFrame(raf);
+      card.style.transform = "";
+    }
+    heroArt.addEventListener("mousemove", onMove);
+    heroArt.addEventListener("mouseleave", onLeave);
+  })();
+
+  /* ---------- Hero: Designer ID card flip (front <-> Design Philosophy) ----------
+     Click/tap the front face to flip to a short design-philosophy panel on
+     the back. A dedicated back button (not a click on the back face itself)
+     flips it back to front. */
+  (function initCardFlip() {
+    var flipEl = document.getElementById("idCardFlip");
+    var front = document.getElementById("idCardFront");
+    var backBtn = document.getElementById("philBackBtn");
+    var hint = document.getElementById("idCardHint");
+    if (!flipEl || !front) return;
+
+    var canHover = window.matchMedia &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (hint) hint.textContent = canHover ? "Click to flip" : "Tap to flip";
+
+    function flipToBack() {
+      flipEl.classList.add("flipped");
+      front.setAttribute("aria-label", "Flip card back to front");
+      if (hint) hint.style.opacity = "0";
+    }
+    function flipToFront() {
+      flipEl.classList.remove("flipped");
+      front.setAttribute("aria-label", "Flip card: read design philosophy");
+      if (hint) hint.style.opacity = "1";
+    }
+
+    front.addEventListener("click", function () {
+      if (!flipEl.classList.contains("flipped")) flipToBack();
+    });
+    front.addEventListener("keydown", function (e) {
+      if ((e.key === "Enter" || e.key === " ") && !flipEl.classList.contains("flipped")) {
+        e.preventDefault();
+        flipToBack();
+      }
+    });
+    if (backBtn) {
+      backBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        flipToFront();
+      });
+    }
+  })();
+
+  /* ---------- Hero: Designer ID card "Loves" typed rotation ----------
+     Types each phrase into the Loves field, holds, then backspaces before
+     typing the next — an ambient detail, so it runs regardless of hover
+     support (unlike the tilt, which needs a real pointer to mean anything). */
+  (function initLovesTypewriter() {
+    var targets = document.querySelectorAll("[data-loves-typed]");
+    if (!targets.length) return;
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var LOVES = ["Illustration, games, anime", "Ghibli, cats, tea", "Human-centered design", "Solving real problems", "Listening first", "Details that matter", "Uncovering insights", "Meaningful experiences", "Designing with intention"];
+    if (reduceMotion) {
+      targets.forEach(function (el) { el.textContent = LOVES[0]; });
+      return;
+    }
+    var loveIdx = 0, charIdx = 0, phase = "typing";
+    function tick() {
+      var text = LOVES[loveIdx];
+      var delay;
+      if (phase === "typing") {
+        charIdx++;
+        targets.forEach(function (el) { el.textContent = text.slice(0, charIdx); });
+        if (charIdx >= text.length) { phase = "holding"; delay = 1500; }
+        else { delay = 42; }
+      } else if (phase === "holding") {
+        phase = "erasing"; delay = 20;
+      } else {
+        charIdx--;
+        targets.forEach(function (el) { el.textContent = text.slice(0, charIdx); });
+        if (charIdx <= 0) { loveIdx = (loveIdx + 1) % LOVES.length; phase = "typing"; delay = 350; }
+        else { delay = 24; }
+      }
+      setTimeout(tick, delay);
+    }
+    setTimeout(tick, 1200);
   })();
 })();
