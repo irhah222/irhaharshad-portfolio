@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QRCO &middot; Irhah Arshad Siddiqui</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="icon" href="data:,">
+</head>
+<body style="--accent:#e8622c; --accent-tint:#fdece0; --accent-tint-strong:#f5c9a3;">
+
+<nav class="site-nav">
+  <div class="nav-row">
+    <a class="logo" href="../index.html">
+      <img class="logo-light" src="../assets/logo-black.png" alt="Irhah Arshad">
+      <img class="logo-dark" src="../assets/logo-white.png" alt="Irhah Arshad">
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="../index.html#work">Projects</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="nav-tools">
+        <button class="icon-btn hamburger" data-hamburger aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="../index.html#work">Projects</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+</nav>
+
+<button class="theme-fab" data-theme-toggle aria-label="Toggle theme">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+</button>
+
+<div class="section-rail">
+  <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
+  <div class="dot" data-target="research"><span class="dot-label">Research</span></div>
+  <div class="dot" data-target="solution"><span class="dot-label">Solution</span></div>
+  <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
+</div>
+
+<main class="wrap">
+
+  <header id="overview" class="cs-header reveal">
+    <div class="cs-header-main">
+      <span class="tag-pill">Product Strategy</span>
+      <span class="tag-outline">Customer Research, Competitive Analysis, Go-to-Market</span>
+      <h1>QRCO</h1>
+      <p class="lead">A go-to-market plan for a QR code platform that stays alive after it's printed &mdash; turning five customer interviews and a crowded, fragmented market into a $0.5M primary release small businesses would actually pay for.</p>
+      <div class="quick-facts">
+        <div class="fact"><div class="label">Role</div><div class="value">Product Manager, UX Researcher</div></div>
+        <div class="fact"><div class="label">Timeline</div><div class="value">Fall 2026 &ndash; Spring 2027</div></div>
+        <div class="fact"><div class="label">Tools</div><div class="value">Customer Interviews, Competitive Analysis, Figma</div></div>
+      </div>
+    </div>
+
+    <div class="cs-hero-image" style="background:var(--accent-tint); padding:0;">
+      <div style="padding:56px 32px 48px;">
+        <div class="qrco-flow">
+          <div class="qrco-flow-node">
+            <div class="qrco-flow-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2M14 19h2M19 19h2"/></svg>
+            </div>
+            <h4>Scan</h4>
+            <p>Customer scans the code on packaging, a flyer, or a product tag</p>
+          </div>
+          <div class="qrco-flow-line"></div>
+          <div class="qrco-flow-node">
+            <div class="qrco-flow-icon chip">QRCO</div>
+            <h4>Redirect</h4>
+            <p>An editable, trackable link stands between the code and the destination</p>
+          </div>
+          <div class="qrco-flow-line"></div>
+          <div class="qrco-flow-node">
+            <div class="qrco-flow-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M7 5.5h.01M10 5.5h.01"/></svg>
+            </div>
+            <h4>Understand</h4>
+            <p>Every scan is logged &mdash; device, time, new vs. repeat &mdash; while the destination stays swappable</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="problem" class="cs-section reveal">
+    <h2>The Problem</h2>
+    <p>A printed QR code is a promise you can't take back. Once it's on 10,000 boxes or a stack of flyers, whatever link it points to is the link it points to &mdash; forever, or until you pay to reprint everything. Small businesses lean on QR codes constantly for packaging and promotions, but the tools underneath them haven't caught up: codes are <strong>static</strong> (tied to one fixed destination), <strong>rigid</strong> (the moment the link changes, the code breaks), and <strong>invisible</strong> (no insight beyond &ldquo;someone, at some point, scanned this&rdquo;).</p>
+    <p style="margin-top:16px;">Kirby Mann, a small e-commerce business owner, felt it firsthand: after her art store took off to 1,000+ orders a month, she misprinted an order of over 500 envelopes with a QR code pointing to the wrong link. Fixing it meant reprinting &mdash; expensive, slow, and entirely avoidable if the link underneath the code could have simply been swapped.</p>
+    <p style="margin-top:16px; font-size:14.5px; color:var(--ink-faint);">I ran discovery interviews with small business owners and marketing/events managers to understand how deep this problem actually ran, and to find out if anyone would pay to fix it.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="hmw-banner">
+      <div class="hmw-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path class="compass-needle" d="M14.8 9.2 13 13l-3.8 1.8L11 11l3.8-1.8Z" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <p><strong>Guiding Question.</strong> How might we give small businesses the same visibility and flexibility over their QR codes that a large enterprise marketing team takes for granted &mdash; without the cost, the headcount, or the technical overhead?</p>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Step by Step</span>
+    <div class="process-arc-diagram accent-arc" data-process-arc>
+      <svg class="pad-svg" viewBox="0 0 1160 760" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="padFlowGradQrco" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:var(--accent)"/>
+            <stop offset="100%" style="stop-color:var(--accent)"/>
+          </linearGradient>
+        </defs>
+        <path class="pad-arc" data-arc="1" pathLength="100" d="M93,198 Q232,138 371,289"/>
+        <path class="pad-arc" data-arc="2" pathLength="100" d="M371,289 Q510,233 650,380"/>
+        <path class="pad-arc" data-arc="3" pathLength="100" d="M650,380 Q800,318 951,486"/>
+      </svg>
+      <div class="pad-node" data-step="1" style="--x:8%; --y:26%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="1"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">01)</span> Discover</h3><p>Customer Interviews, Competitive Analysis, Market Sizing</p></div>
+      </div>
+      <div class="pad-node" data-step="2" style="--x:32%; --y:38%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="2"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">02)</span> Define</h3><p>Personas, HMW Statements, Feature Prioritization</p></div>
+      </div>
+      <div class="pad-node" data-step="3" style="--x:56%; --y:50%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="3"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">03)</span> Plan</h3><p>Release Roadmap, Cost &amp; Timeline Modeling</p></div>
+      </div>
+      <div class="pad-node" data-step="4" style="--x:82%; --y:64%;">
+        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="4"></span></span>
+        <div class="pad-label"><h3><span class="pad-idx">04)</span> Validate</h3><p>Beta Testing, Blind Testing vs. Competitors</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="research-findings">
+    <span class="eyebrow rf-kicker">What We Learned</span>
+    <h2 class="rf-title">Research Findings</h2>
+
+    <div class="rf-stats">
+      <div class="rf-stat"><div class="num">5</div><div class="desc">in-depth interviews across two target segments: business owners and marketing/events managers</div></div>
+      <div class="rf-stat"><div class="num">$15.99</div><div class="desc">already paid per month by one interviewee for basic QR tracking &mdash; before staffing cuts killed it</div></div>
+      <div class="rf-stat"><div class="num">45%</div><div class="desc">of US SMBs already use QR codes in their marketing, per industry benchmarks</div></div>
+    </div>
+
+    <div class="rf-grid">
+      <div class="rf-card">
+        <div class="idx">Insight 1</div>
+        <h3>An intermediary link reads as a scam</h3>
+        <p>Our entire redirect mechanism depends on routing scans through an intermediary link &mdash; and that's exactly what made one founder distrust his own packaging.</p>
+        <div class="quote">"...it kind of feels like, oh, is this a scam? Did I just get like a virus on my phone or something like that?"<span class="cite">Interview: Daniel Adix, Founder &amp; CEO, LiQure</span></div>
+      </div>
+      <div class="rf-card">
+        <div class="idx">Insight 2</div>
+        <h3>Nobody notices when a code dies</h3>
+        <p>Free QR tools expire codes silently. Materials stay up, the link goes dead underneath them, and no one finds out until a customer complains.</p>
+        <div class="quote">"Codes from last semester were still up even though they had stopped working entirely."<span class="cite">Interview: Sandra Bradley, Tech Exploration Lab</span></div>
+      </div>
+      <div class="rf-card">
+        <div class="idx">Insight 3</div>
+        <h3>Teams already pay for tracking &mdash; and lose it</h3>
+        <p>One organization paid $15.99/month for location-based QR tracking, then dropped it to staffing cuts. He rated the resulting analytics-less experience 7 out of 10, losing points specifically for lost tracking and no logo customization.</p>
+        <div class="quote">"7/10 &mdash; losing points for lack of tracking and logo customization."<span class="cite">Interview: Fadhel Alrabiah, TEO</span></div>
+      </div>
+      <div class="rf-card">
+        <div class="idx">Insight 4</div>
+        <h3>Without a dashboard, people invent one</h3>
+        <p>With no real analytics tool, one events team wired a link-shortener into their flyers purely to get a scan count &mdash; a number with no action attached to it. Another had a contractor build a one-off internal tool just to track kiosk transactions.</p>
+        <div class="quote">"It was nice to have a number, [but there was] no real action taken on the data."<span class="cite">Interview: Tito, Multicultural Center</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="turning-point reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:16px;">Key Pivot</span>
+    <blockquote>"...it kind of feels like, oh, is this a scam? Did I just get like a virus on my phone or something like that?"</blockquote>
+    <cite>Daniel Adix, Founder &amp; CEO, LiQure &middot; Customer Interview</cite>
+    <p style="margin-top:20px; font-size:14.5px; max-width:64ch;">The premise of our entire product runs through an intermediary link &mdash; the exact thing that made a real customer question whether his own packaging was compromised. That single reaction reshaped the release plan: a branded, trust-building intermediary page before redirect became a top requirement, not a nice-to-have.</p>
+  </section>
+
+  <section id="personas" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Who We're Building For</span>
+    <h2>Two personas, two releases</h2>
+    <p style="margin-top:12px;">Interview evidence split cleanly into two segments with different problems &mdash; and different willingness to pay &mdash; so the release plan split along the same line.</p>
+    <div class="brand-specimen-row" style="margin-top:24px; align-items:stretch;">
+      <div class="rf-card" style="opacity:1; transform:none;">
+        <div class="idx">Primary Persona</div>
+        <h3>April O'Neil, Small Business Owner</h3>
+        <p>Runs a custom stationery brand doing 1,000+ orders a month at under $5M ARR. Uses QR codes across packaging and marketing promotions, and feels every reprint in her margins.</p>
+        <div class="quote">"Honestly, I just need one convenient place to manage all my codes without it becoming a whole project."<span class="cite">April O'Neil, Persona</span></div>
+      </div>
+      <div class="rf-card" style="opacity:1; transform:none;">
+        <div class="idx">Secondary Persona</div>
+        <h3>Mark Majer, Marketing &amp; Events Manager</h3>
+        <p>Runs multi-channel campaigns and QR-based outreach at a university, nonprofit, or mid-size org, without a dedicated analytics team. Can't tell which venue, flyer, or channel is actually driving scans, and manages codes across simultaneous campaigns with no organization tools.</p>
+        <div class="quote" style="font-style:normal;">Built from interviews with Fadhel Alrabiah (TEO), Sandra Bradley (Tech Exploration Lab), and Tito (Multicultural Center).<span class="cite">Composite Persona</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <h2>The Competitive Landscape</h2>
+    <p>The market isn't empty &mdash; it's crowded but fragmented. Nothing we found was both purpose-built <em>and</em> affordable for a non-technical small business.</p>
+    <div class="trace-grid" style="margin-top:24px;">
+      <div class="trace-card reveal">
+        <span class="eyebrow">Direct Competitors</span>
+        <h3>QR Code Generator, Uniqode, QR.io</h3>
+        <p>Full-featured, dynamic QR codes with built-in analytics &mdash; but high recurring pricing, usage-capped generation, and bulk tools that assume a technical team (API credits, not a CSV import).</p>
+      </div>
+      <div class="trace-card reveal">
+        <span class="eyebrow">Substitutes</span>
+        <h3>Canva, Adobe Express, Google Analytics, Klaviyo</h3>
+        <p>Already embedded in daily workflows and often free, so users stitch together a static QR code from one tool and traffic tracking from another &mdash; accepting the gaps rather than switching.</p>
+      </div>
+      <div class="trace-card reveal">
+        <span class="eyebrow">DIY Workarounds</span>
+        <h3>Linktree click-counts, hand-edited forms, contractor tools</h3>
+        <p>Teams route around the problem with whatever's cheapest and already familiar &mdash; editing a Google Form instead of a QR code, or a Linktree click count standing in for real analytics.</p>
+      </div>
+    </div>
+    <div class="differentiator-callout" style="margin-top:22px;">
+      <p><strong>Our wedge:</strong> undercut on price, keep QR codes alive for life &mdash; even after a subscription lapses &mdash; and make bulk generation something a non-technical small business owner can actually do. Competitors win on feature depth; we win on usability and trust.</p>
+    </div>
+  </section>
+
+  <section id="solution" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">From Insight to Feature Set</span>
+    <h2>What QRCO actually ships</h2>
+    <p style="margin-top:12px;">Every feature category maps back to a specific piece of research, split across a Core capability, a cost-saver, a differentiator, and one delighter that costs little to build but changes how the product feels day to day.</p>
+    <div class="rf-grid" style="margin-top:28px;">
+      <div class="rf-card">
+        <div class="idx">Core Feature</div>
+        <h3>Generate &amp; Manage</h3>
+        <p>Create print-ready QR codes in seconds and manage every code from one dashboard &mdash; no more juggling apps between generation and tracking.</p>
+      </div>
+      <div class="rf-card">
+        <div class="idx">Cost Saver</div>
+        <h3>Link Redirection Update</h3>
+        <p>Update a code's destination instantly, without reprinting. One wrong link costs hundreds in wasted materials &mdash; this is the feature that saved Kirby Mann's 500 envelopes.</p>
+      </div>
+      <div class="rf-card">
+        <div class="idx">Differentiator</div>
+        <h3>Scan Analytics</h3>
+        <p>See who's scanning, when, and for how long, with engagement-over-time graphs that show what's actually working &mdash; the visibility Fadhel and Tito were both improvising around.</p>
+      </div>
+      <div class="rf-card">
+        <div class="idx">Delighter</div>
+        <h3>Clipboard Integration</h3>
+        <p>Copy a high-definition QR code straight to your clipboard and paste it directly into Canva, Photoshop, or a packaging file &mdash; no extra export step.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Release Plan</span>
+    <h2>Start narrow, win deeply, expand fast</h2>
+    <p style="margin-top:12px;">Rather than build one release that tries to serve both personas, the plan splits into a primary release scoped tightly to small business owners' most urgent needs, with a secondary release layered on top for marketing and events managers.</p>
+
+    <div class="brand-specimen-row" style="margin-top:24px; align-items:stretch;">
+      <div class="rf-card" style="opacity:1; transform:none; border-color:var(--accent); border-width:1.5px;">
+        <div class="idx">Primary Release &middot; Small Business Owners</div>
+        <h3>Faster to market, lower cost, clearest ROI</h3>
+        <p>Reprinting broken links is directly costly to this segment, and existing tools are either too basic or too expensive for them &mdash; the clearest, fastest win.</p>
+        <p style="margin-top:10px; font-size:13.5px;"><strong>Top features:</strong> QR Generation &amp; Dynamic Link Redirection, Clipboard Integration, Scan Metrics + Engagement-over-Time</p>
+      </div>
+      <div class="rf-card" style="opacity:1; transform:none;">
+        <div class="idx">Secondary Release &middot; Marketing &amp; Events Managers</div>
+        <h3>Adds attribution, organization, and scale</h3>
+        <p>This segment needs to know which venue, flyer, or channel is driving scans, and to manage many codes across simultaneous campaigns without chaos.</p>
+        <p style="margin-top:10px; font-size:13.5px;"><strong>Adds on top:</strong> Campaign Tagging + Attribution, Bulk Export + Logo Customization, Analytics Export (PDF, CSV, Excel)</p>
+      </div>
+    </div>
+
+    <div class="stat-row" style="margin-top:8px;">
+      <div class="stat-tile"><div class="num">39 wks</div><div class="label">Primary release timeline</div></div>
+      <div class="stat-tile"><div class="num">$554,921</div><div class="label">Primary release engineering cost</div></div>
+      <div class="stat-tile"><div class="num">4 FTE</div><div class="label">Engineers, working concurrently</div></div>
+      <div class="stat-tile"><div class="num">Mar 31 &rsquo;27</div><div class="label">Target launch date</div></div>
+    </div>
+  </section>
+
+  <section class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Sizing the Opportunity</span>
+    <h2>$215M serviceable market, breakeven under 12 months</h2>
+    <p style="margin-top:12px;">At an estimated $10.99/month, capturing just 3% of the serviceable market gets QRCO to roughly 48,900 subscribers &mdash; well past the ~4,400 subscribers needed to break even, projected around month 11 post-launch.</p>
+    <div class="stat-row">
+      <div class="stat-tile"><div class="num">$1.46B</div><div class="label">TAM &middot; 16.3M US SMBs using QR in marketing</div></div>
+      <div class="stat-tile"><div class="num">$215M</div><div class="label">SAM &middot; 1.63M employer firms with active print QR use</div></div>
+      <div class="stat-tile"><div class="num">$6.45M</div><div class="label">SOM &middot; 48,900 subscribers at 3% SAM capture</div></div>
+      <div class="stat-tile"><div class="num">Mo. 11</div><div class="label">Projected breakeven, ~4,400 subscribers</div></div>
+    </div>
+    <p style="margin-top:20px; font-size:13px; color:var(--ink-faint);">Sources: SBA Office of Advocacy 2025 (36.2M US SMBs) &middot; QRCodeChimp / The Drum 2024 (45% QR adoption) &middot; customer discovery interviews (willingness-to-pay signal, $10.99&ndash;$15.99/mo). Figures are gross, pre-churn and pre-opex.</p>
+  </section>
+
+  <section id="outcome" class="cs-section reveal">
+    <h2>Outcome</h2>
+    <p>Three of the release's most important features trace directly back to a specific moment in the research, not a guess about what a QR platform "should" have.</p>
+
+    <div class="trace-grid">
+      <div class="trace-card reveal">
+        <span class="eyebrow">Interview-informed</span>
+        <h3>Trust-Building Intermediary Page</h3>
+        <p>Daniel Adix's "is this a scam?" reaction became a top requirement: a branded landing page before redirect, so the very mechanism our product relies on doesn't undercut the trust it's supposed to build.</p>
+      </div>
+      <div class="trace-card reveal">
+        <span class="eyebrow">Story-informed</span>
+        <h3>Link Redirection Update</h3>
+        <p>Kirby Mann's 500 misprinted envelopes are the exact scenario this feature exists to prevent &mdash; update the destination once, never reprint again.</p>
+      </div>
+      <div class="trace-card reveal">
+        <span class="eyebrow">Cross-segment</span>
+        <h3>Scan Analytics &amp; Engagement-Over-Time</h3>
+        <p>Fadhel's lost $15.99/month tool, Sandra's dead codes still on the wall, and Tito's improvised click counter all point at the same gap: visibility that persists after launch day.</p>
+      </div>
+    </div>
+
+    <p class="trace-note">De-risking ran alongside the roadmap: a freemium entry point and onboarding measured in minutes, not hours, a beta test with 10+ active codes measuring how often Link Redirection prevents a reprint, and a blind test pitting QRCO's analytics against existing competitors on time-to-insight and feature comprehension.</p>
+  </section>
+
+  <section class="cs-section reveal">
+    <div class="key-takeaways-card">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Grounding a product plan in real interview quotes &mdash; not assumptions &mdash; surfaced a risk (the "is this a scam?" reaction) that a feature-parity checklist never would have.</li>
+        <li>A narrower, cheaper primary release beat a technically broader one on time-to-market, cost, and the speed of getting real feedback.</li>
+        <li>Freemium access and lifetime QR codes became the wedge against much larger, better-funded direct competitors.</li>
+        <li>The most credible pricing signal in the whole plan came from a customer already paying a competitor for less than we were proposing to offer.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="next-project reveal">
+    <div class="label">Next Project</div>
+    <a href="imagin8-v-park.html">
+      <div class="thumb"><img src="../assets/imagin8-v-park/portal-thumb.jpg" alt="Imagin8v Park portal artwork: a glowing blue swirling gate in a park at dusk, with Terry, the ghost dog, running toward it"></div>
+      <div class="info">
+        <span class="tag-pill">Experience Design</span>
+        <h3>Imagin8 V Park</h3>
+        <p>UX/UI Design, Civic Design, Educational Gaming</p>
+      </div>
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>&copy; 2026 Irhah Arshad Siddiqui. Madison, WI.</div>
+    <div class="footer-links">
+      <a href="mailto:irhah.1998@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/irhah-arshad" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.behance.net/irhaharshad" target="_blank" rel="noopener">Behance</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

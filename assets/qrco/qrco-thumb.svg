@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdece0"/>
+      <stop offset="100%" stop-color="#fbdcc4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+
+  <!-- QR finder-pattern motif, top-left, static/navy -->
+  <g fill="#16233d">
+    <rect x="90" y="90" width="220" height="220" rx="18"/>
+    <rect x="128" y="128" width="144" height="144" rx="10" fill="#fdece0"/>
+    <rect x="160" y="160" width="80" height="80" rx="6" fill="#16233d"/>
+  </g>
+  <g fill="#16233d" opacity="0.85">
+    <rect x="360" y="90" width="46" height="46" rx="6"/>
+    <rect x="430" y="90" width="46" height="46" rx="6"/>
+    <rect x="360" y="160" width="46" height="46" rx="6"/>
+    <rect x="90" y="360" width="46" height="46" rx="6"/>
+    <rect x="90" y="430" width="46" height="46" rx="6"/>
+    <rect x="160" y="360" width="46" height="46" rx="6"/>
+  </g>
+
+  <!-- dashed redirect paths sweeping from the QR block toward three live destinations -->
+  <g fill="none" stroke="#e8622c" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 20">
+    <path d="M330,220 C480,220 520,360 620,380"/>
+    <path d="M300,330 C420,420 480,520 600,560"/>
+    <path d="M220,330 C260,470 340,600 470,660"/>
+  </g>
+
+  <!-- destination dots -->
+  <circle cx="620" cy="380" r="20" fill="#e8622c"/>
+  <circle cx="600" cy="560" r="20" fill="#e8622c"/>
+  <circle cx="470" cy="660" r="20" fill="#e8622c"/>
+
+  <!-- small analytics bars, bottom right, representing "Understand" -->
+  <g fill="#16233d" opacity="0.9">
+    <rect x="690" y="600" width="20" height="60" rx="4"/>
+    <rect x="720" y="560" width="20" height="100" rx="4"/>
+    <rect x="750" y="620" width="20" height="40" rx="4"/>
+  </g>
+</svg>
