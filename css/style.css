@@ -1,11 +1,13 @@
 /* ==========================================================================
    Irhah Arshad Siddiqui — Portfolio Design System
-   Two-typeface pairing: Crimson Pro (--font-serif) for headings (h1–h4),
-   Plus Jakarta Sans (--font) for everything else — body copy, nav, buttons,
-   labels. White base, glass nav, per-project accent color.
+   Two-typeface pairing: Red Hat Display (--font-serif, the site's "display"
+   token — kept the same variable name so every existing heading/button rule
+   that already reads it just picks up the new face) for headings (h1–h4)
+   and buttons, Plus Jakarta Sans (--font) for body copy, nav, and labels.
+   White base, glass nav, per-project accent color.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
@@ -16,7 +18,7 @@
      tuned to sit near the purple accent rather than fight it. */
   --bg: #ffffff;
   --bg-soft: #f6f5f9;
-  --ink: #16151d;
+  --ink: #34323e;
   --ink-soft: #57566a;
   --ink-faint: #94929f;
   --border: #e6e4ee;
@@ -33,7 +35,7 @@
   --accent-tint-strong: var(--border);
 
   --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Red Hat Display', var(--font);
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono', Menlo, Consolas, monospace;
 
   /* Type scale — one family, wide weight range */
@@ -130,7 +132,7 @@ strong { color: var(--ink); font-weight: 700; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font);
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 14.5px;
   padding: 15px 30px;
@@ -139,8 +141,8 @@ strong { color: var(--ink); font-weight: 700; }
   border: none;
   transition: transform 0.25s cubic-bezier(.2,.8,.3,1.2), box-shadow 0.25s ease, background 0.2s ease;
 }
-.btn-primary { background: var(--ink); color: var(--bg); }
-.btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: var(--shadow-md); }
+.btn-primary { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); background: var(--ink); color: var(--bg); box-shadow: inset 0 0 0 1.5px var(--ink); }
 .btn-primary:active { transform: translateY(0) scale(0.99); }
 .btn-secondary { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--border-strong, var(--border)); }
 .btn-secondary:hover { transform: translateY(-2px) scale(1.02); background: var(--card-bg); }
@@ -252,158 +254,55 @@ strong { color: var(--ink); font-weight: 700; }
 .section-rail .dot:hover .dot-label { opacity: 1; }
 
 /* ---------- Hero ---------- */
-.hero { padding: 176px 0 72px; position: relative; }
-.hero-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 56px;
-  align-items: center;
-}
-.hero-copy { text-align: left; }
-.hero-copy .eyebrow {
-  display: block; margin-bottom: 18px;
-  text-transform: none; letter-spacing: 0.01em; font-weight: 700;
-  font-size: clamp(15px, 1.4vw, 17px); color: var(--ink);
-}
-.hero-copy h1 { font-size: var(--fs-display); font-weight: 300; }
-.hero-copy .sub { font-size: clamp(14.5px, 1.6vw, 16.5px); font-weight: 400; color: var(--ink-soft); margin: 16px 0 0; max-width: 46ch; }
+.hero { padding: clamp(200px, 34vh, 360px) 0 110px; position: relative; }
+.hero-copy { text-align: left; position: relative; z-index: 1; max-width: none; }
+.hero-copy h1 { font-size: clamp(30px, 4.6vw, 48px); font-weight: 400; line-height: 1.1; max-width: none; }
+.hero-copy h1 .hero-lead { display: block; font-weight: 400; color: var(--ink); }
+.hero-copy h1 .hl-2 { display: block; margin-top: 4px; font-size: clamp(30px, 4.6vw, 48px); font-weight: 400; line-height: 1.2; color: var(--ink-soft); max-width: none; }
+/* Plain stacked sentences, no uppercase labels -- matches the placement
+   of the meta line under the headline on dannyckm.com (role/status line,
+   then a second line), rather than a label/value fact grid. */
+.hero-copy .hero-meta { margin-top: 28px; display: flex; flex-direction: column; gap: 6px; }
+.hero-copy .hero-meta p { margin: 0; font-size: clamp(15px, 1.6vw, 17px); color: var(--ink-soft); line-height: 1.5; }
 .hero-copy .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
-/* min-height is a fallback for the instant before JS runs; sizeHeroArt()
-   in main.js immediately overrides it with the exact value the card
-   needs at its actual rendered width (including the float animation's
-   rotation + bob), so it can never crop the card at any breakpoint. */
-.hero-art { position: relative; min-height: 420px; perspective: 1400px; }
-@media (max-width: 700px) {
-  /* Side-by-side (.hero-split grid, above) holds up fine down to tablet
-     widths — verified down to ~700px before the card column gets too
-     narrow for its own fixed-size text. Below 700px, stack the card
-     above the copy and center everything, since the two-column grid no
-     longer has room to breathe. */
-  .hero-split { grid-template-columns: 1fr; gap: 0; }
-  .hero-art { order: -1; margin-top: 0; margin-bottom: 28px; min-height: 320px; }
-  .hero-copy { text-align: center; }
-  .hero-copy .sub { margin-left: auto; margin-right: auto; }
-  .hero-copy .hero-actions { justify-content: center; }
-  /* The card still shows on mobile — it just loses the mouse-driven tilt
-     and sheen (initCardTilt() in main.js already gates those behind
-     "hover: hover" + "pointer: fine"), keeping only the ambient float and
-     the typed Loves rotation, which don't need a cursor. */
-}
-@media (max-width: 480px) {
-  .hero-art { min-height: 280px; }
-}
 
-/* ---------- Hero: floating Designer ID card ---------- */
-.id-card-wrap {
-  position: absolute; top: 50%; left: 50%; width: min(275px, 78%);
-  animation: id-card-float 6.5s ease-in-out infinite;
+/* ---------- Hero: orb glow ----------
+   A blurred canvas orb in the top-right of the hero: crisp, hard-edged
+   shapes drawn on the canvas, with the actual softness coming entirely
+   from the CSS blur on the outer wrapper (see initHeroGlow in main.js).
+   Colors, pattern ("marbled waves") and motion ("wave", speed 1.4x /
+   movement 2.5x) are fixed to what was approved in the hero redesign lab. */
+.hero-orb-wrap {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: clamp(240px, 27vw, 420px); height: clamp(240px, 27vw, 420px);
+  top: 50%; right: clamp(-10px, 1vw, 30px);
+  transform: translateY(-50%);
+  filter: blur(clamp(22px, 3.2vw, 48px));
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, black 32%, transparent 68%);
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, black 32%, transparent 68%);
+  mix-blend-mode: normal;
 }
-@keyframes id-card-float {
-  0%   { transform: translate(-50%, -50%) rotate(-5deg) translateY(0); }
-  50%  { transform: translate(-50%, -50%) rotate(5deg) translateY(-16px); }
-  100% { transform: translate(-50%, -50%) rotate(-5deg) translateY(0); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero-orb-wrap { mix-blend-mode: screen; } }
+:root[data-theme="dark"] .hero-orb-wrap { mix-blend-mode: screen; }
+.hero-orb-clip { position: relative; width: 100%; height: 100%; overflow: hidden; clip-path: circle(50% at 50% 50%); }
+#heroGlow { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* film-grain layer -- sits outside the blurred canvas so the texture
+   itself stays crisp on top of the soft blurred color field underneath. */
+.hero-orb-grain {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.22;
+  clip-path: circle(50% at 50% 50%);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
 }
-.id-card {
-  position: relative;
-  aspect-ratio: 275 / 402;
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(.2,.8,.3,1.2);
-  will-change: transform;
-}
-/* ---------- Hero: card flip (front <-> Match My Vibe game) ----------
-   .id-card handles the cursor-tilt transform (initCardTilt in main.js);
-   .id-card-flip is a separate nested 3D layer so the 180deg flip never
-   fights the tilt for the same transform property. */
-.id-card-flip {
-  position: relative; width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(.2,.8,.3,1.2);
-}
-.id-card-flip.flipped { transform: rotateY(180deg); }
-.id-card-face {
-  position: absolute; inset: 0;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
-}
-.id-card-front { cursor: pointer; }
-.id-card-back {
-  transform: rotateY(180deg);
-  background: #F8E8FF; border: 1px solid #4C0F4B;
-  border-radius: 15.64% / 10.7%;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-[data-theme="dark"] .id-card-back { background: #F8E8FF; }
-/* ---------- Card back: Design Philosophy (MTG-rules-text styling) ---------- */
-.phil {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 13px; padding: 24px 22px; width: 100%; height: 100%; text-align: left;
-}
-.phil-kicker {
-  font-family: var(--font); font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #4C0F4B; opacity: 0.68; text-align: center;
-}
-.phil-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; width: 100%; }
-.phil-list li {
-  font-family: var(--font); font-weight: 400; font-size: clamp(10.5px, 1.15vw, 12px); line-height: 1.42;
-  color: #4C0F4B; border-left: 2px solid rgba(76,15,75,0.32); padding-left: 10px;
-}
-.phil-list li strong { font-weight: 700; }
-.phil-quote {
-  font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: clamp(11.5px, 1.3vw, 13.5px);
-  color: #4C0F4B; text-align: center; margin: 2px 0 0; opacity: 0.82; line-height: 1.4;
-}
-.id-back-btn {
-  font-family: var(--font); font-weight: 700; font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
-  color: #4C0F4B; background: none; border: none; cursor: pointer; padding: 4px 8px; opacity: 0.7;
-  transition: opacity 0.2s ease; margin-top: 2px;
-}
-.id-back-btn:hover { opacity: 1; }
-.id-card-hint {
-  position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%);
-  font-family: var(--font); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--ink-faint); white-space: nowrap; pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.id-card-art {
-  display: block; width: 100%; height: auto;
-}
-.id-card-label {
-  position: absolute; top: 4.35%; left: 29.5%; width: 63.5%; height: 9.2%;
-  display: flex; align-items: center; padding-left: 8px;
-  font-family: var(--font); font-weight: 600; font-size: clamp(12px, 1.3vw, 15px);
-  color: #4C0F4B; letter-spacing: 0.01em; white-space: nowrap;
-}
-/* Plain "Label: value" lines in the site's body font (Plus Jakarta Sans),
-   matching the original reference design — these are UI/label content,
-   not a headline, so they don't use the display serif. */
-.id-card-fields {
-  position: absolute; top: 70.5%; left: 5.3%; width: 84%; height: 23%;
-  padding: 3px 14px;
-  display: flex; flex-direction: column; justify-content: center; gap: 4px;
-  text-align: left; overflow: hidden;
-}
-.field-line {
-  margin: 0; font-family: var(--font); font-weight: 400;
-  font-size: clamp(10.5px, 1.05vw, 12.5px); line-height: 1.32;
-  color: #4C0F4B; overflow-wrap: break-word;
-}
-.field-line .field-label { font-weight: 600; }
-.field-line .caret {
-  display: inline-block; width: 1px; background: #4C0F4B; margin-left: 1px;
-  height: 0.9em; vertical-align: -0.1em; animation: caret-blink 0.9s steps(1) infinite;
-}
-@keyframes caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-/* Holographic sheen: a soft diagonal highlight that tracks the cursor,
-   layered on top of the tilt from initCardTilt() in main.js. */
-.sheen {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0;
-  transition: opacity .35s ease; mix-blend-mode: overlay;
-  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.55) 48%, rgba(255,255,255,.75) 50%, rgba(255,255,255,.55) 52%, transparent 60%);
-  background-size: 250% 250%; background-position: 0% 0%;
-}
-.id-card.hovering .sheen { opacity: 1; }
-@media (prefers-reduced-motion: reduce) {
-  .id-card-wrap { animation: none; transform: translate(-50%, -50%) rotate(-4deg); }
+@media (max-width: 700px) {
+  .hero { min-height: 0; display: block; padding: 140px 0 60px; }
+  .hero-orb-wrap { position: relative; width: min(50vw, 180px); height: min(50vw, 180px); top: 0; right: 0; transform: none; margin: 0 auto 24px; filter: blur(clamp(12px, 4vw, 20px)); }
+  .hero-copy { text-align: center; max-width: none; }
+  .hero-copy h1 { max-width: none; margin-left: auto; margin-right: auto; }
+  .hero-copy h1 .hl-2 { max-width: none; margin-left: auto; margin-right: auto; }
+  .hero-copy .hero-meta { align-items: center; }
+  .hero-copy .hero-actions { justify-content: center; }
 }
 
 /* ---------- How I Work: icon grid (after Explore My Work) ---------- */
@@ -541,6 +440,29 @@ strong { color: var(--ink); font-weight: 700; }
   break-inside: avoid; margin: 0 0 22px;
 }
 @media (max-width: 760px) { .origin-copy { columns: 1; } }
+.origin-glow-wrap { position: relative; overflow: visible; }
+.origin-glow-wrap::before{
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  width:750px; height:680px; left:-260px; top:-40px;
+  background:
+    radial-gradient(circle at 32% 30%, rgba(236,196,216,0.9) 0%, rgba(236,196,216,0) 62%),
+    radial-gradient(circle at 60% 55%, rgba(243,179,147,0.8) 0%, rgba(243,179,147,0) 66%),
+    radial-gradient(circle at 45% 68%, rgba(244,231,210,0.85) 0%, rgba(244,231,210,0) 70%);
+  filter: blur(100px);
+  animation: origin-glow-drift 22s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes origin-glow-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(26px, -22px) scale(1.06); }
+  50%  { transform: translate(-16px, 18px) scale(0.97); }
+  75%  { transform: translate(-30px, -10px) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .origin-glow-wrap::before { animation: none; }
+}
+.origin-rule, .origin-statement, .origin-cta { position: relative; z-index: 1; }
 .origin-rule { border: none; border-top: 1px dashed var(--border-strong, var(--border)); margin: 64px 0 40px; }
 .origin-statement {
   font-family: var(--font-serif); font-weight: 400; font-size: clamp(32px, 6vw, 62px);
@@ -556,20 +478,27 @@ strong { color: var(--ink); font-weight: 700; }
   color: var(--ink);
 }
 
-/* ---------- Category tabs ---------- */
-.cat-tabs { display: flex; justify-content: center; gap: 8px; margin: 26px 0 44px; flex-wrap: wrap; }
+/* ---------- Category tabs ----------
+   Plain text by default, a soft fill on hover, and a 1px border only
+   on the active tab -- no default border/background, matching the
+   dannyckm.com filter-pill reference (icon + label, border appears only
+   for the selected state; a hover fill, not a border, marks the rest). */
+.cat-tabs { display: flex; justify-content: center; align-items: center; gap: 4px; margin: 26px 0 44px; flex-wrap: wrap; }
 .cat-tab {
-  font-family: var(--font); font-size: 13.5px; font-weight: 700; padding: 10px 20px;
-  border-radius: var(--r-pill); border: 1px solid var(--border);
-  background: var(--bg); color: var(--ink-soft); cursor: pointer;
-  transition: all 0.25s cubic-bezier(.2,.8,.3,1.2);
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font); font-size: 13.5px; font-weight: 700; padding: 12px 20px;
+  border-radius: var(--r-pill); border: 1px solid transparent;
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
-.cat-tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.cat-tab:hover:not(.active) { transform: translateY(-1px); border-color: var(--ink-faint); color: var(--ink); }
+.cat-tab svg { width: 16px; height: 16px; flex-shrink: 0; }
+.cat-tab.active { background: transparent; color: var(--ink); border-color: var(--ink); }
+.cat-tab:hover:not(.active) { background: var(--bg-soft); color: var(--ink); }
 
 /* ---------- Project grid / cards ---------- */
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-md) 24px; padding-bottom: var(--gap-xl); }
-@media (max-width: 800px) { .project-grid { grid-template-columns: 1fr; } }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-md) 22px; padding-bottom: var(--gap-xl); }
+@media (max-width: 900px) { .project-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .project-grid { grid-template-columns: 1fr; } }
 .project-card { display: block; opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .project-card.in { opacity: 1; transform: translateY(0); }
 .project-card .thumb {
@@ -593,7 +522,8 @@ strong { color: var(--ink); font-weight: 700; }
 .tag-pill {
   display: inline-block; font-size: 11.5px; font-weight: 700;
   padding: 7px 14px; border-radius: var(--r-pill);
-  background: var(--accent); color: #fff;
+  background: transparent; color: var(--accent);
+  border: 1.5px solid var(--accent);
 }
 .tag-outline {
   display: inline-block; font-size: 11.5px; font-weight: 700;
@@ -1265,20 +1195,6 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 .process-arc-diagram.accent-arc .pad-node { width: 20%; min-width: 175px; }
 .process-arc-diagram.accent-arc .pad-label h3 { white-space: normal; max-width: 175px; line-height: 1.3; }
 
-/* ---------- QRCO: "How It Works" flow diagram ---------- */
-.qrco-flow { display: flex; align-items: flex-start; justify-content: center; gap: 0; flex-wrap: wrap; }
-.qrco-flow-node { display: flex; flex-direction: column; align-items: center; text-align: center; width: 176px; gap: 12px; }
-.qrco-flow-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--card-bg); border: 1.5px solid var(--border); flex-shrink: 0; }
-.qrco-flow-icon svg { width: 26px; height: 26px; stroke: var(--ink); }
-.qrco-flow-icon.chip { background: var(--accent); border-color: var(--accent); color: #fff; font-family: var(--font); font-weight: 800; font-size: 10.5px; letter-spacing: 0.03em; }
-.qrco-flow-node h4 { font-family: var(--font); font-size: 13.5px; font-weight: 700; color: var(--ink); margin: 0; }
-.qrco-flow-node p { font-size: 11.5px; color: var(--ink-soft); margin: 0; line-height: 1.45; max-width: none; }
-.qrco-flow-line { flex: 1 1 40px; height: 2px; margin-top: 29px; min-width: 32px; max-width: 90px; background-image: repeating-linear-gradient(to right, var(--accent) 0, var(--accent) 6px, transparent 6px, transparent 13px); }
-@media (max-width: 640px) {
-  .qrco-flow { flex-direction: column; gap: 22px; }
-  .qrco-flow-line { display: none; }
-  .qrco-flow-node { width: 100%; }
-}
 
 /* ---------- Imagin8 V Park: Terry the ghost dog special mention ---------- */
 /* Terry's art is white/glow linework on a transparent background, so it needs
@@ -1296,4 +1212,162 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 @media (max-width: 560px) {
   .terry-callout { flex-direction: column; align-items: flex-start; }
   .terry-photos img { width: 120px; }
+}
+
+/* ---------- Glass cursor ----------
+   A single soft, frosted circle that trails the pointer (added via JS
+   in main.js so it applies site-wide without per-page markup). */
+.glass-cursor {
+  position: fixed; top: 0; left: 0; width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(52, 50, 62, 0.10);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(180%);
+  border: 1px solid rgba(52, 50, 62, 0.20);
+  box-shadow: 0 2px 10px rgba(20, 18, 30, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .glass-cursor { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
+}
+:root[data-theme="dark"] .glass-cursor { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
+@media (pointer: coarse) { .glass-cursor { display: none; } }
+
+/* ---------- About page ---------- */
+.about-hero { padding: 168px 0 var(--gap-xl); }
+.about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: start; }
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+.about-copy h1 { font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px; }
+.about-copy p { font-size: 17px; max-width: 62ch; }
+.about-copy p + p { margin-top: 16px; }
+.about-copy .btn { margin-top: 24px; }
+
+.about-block { margin-top: 48px; }
+.about-block h3 { font-size: 20px; margin-bottom: 16px; }
+.about-block .edu-entry p { margin: 0; font-size: var(--fs-body); }
+.about-block .edu-entry p.edu-degree { color: var(--ink); font-weight: 600; }
+.about-block .edu-entry + .edu-entry { margin-top: 14px; }
+.about-block .tag-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.about-visual { display: flex; flex-direction: column; align-items: center; }
+
+/* ---------- Photo / ID card (about page) ----------
+   The graduation photo and the illustrated designer ID share one flip
+   card: idle swing, tilt-toward-cursor + sheen on hover (works on
+   whichever face is showing), click/tap flips the photo over to
+   reveal the ID on the back. Card colors are hardcoded (#4C0F4B etc.)
+   so they never collide with the site's own --card-bg/--ink tokens. */
+.id-card-block { width: 100%; max-width: 250px; margin: 0 auto; }
+.id-card-stage { width: 100%; perspective: 1400px; }
+.id-card-wrap {
+  position: relative; width: 100%;
+  animation: id-card-swing 6.5s ease-in-out infinite;
+}
+@keyframes id-card-swing {
+  0%   { transform: rotate(-5deg) translateY(0); }
+  50%  { transform: rotate(5deg) translateY(-14px); }
+  100% { transform: rotate(-5deg) translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) { .id-card-wrap { animation: none; } }
+
+.id-card {
+  position: relative; transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(.2,.8,.3,1.2);
+  will-change: transform;
+}
+.id-card-flip {
+  position: relative; width: 100%; aspect-ratio: 275 / 402;
+  transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(.45,.15,.2,1);
+  cursor: pointer;
+}
+.id-card-flip.flipped { transform: rotateY(180deg); }
+.id-card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 15.636% / 10.697%; overflow: hidden; }
+.id-card-face.front { border: 1px solid var(--border); box-shadow: var(--shadow-sm); background: var(--bg-soft); }
+.id-card-face.back {
+  transform: rotateY(180deg);
+  background: #F8E8FF; border: 1px solid #4C0F4B;
+}
+:root[data-theme="dark"] .id-card-face.back { border-color: #ecc9ff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .id-card-face.back { border-color: #ecc9ff; } }
+
+.id-card-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.flip-badge {
+  position: absolute; right: 10px; bottom: 10px; width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.92); border: 1px solid rgba(76,15,75,.25); color: #4C0F4B;
+  box-shadow: var(--shadow-sm); animation: flip-badge-pulse 2.6s ease-in-out infinite;
+}
+.flip-badge svg { width: 16px; height: 16px; }
+@keyframes flip-badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+@media (prefers-reduced-motion: reduce) { .flip-badge { animation: none; } }
+
+.id-card-art { display: block; width: 100%; height: auto; }
+.id-card-label {
+  position: absolute; top: 4.35%; left: 29.5%; width: 63.5%; height: 9.2%;
+  display: flex; align-items: center; padding-left: 8px;
+  font-family: var(--font); font-weight: 600; font-size: clamp(12px, 1.3vw, 15px);
+  color: #4C0F4B; letter-spacing: .01em; white-space: nowrap;
+}
+.id-card-fields {
+  position: absolute; top: 69.3%; left: 5.27%; width: 88.7%; height: 24.6%;
+  padding: 3px 11px; display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  text-align: left; overflow: hidden;
+}
+.id-card-fields .field-line {
+  margin: 0; font-family: var(--font); font-weight: 400; font-size: clamp(9.5px, 0.95vw, 11px);
+  line-height: 1.25; color: #4C0F4B; overflow-wrap: break-word;
+}
+.id-card-fields .field-label { font-weight: 600; }
+.id-card-fields .caret {
+  display: inline-block; width: 1px; background: #4C0F4B; margin-left: 1px;
+  height: 0.9em; vertical-align: -0.1em; animation: id-card-caret 0.9s steps(1) infinite;
+}
+@keyframes id-card-caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+.id-card-sheen {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s ease;
+  mix-blend-mode: overlay; border-radius: 15.636% / 10.697%;
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.55) 48%, rgba(255,255,255,.75) 50%, rgba(255,255,255,.55) 52%, transparent 60%);
+  background-size: 250% 250%; background-position: 0% 0%;
+}
+.id-card.hovering .id-card-sheen { opacity: 1; }
+
+.id-card-hint { margin-top: 14px; text-align: center; font-size: 11.5px; color: var(--ink-faint); }
+
+/* ---------- Playground: space background ----------
+   The Playground always shows a starfield, independent of the site's
+   own light/dark toggle -- it's just what a playground looks like.
+   These tokens/gradient set the still backdrop; the twinkling stars +
+   occasional shooting star are drawn on #spaceStars by
+   initSpaceStars() in main.js. */
+body.space-page {
+  --bg: #06060b;
+  --bg-soft: #0f0e16;
+  --ink: #f3f2f7;
+  --ink-soft: #b7b5c4;
+  --ink-faint: #86849a;
+  --border: rgba(255, 255, 255, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.045);
+  --nav-bg: rgba(10, 10, 20, 0.55);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  color-scheme: dark;
+  background: #06060b;
+  background-attachment: fixed;
+}
+body.space-page .theme-fab { display: none; }
+body.space-page .site-nav .logo .logo-light { display: none; }
+body.space-page .site-nav .logo .logo-dark { display: block; }
+body.space-page .more-work .hiw-eyebrow { text-align: center; }
+body.space-page .mw-tile { border-color: rgba(255, 255, 255, 0.14); }
+body.space-page .mw-tile:hover { box-shadow: 0 16px 40px rgba(130, 70, 200, 0.32), 0 6px 20px rgba(0, 0, 0, 0.45); }
+
+.space-stars {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: -1; pointer-events: none;
 }
