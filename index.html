@@ -19,6 +19,7 @@
       <div class="nav-links">
         <a href="index.html#work">Projects</a>
         <a href="about.html">About</a>
+        <a href="playground.html">Playground</a>
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-tools">
@@ -31,6 +32,7 @@
   <div class="mobile-menu">
     <a href="index.html#work">Projects</a>
     <a href="about.html">About</a>
+    <a href="playground.html">Playground</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
@@ -42,60 +44,19 @@
 <main class="wrap">
 
   <section class="hero reveal">
-    <div class="hero-split">
-      <div class="hero-copy">
-        <span class="eyebrow">Hello, I&rsquo;m Irhah.</span>
-        <h1 id="heroText">Designing with Purpose &amp; Play.</h1>
-        <p class="sub">UX &amp; product designer blending strategic thinking with visual craft. I build intuitive digital tools and interactive experiences where clarity, human emotion, and function meet.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
-          <a class="btn btn-secondary" href="contact.html">Get In Touch</a>
-        </div>
+    <div class="hero-orb-wrap" aria-hidden="true">
+      <div class="hero-orb-clip"><canvas id="heroGlow"></canvas></div>
+      <div class="hero-orb-grain"></div>
+    </div>
+    <div class="hero-copy">
+      <h1><span class="hero-lead" id="heroText" data-name-bold="Irhah">Hi, I&rsquo;m Irhah</span><span class="hl-2">I design digital products, immersive worlds, and the stories that hold them.</span></h1>
+      <div class="hero-meta">
+        <p>Open to full&#8209;time UX/UI roles</p>
+        <p>Most recently: M.S. in Design + Innovation, UW&ndash;Madison &middot; Based in Madison, WI</p>
       </div>
-      <div class="hero-art">
-        <div class="id-card-wrap">
-          <div class="id-card" id="idCard">
-          <div class="id-card-flip" id="idCardFlip">
-          <div class="id-card-face id-card-front" id="idCardFront" role="button" tabindex="0" aria-label="Flip card: read design philosophy">
-            <svg class="id-card-art" width="275" height="402" viewBox="0 0 275 402" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="275" height="402" rx="43" fill="#F8E8FF"/>
-              <rect x="15.5" y="65.5" width="244" height="202" rx="24.5" fill="white" stroke="#4C0F4B"/>
-              <rect x="14.5" y="278.5" width="244" height="99" rx="24.5" fill="white" stroke="#4C0F4B"/>
-              <path d="M186.218 75C184.016 76.6759 179.01 79.146 176.443 80.7732C169.885 84.9303 162.174 90.1607 156.749 95.7226C167.335 91.7945 178.631 92.7131 188.717 97.5753C198.747 102.411 209.188 110.995 215.803 119.907C221.486 128.238 223.824 137.806 224.664 147.685C225.049 152.229 224.351 156.696 224.751 160.941C225.448 168.343 228.653 178.09 237 179.368C229.37 181.743 226.238 180.053 218.647 178.912C219.241 179.485 219.966 180.151 220.484 180.779C228.758 190.815 221.416 205.277 214.983 214.118C214.805 210.883 214.671 207.641 212.472 205.03C211.517 209.797 208.27 214.94 204.088 217.309C195.77 222.021 182.08 228.523 186.944 240.795C180.857 237.572 175.634 234.492 174.01 227.387C171.025 230.893 169.304 233.869 169.636 238.728C169.787 240.931 170.284 241.548 171.232 243.352C165.492 240.037 162.524 236.55 162.444 229.747C160.065 230.996 156.976 232.658 154.523 233.634C144.396 237.665 132.183 239.26 121.36 237.868C118.826 237.542 114.186 237.023 111.811 236.287C111.474 236.182 111.141 236.063 110.813 235.931C113.614 239.305 113.221 241.839 111.626 245.661C109.693 240.092 106.731 238.133 100.993 238.043C100.217 243.51 99.3337 247.72 94.559 251.307C92.8195 252.599 90.8586 253.562 88.7725 254.151C87.6702 254.472 86.8826 254.563 85.8239 255.065C87.096 250.269 88.8292 246.08 85.8211 241.514C86.0534 246.573 85.6364 251.447 82.0802 255.36C79.5035 258.197 77.8734 258.3 74.9842 259.977C77.8375 253.68 77.4784 245.671 72.1896 240.761C71.3667 239.997 70.1163 239.41 69.266 238.646C66.7692 235.908 66.4724 232.966 66.6111 229.616C61.3917 234.817 61.7331 240.012 64.657 246.267C51.858 239.243 49.5572 230.051 48.6192 216.382C45.9073 219.801 41.9618 224.868 37 222.409V222.238C37.8223 222.2 38.3115 222.154 38.9496 221.596C47.4964 214.117 46.7432 200.196 46.5697 189.792C46.4464 182.403 44.562 176.508 45.63 168.89C47.5977 154.854 54.662 143.997 64.2894 133.982C58.1672 134.758 53.9674 136.873 50.073 141.807C49.7727 142.187 49.2382 143.053 48.8658 143.18C49.3049 141.636 52.8064 135.861 53.7413 134.362C62.3076 120.618 73.6879 107.824 88.0248 99.9542C102.697 91.9008 118.917 90.3364 134.942 95.1225C136.78 95.6711 138.304 96.1824 140.116 96.7882C133.955 88.7957 126.948 83.8518 117.537 80.1857C132.782 80.0006 142.211 83.5815 146.113 98.7066C146.209 99.08 146.472 99.1983 146.774 99.3621C147.598 98.8472 149.08 95.7453 149.71 94.702C156.881 82.8235 170.076 76.7679 183.494 75.3416C184.379 75.2475 185.342 75.1539 186.218 75ZM120.481 168.515C123.863 160.936 126.595 153.563 125.363 145.115C125.132 143.532 123.658 138.617 122.636 137.655C122.039 138.658 121.926 140.245 121.465 141.333C116.328 153.463 103.435 159.828 92.0443 164.93C90.7361 165.516 89.4201 166.483 88.2018 167.232C81.8289 171.342 77.1979 177.531 74.3565 184.497C73.1579 187.431 72.5134 190.561 71.5123 193.583C71.4294 194.04 71.3751 194.312 71.2358 194.755L71.0196 194.904C69.9628 194.067 67.8956 192.334 66.7968 191.753C66.1261 191.868 66.2629 192.401 65.8877 192.532C65.7468 192.581 61.6972 190.072 60.329 189.531C61.4448 191.838 63.3262 195.72 65.1815 197.416C57.5259 202.452 68.682 201.975 69.4069 203.86L69.1806 204.776C68.5127 205.125 66.4242 204.538 65.6552 204.278C61.3044 202.806 59.1534 200.9 62.4483 196.95C61.1341 194.909 58.4365 191.324 58.7261 188.917C59.0062 186.587 62.8518 188.679 63.8918 189.09L64.0514 188.967C63.4772 187.924 62.8302 187.435 62.1432 186.494C60.8898 184.776 59.6904 182.592 58.9372 180.602C58.5635 179.616 58.7381 178.071 58.0655 177.384C57.3358 177.414 55.9607 178.456 55.5247 179.029C49.0243 187.558 55.3479 200.746 62.1425 207.021C65.6712 210.28 70.62 211.64 75.0478 211.58C75.4113 211.621 75.9387 211.697 76.2901 211.694C77.6936 213.821 79.4694 216.509 81.2539 218.267C103.399 240.086 144.929 242.855 168.253 221.46C179.911 210.765 183.368 198.938 183.836 184.014C182.603 182.502 180.882 180.884 179.527 179.286C173.687 172.401 168.555 163.631 167.291 154.586C166.964 152.247 167.09 147.267 167.278 144.879C162.394 147.581 157.499 152.418 160.316 158.522L160.183 158.751C158.681 158.964 155.791 157.599 154.536 156.695C147.721 151.784 144.394 140.426 142.99 132.527C140.993 149.785 135.979 159.847 120.481 168.515ZM194.778 163.419C191.396 164.519 188.94 166.922 187.322 170.025C184.065 176.273 185.963 182.49 185.653 189.124C185.563 191.05 185.42 193.022 185.227 194.945C185.073 196.486 184.652 198.314 184.646 199.828C185.702 200.004 188.891 198.703 189.841 198.131C196.042 194.454 198.817 189.734 200.692 182.832C202.172 177.383 202.175 171.883 199.22 166.912C198.198 165.194 196.827 163.695 194.778 163.419Z" fill="#4C0F4B"/>
-              <path d="M149.694 160.51L149.819 160.499C162.099 159.555 170.132 171.356 172.078 182.151C172.469 184.315 172.586 186.607 172.742 188.804C174.381 186.543 174.861 185.604 175.998 183.103C175.8 185.009 175.709 186.924 174.422 188.459C174.048 188.905 172.74 190.543 172.934 191.07C176.003 189.372 178.219 185.494 179.331 182.251C179.156 185.419 178.086 189.129 175.77 191.388C175.212 191.932 173.576 193.031 173.488 193.726C174.944 194.48 178.413 192.501 179.723 191.762C177.337 194.474 175.836 195.191 172.312 195.52C171.527 198.014 171.266 199.731 170.257 202.357C168.968 205.004 167.617 207.904 165.665 210.007C150.942 225.869 133.552 211.148 131.257 193.943C129.392 179.951 134.651 162.876 149.694 160.51ZM162.588 210.566C166.485 206.48 167.825 204.26 169.528 198.839C163.027 205.509 154.517 205.598 147.964 198.933C140.431 191.271 138.837 178.749 142.166 168.818C142.452 167.966 143.865 165.16 143.753 164.593L143.623 164.465C130.49 173.799 129.541 194.276 138.322 206.898C143.623 214.518 152.873 217.848 160.817 212.027C161.441 211.577 162.049 211.137 162.588 210.566ZM156.849 181.431C154.928 182.34 150.144 185.196 150.852 187.71C152.868 189.826 157.078 185.667 158.538 184.212C158.656 184.095 158.773 183.976 158.889 183.858C160.039 186.102 162.677 190.608 165.622 190.221C166.732 187.07 163.619 183.885 161.368 181.983C163.187 180.805 168.185 177.915 167.444 175.362C165.488 173.495 161.461 177.21 160.09 178.704C159.846 178.971 159.608 179.244 159.377 179.523C158.041 177.184 155.854 173.021 152.759 173.067C152.235 173.969 152.041 174.275 152.339 175.345C152.955 177.552 155.249 179.844 156.849 181.431Z" fill="#4C0F4B"/>
-              <path d="M96.8941 165.257C100.146 165.008 102.519 165.058 105.551 166.446C111.076 168.976 114.729 174.001 116.754 179.531C119.58 187.249 119.348 196.147 115.822 203.615C113.683 208.142 109.801 212.481 104.865 214.142C101.082 215.374 96.9575 215.108 93.3725 213.4C89.6247 211.582 85.2276 207.207 83.9021 203.322C82.983 202.354 80.2365 203.038 78.7609 202.45C77.1185 201.796 75.9376 200.788 74.5586 199.739C75.5208 200.049 76.5079 200.549 77.5214 200.835C79.2176 201.314 81.0518 201.541 82.8008 201.786C79.8399 200.237 77.4346 198.46 76.0829 195.345C75.5698 194.163 74.907 192.931 74.7183 191.656L74.8595 191.512C75.515 192.065 76.2293 193.57 76.7971 194.296C78.2108 196.103 80.4867 197.942 82.4951 199.025C81.9746 198.292 81.2275 197.63 80.6074 196.961C78.6223 194.818 78.5161 193.43 78.0192 190.733C79.3009 192.973 79.4498 193.947 81.3884 195.776C81.2765 195.237 81.1727 194.696 81.0766 194.153C79.2317 183.356 84.3415 167.307 96.8941 165.257ZM86.9495 174.194C83.3014 179.2 81.7026 187.614 82.6464 193.717C84.0917 203.062 90.9218 214.728 102.181 213.023C104.268 212.707 106.652 211.652 108.234 210.226C109.38 209.4 111.808 207.227 112.268 205.987L112.115 205.751C111.306 206.032 110.763 206.498 109.914 206.787C94.832 211.936 85.5568 194.857 85.9771 182.354C86.0162 181.195 87.1205 174.543 86.9495 174.194ZM102.711 185.228C100.703 186.472 96.1078 189.053 96.4631 191.688C98.2853 194.192 103.35 189.137 104.742 187.817C105.839 189.77 109.08 195.389 111.957 193.699C112.744 190.961 109.004 187.55 107.205 185.785C109.309 184.94 113.792 182.215 113.435 179.664C111.686 176.986 106.612 181.839 105.315 183.351C103.62 180.492 101.915 177.249 98.1717 177.262C98.1362 177.577 98.051 178.223 98.0651 178.533C98.1715 180.901 100.98 183.799 102.711 185.228Z" fill="#4C0F4B"/>
-              <path d="M130.42 212.089C130.496 212.095 130.763 212.193 130.852 212.223C130.998 212.748 130.755 213.225 130.546 213.692C129.325 216.416 126.156 217.256 123.331 216.541C122.014 216.208 121.207 215.806 120.004 215.223C119.253 214.717 118.481 214.12 117.751 213.579C121.803 214.501 123.274 215.204 127.183 213.287C127.948 212.912 129.58 212.297 130.42 212.089Z" fill="#4C0F4B" fill-opacity="0.980392"/>
-              <path d="M192.223 169.857C196.265 169.385 193.787 177.057 193.035 179.093L193.16 179.151C199.172 181.999 193.002 187.453 189.599 188.615L189.322 188.426C188.991 187.733 188.752 187.266 189.485 186.749C190.43 186.081 191.299 185.539 192.188 184.779C195.322 182.095 194.129 181.271 190.85 180.395C191.335 178.957 193.054 173.383 192.487 172.185L192.157 172.118C191.144 172.615 189.635 174.802 188.871 175.812L187.235 175.132C188.85 173.497 189.883 170.79 192.223 169.857Z" fill="#4C0F4B" fill-opacity="0.976471"/>
-              <path d="M71.7417 198.745C71.7779 198.228 71.8032 197.699 71.8327 197.18L72.0635 197.066C72.5395 203.122 73.6645 206.798 76.4365 212.089C76.1007 212.092 75.5967 212.016 75.2492 211.975C75.235 211.717 73.668 207.93 73.4413 207.292C72.3721 204.278 71.8474 201.942 71.7417 198.745Z" fill="#4C0F4B" fill-opacity="0.898039"/>
-              <path d="M70.8027 195.54L71.0947 195.395C71.2828 194.962 71.3563 194.696 71.4682 194.249C71.6228 195.297 71.6793 196.257 71.7417 197.306L71.4155 197.417C71.3738 197.924 71.338 198.439 71.2868 198.944C71.075 198.167 71.0018 196.531 70.8027 195.54Z" fill="#4C0F4B" fill-opacity="0.694118"/>
-              <rect x="42.5" y="17.5" width="214" height="37" rx="18.5" fill="white" stroke="#4C0F4B"/>
-              <circle cx="39" cy="37" r="36.5" fill="#F8E8FF" stroke="#4C0F4B"/>
-              <path d="M34.2447 14.6353C35.7415 10.0287 42.2585 10.0287 43.7553 14.6353L46.1844 22.1115C46.8538 24.1716 48.7736 25.5664 50.9397 25.5664H58.8007C63.6443 25.5664 65.6582 31.7644 61.7396 34.6115L55.38 39.232C53.6275 40.5052 52.8942 42.7621 53.5636 44.8222L55.9928 52.2984C57.4895 56.9049 52.2171 60.7355 48.2986 57.8885L41.9389 53.268C40.1865 51.9948 37.8135 51.9948 36.0611 53.268L29.7014 57.8885C25.7829 60.7356 20.5105 56.9049 22.0072 52.2984L24.4364 44.8222C25.1058 42.7621 24.3725 40.5052 22.62 39.232L16.2604 34.6115C12.3418 31.7644 14.3557 25.5664 19.1993 25.5664H27.0603C29.2264 25.5664 31.1462 24.1716 31.8156 22.1115L34.2447 14.6353Z" fill="#4C0F4B"/>
-            </svg>
-            <span class="id-card-label">Designer ID</span>
-            <div class="id-card-fields">
-              <p class="field-line"><span class="field-label">Role:</span> UX &amp; Product Designer</p>
-              <p class="field-line"><span class="field-label">Status:</span> Open to opportunities</p>
-              <p class="field-line"><span class="field-label">Loves:</span> <span data-loves-typed>Illustration, games, anime</span><span class="caret"></span></p>
-            </div>
-            <div class="sheen" aria-hidden="true"></div>
-          </div>
-          <div class="id-card-face id-card-back">
-            <div class="phil" id="phil">
-              <span class="phil-kicker">Design Philosophy</span>
-              <ul class="phil-list">
-                <li><strong>Clarity first.</strong> A screen should explain itself before it tries to impress anyone.</li>
-                <li><strong>Feeling is functional.</strong> If it doesn&rsquo;t move someone, it isn&rsquo;t finished.</li>
-                <li><strong>Play is not optional.</strong> The best tools still leave room to wonder.</li>
-              </ul>
-              <p class="phil-quote">&ldquo;Every interface is a small act of care.&rdquo;</p>
-              <button type="button" class="id-back-btn" id="philBackBtn" aria-label="Flip card back">&larr; Flip back</button>
-            </div>
-          </div>
-          </div>
-          <span class="id-card-hint" id="idCardHint">Click to flip</span>
-          </div>
-        </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+        <a class="btn btn-secondary" href="contact.html">Get In Touch</a>
       </div>
     </div>
   </section>
@@ -103,15 +64,24 @@
   <h2 class="work-title">Explore My Work</h2>
 
   <div class="cat-tabs">
-    <button class="cat-tab active" data-filter="all">All</button>
-    <button class="cat-tab" data-filter="experience">Experience Design</button>
-    <button class="cat-tab" data-filter="visual">Visual &amp; Brand Design</button>
+    <button class="cat-tab active" data-filter="all">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 4.5-9 4.5-9-4.5 9-4.5z"/><path d="M3 12l9 4.5 9-4.5"/><path d="M3 16.5l9 4.5 9-4.5"/></svg>
+      All
+    </button>
+    <button class="cat-tab" data-filter="experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>
+      Experience Design
+    </button>
+    <button class="cat-tab" data-filter="visual">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9.9-1.7-.5-.5-.5-1.3.1-1.7.6-.4 1.5-.2 2.1.3.7.6 1.9.3 2.2-.6A9 9 0 0 0 12 3z"/><circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="11" cy="7.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="9" r="1.1" fill="currentColor" stroke="none"/></svg>
+      Visual &amp; Brand Design
+    </button>
   </div>
 
   <section id="work" class="project-grid">
 
     <a class="project-card" href="case-studies/wayhome.html" data-category="experience">
-      <div class="thumb"><img src="assets/wayhome/wayhome-hero.jpg" alt="WayHome app screens"></div>
+      <div class="thumb"><img src="assets/wayhome/wayhome-app-mockup.jpg" alt="The WayHome logo splash screen on a phone mockup, tilted against a soft purple-to-pink gradient"></div>
       <div class="meta">
         <span class="cat-label">Experience Design</span>
         <h3>WayHome</h3>
@@ -120,7 +90,7 @@
     </a>
 
     <a class="project-card" href="case-studies/how-do-we-love.html" data-category="experience">
-      <div class="thumb"><img src="assets/how-do-we-love/how-do-we-love-hero.jpg" alt="A small heart-propellered companion robot waters a wildflower meadow among solar panels"></div>
+      <div class="thumb"><img src="assets/how-do-we-love/hdwl-cubot-sage.jpg" alt="The heart-propellered companion robot, with heart-shaped eyes, flying against a soft sage green background"></div>
       <div class="meta">
         <span class="cat-label">Experience Design</span>
         <h3>How Do We Love?</h3>
@@ -128,20 +98,11 @@
       </div>
     </a>
 
-    <a class="project-card" href="case-studies/qrco.html" data-category="experience">
-      <div class="thumb"><img src="assets/qrco/qrco-thumb.svg" alt="QRCO brand mark: a QR code finder pattern with dashed redirect paths sweeping toward live destination points"></div>
-      <div class="meta">
-        <span class="cat-label">Experience Design</span>
-        <h3>QRCO</h3>
-        <div class="cats">Product Strategy, UX Research, Go-to-Market</div>
-      </div>
-    </a>
-
     <a class="project-card" href="case-studies/imagin8-v-park.html" data-category="experience">
-      <div class="thumb"><img src="assets/imagin8-v-park/portal-thumb.jpg" alt="Imagin8v Park portal artwork: a glowing blue swirling gate in a park at dusk, with Terry, the ghost dog, running toward it"></div>
+      <div class="thumb"><img src="assets/imagin8-v-park/portal-thumb.jpg" alt="The Imagin8V Park logo in a browser window, on a dark navy screen"></div>
       <div class="meta">
         <span class="cat-label">Experience Design</span>
-        <h3>Imagin8 V Park</h3>
+        <h3>Imagin8V Park</h3>
         <div class="cats">UX/UI Design, Civic Design, Educational Gaming</div>
       </div>
     </a>
@@ -374,44 +335,6 @@
     </div>
   </section>
 
-  <section class="more-work reveal">
-    <h2 class="work-title">More Stuff I Make</h2>
-    <p class="more-work-intro">Posters, 3D experiments, and illustration &mdash; the stuff that doesn&rsquo;t fit in a case study.</p>
-
-    <div class="mw-grid">
-      <div class="mw-tile">
-        <video src="assets/more-work/cosmic-companion.mp4" poster="assets/more-work/cosmic-companion-poster.jpg" autoplay muted loop playsinline></video>
-        <span class="mw-cat">3D</span>
-        <div class="mw-caption"><span class="mw-title-text">Cosmic Companion &mdash; placeholder title, tell me what to call it</span></div>
-      </div>
-      <div class="mw-tile" style="--mw-a:#e4d9f7; --mw-b:#f7e9ff;">
-        <span class="mw-cat">Poster</span>
-        <div class="mw-caption"><span class="mw-title-text">The Loading Screen of Loneliness</span></div>
-      </div>
-      <div class="mw-tile" style="--mw-a:#d6e7f5; --mw-b:#eaf3ff;">
-        <span class="mw-cat">Poster</span>
-        <div class="mw-caption"><span class="mw-title-text">404: Attention Not Found</span></div>
-      </div>
-      <div class="mw-tile" style="--mw-a:#f6dfe4; --mw-b:#fdeef0;">
-        <span class="mw-cat">Illustration</span>
-        <div class="mw-caption"><span class="mw-title-text">You Are Not a Notification</span></div>
-      </div>
-      <div class="mw-tile mw-wide" style="--mw-a:#dcead9; --mw-b:#eef8ec;">
-        <span class="mw-cat">Illustration</span>
-        <div class="mw-caption"><span class="mw-title-text">The Accessibility of Kindness</span></div>
-      </div>
-      <div class="mw-tile mw-wide" style="--mw-a:#e9e2d0; --mw-b:#f8f2e4;">
-        <span class="mw-cat">3D</span>
-        <div class="mw-caption"><span class="mw-title-text">Buffering: A Portrait of Waiting</span></div>
-      </div>
-      <div class="mw-tile" style="--mw-a:#e4d9f7; --mw-b:#dceaf7;">
-        <span class="mw-cat">Poster</span>
-        <div class="mw-caption"><span class="mw-title-text">Terms &amp; Conditions of Being Human</span></div>
-      </div>
-    </div>
-    <p class="more-work-note">Placeholders for now &mdash; swap each tile for the real piece as you design it.</p>
-  </section>
-
   <section class="origin-section reveal">
     <div class="origin-grid">
       <h2 class="origin-heading">What I create,<br>creates me.</h2>
@@ -421,10 +344,12 @@
         <p>Having recently completed my Master&rsquo;s in Design + Innovation at UW&ndash;Madison, I am open to opportunities where I can build digital products and spatial environments. Guided by research and grounded in craft, I aim to create experiences that invite people in, bring order to complexity, and respect the human on the other side.</p>
       </div>
     </div>
-    <hr class="origin-rule">
-    <p class="origin-statement">Every great product starts with an <em>intentional</em> conversation. Shall we?</p>
-    <div class="origin-cta">
-      <a class="btn btn-primary" href="mailto:irhahdesigns@gmail.com">Say Hello</a>
+    <div class="origin-glow-wrap">
+      <hr class="origin-rule">
+      <p class="origin-statement">Every great product starts with an <em>intentional</em> conversation. Shall we?</p>
+      <div class="origin-cta">
+        <a class="btn btn-primary" href="mailto:irhahdesigns@gmail.com">Say Hello</a>
+      </div>
     </div>
   </section>
 
