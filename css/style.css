@@ -305,6 +305,33 @@ strong { color: var(--ink); font-weight: 700; }
   .hero-copy .hero-actions { justify-content: center; }
 }
 
+/* ---------- Playground: moving gradient background ----------
+   Same marbled-wave canvas/palette as the hero orb (#heroGlow), drawn
+   full-viewport behind the Playground page's content instead of inside
+   a small blurred circle. Softness still comes entirely from the CSS
+   blur on the wrapper, not a pre-blurred gradient; drawn on #pageGradient
+   by initMarbledGradient("pageGradient") in main.js. */
+body.gradient-page {
+  background: #f6f0e4;
+  background-attachment: fixed;
+}
+body.gradient-page .mw-tile { border-color: rgba(22, 21, 29, 0.1); background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(6px); }
+body.gradient-page .mw-tile:hover { box-shadow: 0 16px 40px rgba(220, 140, 120, 0.28), 0 6px 20px rgba(0, 0, 0, 0.1); }
+body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
+
+.page-gradient-wrap {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  filter: blur(clamp(50px, 6vw, 120px));
+}
+.page-gradient-clip { position: relative; width: 100%; height: 100%; overflow: hidden; }
+#pageGradient { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.page-gradient-grain {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
 /* ---------- How I Work: icon grid (after Explore My Work) ---------- */
 .hiw-section { margin-top: 70px; padding-bottom: var(--gap-xl); }
 .hiw-frame { padding: 0; }
@@ -502,12 +529,73 @@ strong { color: var(--ink); font-weight: 700; }
 .project-card { display: block; opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .project-card.in { opacity: 1; transform: translateY(0); }
 .project-card .thumb {
+  position: relative;
   aspect-ratio: 1 / 1; border-radius: var(--r-lg); overflow: hidden;
   background: var(--bg-soft); border: 1px solid var(--border);
   transition: transform 0.4s cubic-bezier(.2,.8,.3,1.2), box-shadow 0.4s ease;
 }
-.project-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.2,.8,.2,1); }
 .project-card:hover .thumb { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.project-card:hover .thumb:not(.thumb-flip-hover):not(.thumb-hover-video) img { transform: scale(1.04); }
+
+/* How Do We Love?: the still cubot art fades into the looping motion
+   clip on hover, sized so the character matches the still art's scale. */
+.thumb-hover-video .hover-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.project-card:hover .thumb-hover-video .hover-video { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .thumb-hover-video .hover-video { transition: none; }
+}
+
+/* Fixed corner badge: a small static "view" affordance pinned to the
+   thumbnail's corner, independent of the trailing glass cursor below.
+   Fades in with the card hover, doesn't chase the pointer. */
+.thumb-badge {
+  position: absolute; top: 14px; right: 14px; width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.7);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
+  pointer-events: none;
+  z-index: 2;
+}
+.thumb-badge svg { width: 16px; height: 16px; display: block; stroke: #1b1330; }
+.project-card:hover .thumb-badge { opacity: 1; transform: scale(1); }
+@media (pointer: coarse) { .thumb-badge { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .thumb-badge, .project-card .thumb img { transition: none; }
+}
+
+/* ---------- Flipped: a normal i at rest; hover bounces the dot down into
+   the brand's own upside-down i (bar on top, dot below). Hovering the whole
+   card triggers it, same gesture as the card's lift-on-hover. ---------- */
+.thumb-flip-hover { position: relative; }
+.thumb-flip-hover .flip-letters { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb-flip-hover .flip-bar {
+  position: absolute;
+  left: 27.130%; width: 3.611%; height: 14.444%;
+  top: 56.852%;
+  background: #fec00f;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  transition: top 0.5s cubic-bezier(.30, 1.65, .5, 1);
+}
+.thumb-flip-hover .flip-dot {
+  position: absolute;
+  left: 27.130%; width: 3.565%; height: 3.565%;
+  top: 46.481%;
+  background: #fec00f;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0.62s cubic-bezier(.27, 2.1, .42, 1);
+}
+.project-card:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
+.project-card:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
+@media (prefers-reduced-motion: reduce) {
+  .thumb-flip-hover .flip-bar, .thumb-flip-hover .flip-dot { transition: none; }
+}
 .project-card .meta { padding: 18px 2px 0; }
 .project-card .cat-label {
   font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
@@ -1227,13 +1315,40 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
   pointer-events: none;
   z-index: 9999;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px;
+  transition:
+    opacity 0.25s ease,
+    width 0.32s cubic-bezier(.2,.8,.2,1),
+    height 0.32s cubic-bezier(.2,.8,.2,1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .glass-cursor { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
 }
 :root[data-theme="dark"] .glass-cursor { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
 @media (pointer: coarse) { .glass-cursor { display: none; } }
+
+/* Grown state: the same circle opens into a thin "ghost ring" with a
+   straight arrow while hovering a project card (see .project-card
+   listeners in main.js) — no fill, just a ring that follows the pointer,
+   paired with the fixed corner badge on the thumbnail itself. */
+.glass-cursor .cursor-icon {
+  width: 20px; height: 20px; flex-shrink: 0; color: #fff;
+  opacity: 0; transform: scale(0.5);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.glass-cursor .cursor-icon svg { display: block; width: 100%; height: 100%; }
+.glass-cursor.is-project {
+  width: 76px; height: 76px;
+  background: rgba(20, 14, 34, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(20, 10, 40, 0.25);
+}
+.glass-cursor.is-project .cursor-icon {
+  opacity: 1; transform: none; transition-delay: 0.06s;
+}
 
 /* ---------- About page ---------- */
 .about-hero { padding: 168px 0 var(--gap-xl); }
