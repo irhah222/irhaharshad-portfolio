@@ -95,9 +95,10 @@
 
 /* ---------- Reset / base ---------- */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
@@ -488,6 +489,9 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
 }
 @media (prefers-reduced-motion: reduce) {
   .origin-glow-wrap::before { animation: none; }
+}
+@media (max-width: 760px) {
+  .origin-glow-wrap::before { width: 420px; height: 380px; left: -60px; top: -20px; }
 }
 .origin-rule, .origin-statement, .origin-cta { position: relative; z-index: 1; }
 .origin-rule { border: none; border-top: 1px dashed var(--border-strong, var(--border)); margin: 64px 0 40px; }
