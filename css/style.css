@@ -95,10 +95,18 @@
 
 /* ---------- Reset / base ---------- */
 * { box-sizing: border-box; }
+/* overflow-x: hidden lives on <html> only. Setting it on <body> too used
+   to create a second, independent scroll box: whenever body's own content
+   box ended up a few pixels taller than body itself (easy to trigger with
+   margin-collapsing on some page layouts, e.g. the homepage hero), body
+   silently became the element wheel/trackpad scrolling landed on. It had
+   almost no room to scroll, so it absorbed the input and never handed it
+   off to <html> -- the page looked stuck and only the native scrollbar
+   (which always targets <html>) still worked. One element owning the
+   horizontal clip avoids the whole class of bug. */
 html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   margin: 0;
-  overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font);
