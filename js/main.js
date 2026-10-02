@@ -241,7 +241,7 @@
      so their click still navigates. */
   (function initLightbox() {
     var candidates = Array.prototype.slice.call(document.querySelectorAll("main img"));
-    var images = candidates.filter(function (img) { return !img.closest("a"); });
+    var images = candidates.filter(function (img) { return !img.closest("a") && !img.closest("[data-gallery]"); });
     if (!images.length) return;
 
     images.forEach(function (img) {
@@ -299,6 +299,117 @@
     closeBtn.addEventListener("click", closeLightbox);
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeLightbox();
+    });
+  })();
+
+  /* ---------- Gallery slideshow (opt-in via [data-gallery]) ----------
+     A gallery wrapped in a [data-gallery] container (its photos marked
+     up as .fsg-thumb buttons, each holding an img and a .fsg-cap
+     caption) gets its own full-screen slideshow: next/prev navigation,
+     a thumbnail strip, and keyboard arrows, instead of the sitewide
+     single-image zoom above. */
+  (function initGallerySlideshows() {
+    var galleries = Array.prototype.slice.call(document.querySelectorAll("[data-gallery]"));
+    if (!galleries.length) return;
+
+    galleries.forEach(function (gallery) {
+      var thumbs = Array.prototype.slice.call(gallery.querySelectorAll(".fsg-thumb"));
+      if (!thumbs.length) return;
+
+      var slides = thumbs.map(function (btn) {
+        var img = btn.querySelector("img");
+        var capEl = btn.querySelector(".fsg-cap");
+        return {
+          src: img ? (img.currentSrc || img.src) : "",
+          alt: img ? (img.getAttribute("alt") || "") : "",
+          caption: capEl ? capEl.textContent.trim() : ""
+        };
+      });
+
+      var overlay = document.createElement("div");
+      overlay.className = "fsg-overlay";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", "Photo slideshow");
+      overlay.innerHTML =
+        '<button type="button" class="fsg-close" aria-label="Close slideshow">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+        "</button>" +
+        '<div class="fsg-stage">' +
+        '<button type="button" class="fsg-nav-btn prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>' +
+        '<img class="fsg-img" alt="">' +
+        '<button type="button" class="fsg-nav-btn next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' +
+        "</div>" +
+        '<p class="fsg-caption"></p>' +
+        '<div class="fsg-counter"></div>' +
+        '<div class="fsg-thumbs"></div>';
+      document.body.appendChild(overlay);
+
+      var stageImg = overlay.querySelector(".fsg-img");
+      var captionEl = overlay.querySelector(".fsg-caption");
+      var counterEl = overlay.querySelector(".fsg-counter");
+      var thumbsEl = overlay.querySelector(".fsg-thumbs");
+      var prevBtn = overlay.querySelector(".fsg-nav-btn.prev");
+      var nextBtn = overlay.querySelector(".fsg-nav-btn.next");
+      var closeBtn = overlay.querySelector(".fsg-close");
+      var current = 0;
+      var lastFocused = null;
+
+      slides.forEach(function (slide, i) {
+        var tb = document.createElement("button");
+        tb.type = "button";
+        tb.setAttribute("aria-label", "Go to photo " + (i + 1));
+        var timg = document.createElement("img");
+        timg.src = slide.src;
+        timg.alt = "";
+        tb.appendChild(timg);
+        tb.addEventListener("click", function () { showSlide(i); });
+        thumbsEl.appendChild(tb);
+      });
+
+      function showSlide(i) {
+        current = (i + slides.length) % slides.length;
+        var slide = slides[current];
+        stageImg.src = slide.src;
+        stageImg.alt = slide.alt;
+        captionEl.textContent = slide.caption;
+        counterEl.textContent = (current + 1) + " / " + slides.length;
+        Array.prototype.forEach.call(thumbsEl.children, function (tb, idx) {
+          tb.classList.toggle("active", idx === current);
+        });
+      }
+
+      function openGallery(i) {
+        lastFocused = document.activeElement;
+        showSlide(i);
+        overlay.classList.add("open");
+        document.documentElement.classList.add("fsg-locked");
+        closeBtn.focus();
+      }
+      function closeGallery() {
+        if (!overlay.classList.contains("open")) return;
+        overlay.classList.remove("open");
+        document.documentElement.classList.remove("fsg-locked");
+        stageImg.src = "";
+        if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+      }
+
+      thumbs.forEach(function (btn, i) {
+        btn.addEventListener("click", function () { openGallery(i); });
+      });
+
+      prevBtn.addEventListener("click", function () { showSlide(current - 1); });
+      nextBtn.addEventListener("click", function () { showSlide(current + 1); });
+      closeBtn.addEventListener("click", closeGallery);
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) closeGallery();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (!overlay.classList.contains("open")) return;
+        if (e.key === "Escape") closeGallery();
+        else if (e.key === "ArrowLeft") showSlide(current - 1);
+        else if (e.key === "ArrowRight") showSlide(current + 1);
+      });
     });
   })();
 

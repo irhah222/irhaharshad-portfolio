@@ -44,8 +44,8 @@
 <div class="section-rail">
   <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
   <div class="dot" data-target="challenge"><span class="dot-label">Challenge</span></div>
-  <div class="dot" data-target="process"><span class="dot-label">Process</span></div>
   <div class="dot" data-target="mascot"><span class="dot-label">Mascot</span></div>
+  <div class="dot" data-target="process"><span class="dot-label">Process</span></div>
   <div class="dot" data-target="gallery"><span class="dot-label">Gallery</span></div>
   <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
 </div>
@@ -169,6 +169,33 @@
     </div>
   </section>
 
+  <section id="mascot" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Brand Character</span>
+    <h2>Meet Boing</h2>
+    <div class="logo-showcase" style="display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; text-align:left; padding:40px;">
+      <img src="../assets/flipped/flipped-boing-hero.png" alt="Boing, the Flipped mascot, leaping between rainbow-colored portal rings with big starry eyes and white gloved hands" style="max-width:260px; width:100%; flex-shrink:0;">
+      <p style="max-width:48ch; font-size:15px; color:var(--ink-soft); line-height:1.65; margin:0;">Meet <strong>Boing</strong>, the mascot built for Flipped. Boing is a bouncing ball of energy that zips through portals to explore different dimensions. Its legs are shaped like slinky springs, so it can bounce and switch between worlds with ease. Boing is playful and a little weird, and that's the point. It's the same energy the whole park was built around.</p>
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Character Sheet</h3>
+    <p>A full expression and pose library kept Boing consistent everywhere it shows up, from wall graphics to signage to the entrance greeter.</p>
+    <div class="cubot-gallery cols-2 char-sheet-row" style="margin-top:18px;">
+      <figure>
+        <div class="char-sheet-frame">
+          <img src="../assets/flipped/flipped-boing-sheet-1.png" alt="Boing character sheet: a full body pose, a texture and material reference sheet with six face variants, and two in-motion dance poses">
+        </div>
+        <figcaption>Pose study, texture and material variants, and in-motion gestures.</figcaption>
+      </figure>
+      <figure>
+        <div class="char-sheet-frame">
+          <img src="../assets/flipped/flipped-boing-sheet-2.png" alt="Boing character sheet: a shape-shifting splat pose, a podium prop, star-shaped variants, an expression set, a rolling transformation sequence, and falling and celebration poses">
+        </div>
+        <figcaption>Shape-shifting poses, expressions, and prop interactions.</figcaption>
+      </figure>
+    </div>
+
+  </section>
+
   <section id="process" class="cs-section reveal">
     <span class="eyebrow" style="display:block; margin-bottom:14px;">From Concept to Build</span>
     <h2>Process</h2>
@@ -231,29 +258,6 @@
     </div>
   </section>
 
-  <section id="mascot" class="cs-section reveal">
-    <span class="eyebrow" style="display:block; margin-bottom:14px;">Brand Character</span>
-    <h2>Meet Boing</h2>
-    <div class="logo-showcase" style="display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; text-align:left; padding:40px;">
-      <img src="../assets/flipped/flipped-boing-hero.png" alt="Boing, the Flipped mascot: a round yellow character with big starry eyes, slinky spring legs in rainbow colors, and white gloved hands" style="max-width:260px; width:100%; flex-shrink:0;">
-      <p style="max-width:48ch; font-size:15px; color:var(--ink-soft); line-height:1.65; margin:0;">Meet <strong>Boing</strong>, the mascot built for Flipped. Boing is a bouncing ball of energy that zips through portals to explore different dimensions. Its legs are shaped like slinky springs, so it can bounce and switch between worlds with ease. Boing is playful and a little weird, and that's the point. It's the same energy the whole park was built around.</p>
-    </div>
-
-    <h3 class="brand-block-label" style="margin-top:56px;">Character Sheet</h3>
-    <p>A full expression and pose library kept Boing consistent everywhere it shows up, from wall graphics to signage to the entrance greeter.</p>
-    <div class="cubot-gallery cols-2" style="margin-top:18px;">
-      <figure>
-        <img src="../assets/flipped/flipped-boing-sheet-1.png" alt="Boing character sheet: a full body pose, a texture and material reference sheet with six face variants, and two in-motion dance poses">
-        <figcaption>Pose study, texture and material variants, and in-motion gestures.</figcaption>
-      </figure>
-      <figure>
-        <img src="../assets/flipped/flipped-boing-sheet-2.png" alt="Boing character sheet: a shape-shifting splat pose, a podium prop, star-shaped variants, an expression set, a rolling transformation sequence, and falling and celebration poses">
-        <figcaption>Shape-shifting poses, expressions, and prop interactions.</figcaption>
-      </figure>
-    </div>
-
-  </section>
-
   <section class="cs-section reveal">
     <span class="eyebrow" style="display:block; margin-bottom:14px;">Wayfinding</span>
     <h2>Internal Signage</h2>
@@ -266,40 +270,48 @@
   <section id="gallery" class="cs-section reveal">
     <span class="eyebrow" style="display:block; margin-bottom:14px;">The System, Everywhere</span>
     <h2>The Finished Space</h2>
-    <p>One identity, carried consistently from the logo into the physical space itself. Built, lit, and open.</p>
-    <div class="cubot-gallery cols-3" style="margin-top:18px;">
-      <figure>
+    <p>One identity, carried consistently from the logo into the physical space itself. Built, lit, and open. Click any photo to browse the full set.</p>
+    <div class="finished-space-gallery" data-gallery="finished-space" style="margin-top:18px;">
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-neon-sign.jpg" alt="The glowing purple neon Flipped wordmark sign mounted on a tall feature wall">
-        <figcaption>The glowing wordmark, built as a feature wall of its own.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">The glowing wordmark, built as a feature wall of its own.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-reception.jpg" alt="The Flipped reception desk with the illuminated logo sign above it">
-        <figcaption>Reception, with the lit sign anchoring the entrance.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">Reception, with the lit sign anchoring the entrance.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-flipinity.jpg" alt="A neon sign reading Flipinity next to a large Boing mascot figure">
-        <figcaption>&ldquo;Flipinity&rdquo; signage with Boing greeting guests.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">&ldquo;Flipinity&rdquo; signage with Boing greeting guests.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-trampolines.jpg" alt="The main trampoline court with colorful court markings and a climbing net overhead">
-        <figcaption>The main trampoline court.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">The main trampoline court.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-rope-course.jpg" alt="The built rope course, with orange netting and overhead rigging">
-        <figcaption>The rope course, built out from the concept render.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">The rope course, built out from the concept render.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-ring-tower.jpg" alt="A glowing blue ring light tower feature in the play area">
-        <figcaption>One of the lit feature towers scattered through the floor.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">One of the lit feature towers scattered through the floor.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-cafe-1.jpg" alt="The Flipped cafe seating area with yellow and green chairs">
-        <figcaption>Caf&eacute; seating, carrying the palette through to furniture.</figcaption>
-      </figure>
-      <figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">Caf&eacute; seating, carrying the palette through to furniture.</span>
+      </button>
+      <button type="button" class="fsg-thumb">
         <img src="../assets/flipped/gallery/flipped-gallery-cafe-2.jpg" alt="A second view of the Flipped cafe and dining area">
-        <figcaption>The caf&eacute; viewed from the play floor.</figcaption>
-      </figure>
+        <span class="fsg-expand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"/></svg></span>
+        <span class="fsg-cap">The caf&eacute; viewed from the play floor.</span>
+      </button>
     </div>
   </section>
 
