@@ -1,0 +1,160 @@
+/* Dolled Up case study: page-scoped styles (swap hero, process, wardrobe, closet game) */
+
+/* ---------- Hero dress swap ---------- */
+.du-hero { position: relative; aspect-ratio: 1328 / 860; background: #cbbfe3; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+.du-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; opacity: 0; transition: opacity .55s ease; }
+.du-hero img.on { opacity: 1; }
+.du-hero:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.du-hero-hint {
+  position: absolute; left: 16px; top: 16px; padding: 7px 13px; border-radius: var(--r-pill);
+  background: rgba(255,255,255,.82); color: #34323e; font-size: 12px; font-weight: 700; letter-spacing: .03em;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none;
+}
+.du-swatches { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 10px; padding: 8px 12px; border-radius: var(--r-pill); background: rgba(255,255,255,.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.du-swatch { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1.5px rgba(52,50,62,.25); cursor: pointer; padding: 0; transition: transform .2s ease, box-shadow .2s ease; }
+.du-swatch:hover { transform: scale(1.12); }
+.du-swatch[aria-pressed="true"] { box-shadow: 0 0 0 2.5px var(--accent); transform: scale(1.12); }
+.du-swatch:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- Process steps ---------- */
+
+.du-split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: center; margin: 36px 0 8px; }
+@media (max-width: 760px) { .du-split { grid-template-columns: 1fr; gap: 18px; } }
+.du-split video, .du-video video { width: 100%; display: block; border-radius: var(--r-md); border: 1px solid var(--border); background: #1b1630; }
+.du-split h3 { font-size: var(--fs-h3); margin-bottom: 8px; }
+.du-split p { font-size: 15px; }
+.du-video { margin: 28px 0 0; }
+.du-video figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.5; }
+
+/* ---------- Wardrobe ---------- */
+.du-outfits { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin: 30px 0 18px; }
+.du-outfits figure { margin: 0; }
+.du-outfits img { width: 100%; aspect-ratio: 464 / 760; object-fit: cover; object-position: 50% 40%; display: block; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--bg-soft); }
+.du-outfits figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.45; }
+.du-outfits figcaption b { display: block; color: var(--ink); font-size: 13.5px; }
+@media (max-width: 900px) { .du-outfits { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .du-outfits { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Closet game ---------- */
+.du-game { margin: 30px 0 0; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--accent-tint); padding: 14px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .du-game { background: color-mix(in srgb, var(--accent) 14%, var(--card-bg)); } }
+:root[data-theme="dark"] .du-game { background: color-mix(in srgb, var(--accent) 14%, var(--card-bg)); }
+.du-game-stage { position: relative; border-radius: var(--r-md); overflow: hidden; background: #2d4a8c; line-height: 0; }
+.du-game canvas { width: 100%; height: auto; aspect-ratio: 16 / 9; display: block; image-rendering: auto; outline: none; touch-action: none; }
+.du-game canvas:focus-visible { box-shadow: inset 0 0 0 3px var(--accent); }
+.du-start {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  background: rgba(36, 28, 70, .55); color: #fff; border: 0; cursor: pointer; font: inherit; line-height: 1.3; text-align: center; padding: 16px;
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); transition: opacity .25s ease;
+}
+.du-start[hidden] { display: none; }
+.du-start img { width: min(46%, 230px); height: auto; filter: drop-shadow(0 6px 14px rgba(20,10,60,.35)); margin-bottom: 4px; }
+.du-start strong { color: #fff; font-family: var(--font-serif); font-size: clamp(20px, 3.4vw, 30px); font-weight: 500; }
+.du-start span { font-size: 13px; opacity: .9; }
+.du-start:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+
+.du-hud { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 14px; }
+.du-mute { font: inherit; font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--card-bg); color: var(--ink-soft); cursor: pointer; }
+.du-mute.on { border-color: var(--accent); color: var(--accent); }
+.du-mute:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.du-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; flex: 1 1 100%; align-items: center; display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--ink-soft); }
+.du-status b { color: var(--ink); font-weight: 700; }
+.du-optrow { flex: 1 1 100%; display: flex; gap: 10px; align-items: flex-start; }
+.du-optlabel { flex: none; width: 58px; padding-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.du-opts { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.du-opt { font: inherit; font-size: 12px; font-weight: 600; line-height: 1.2; padding: 6px 11px; border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--card-bg); color: var(--ink-soft); cursor: pointer; transition: all .2s ease; }
+.du-opt:hover { border-color: var(--accent); color: var(--ink); }
+.du-opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.du-opt.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.du-chips { display: none; flex-wrap: wrap; flex-wrap: wrap; gap: 8px; flex: 1 1 320px; }
+.du-chip { font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 8px; border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--card-bg); color: var(--ink-soft); font-size: 12.5px; font-weight: 600; transition: all .25s ease; }
+.du-chip i { width: 14px; height: 14px; border-radius: 50%; background: var(--c); display: inline-block; box-shadow: 0 0 0 1.5px rgba(0,0,0,.12); }
+.du-chip:hover { border-color: var(--accent); }
+.du-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.du-chip.on { box-shadow: 0 0 0 2px var(--accent); color: var(--ink); }
+.du-chip.done { border-color: var(--accent); color: var(--ink); background: var(--accent-tint-strong); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .du-chip.done { background: color-mix(in srgb, var(--accent) 28%, var(--card-bg)); } }
+:root[data-theme="dark"] .du-chip.done { background: color-mix(in srgb, var(--accent) 28%, var(--card-bg)); }
+.du-chip.done::after { content: "\2713"; color: var(--accent); font-weight: 800; }
+.du-keys { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12px; color: var(--ink-soft); align-items: center; }
+.du-keys kbd { font-family: var(--font); font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 6px; border: 1px solid var(--border-strong, var(--border)); background: var(--card-bg); color: var(--ink); box-shadow: 0 1px 0 var(--border); }
+.du-reset { font: inherit; font-size: 12.5px; font-weight: 700; color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: var(--r-pill); padding: 6px 14px; cursor: pointer; }
+.du-reset:hover { background: var(--ink); color: var(--bg); }
+
+.du-pad { display: none; margin-top: 14px; justify-content: space-between; align-items: center; gap: 16px; }
+@media (pointer: coarse) { .du-pad { display: flex; } }
+.du-dpad { display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(2, 52px); gap: 6px; }
+.du-dpad button, .du-grab { border: 1px solid var(--border-strong, var(--border)); background: var(--card-bg); color: var(--ink); border-radius: 14px; font: inherit; font-weight: 800; font-size: 18px; touch-action: none; -webkit-user-select: none; user-select: none; }
+.du-dpad button:active, .du-grab:active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.du-dpad .u { grid-column: 2; grid-row: 1; } .du-dpad .l { grid-column: 1; grid-row: 2; } .du-dpad .d { grid-column: 2; grid-row: 2; } .du-dpad .r { grid-column: 3; grid-row: 2; }
+.du-acts { display: grid; grid-template-columns: repeat(2, auto); gap: 10px; align-items: center; justify-items: center; }
+.du-grab { width: 76px; height: 76px; border-radius: 50%; font-size: 14px; letter-spacing: .04em; }
+
+.du-secret { margin-top: 14px; font-size: 12.5px; color: var(--ink-faint); font-style: italic; max-width: none; }
+.du-secret b { color: var(--accent); font-style: normal; font-variant-numeric: tabular-nums; }
+
+/* ---------- Easter eggs ---------- */
+.du-toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 24px); opacity: 0; pointer-events: none; z-index: 400;
+  min-width: 220px; max-width: min(92vw, 440px); padding: 12px 18px; border-radius: 14px;
+  background: #24203a; color: #fff; font-size: 13.5px; font-weight: 600; line-height: 1.4; box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255,255,255,.14); transition: opacity .3s ease, transform .3s ease;
+}
+.du-toast.show { opacity: 1; transform: translate(-50%, 0); }
+.du-toast small { display: block; font-weight: 500; opacity: .75; margin-top: 3px; font-size: 12px; }
+.du-toast .bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.18); margin-top: 9px; overflow: hidden; }
+.du-toast .bar i { display: block; height: 100%; width: 0; background: #e58cc0; }
+.du-star { position: fixed; top: -30px; z-index: 390; pointer-events: none; color: #f6d365; font-size: 22px; animation: du-fall 2.4s linear forwards; text-shadow: 0 0 10px rgba(246,211,101,.7); }
+@keyframes du-fall { to { transform: translateY(112vh) rotate(300deg); opacity: .9; } }
+.du-egg-section { position: relative; }
+.egg-cat { position: absolute; right: 8px; bottom: -4px; width: 54px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; opacity: .9; transition: transform .6s cubic-bezier(.3,.8,.3,1), opacity .4s ease; }
+.egg-cat svg { width: 100%; height: 100%; display: block; }
+.egg-cat.fled { transform: translateX(150px); opacity: 0; }
+.egg-cat.hop { animation: du-hop .5s ease; }
+@keyframes du-hop { 40% { transform: translateY(-14px); } }
+.egg-cat:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+.fact.du-compile { cursor: pointer; }
+.fact.du-compile:hover .value { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) {
+  .du-hero img { transition: none; } .du-star { display: none; } .egg-cat, .du-toast { transition: none; } .egg-cat.hop { animation: none; }
+}
+@media (pointer: coarse) { .du-keys span { display: none; } }
+@media (max-width: 480px) { .du-start img { width: 48%; } .du-start span { font-size: 12px; } }
+
+/* ---------- Logo ---------- */
+.du-logos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 30px 0 0; align-items: stretch; }
+.du-logos figure { margin: 0; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
+.du-logos img { width: 100%; height: 100%; display: block; }
+.du-logo-tile img { aspect-ratio: 1 / 1; object-fit: cover; }
+.du-logo-mark { display: flex; align-items: center; justify-content: center; padding: 28px; background: #fbf8ff; }
+.du-logo-mark img { height: auto; max-width: 100%; }
+@media (max-width: 640px) { .du-logos { grid-template-columns: 1fr; } }
+.cubot-gallery.du-pair { grid-template-columns: 1.57fr 1fr; align-items: start; }
+@media (max-width: 640px) { .cubot-gallery.du-pair { grid-template-columns: 1fr; } }
+
+.du-shots img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 50%; }
+.du-logo-single { margin: 30px 0 0; max-width: none; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
+.du-logo-single img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+
+@media (max-width: 480px) {
+  .du-pad { gap: 10px; }
+  .du-dpad { grid-template-columns: repeat(3, 46px); grid-template-rows: repeat(2, 46px); gap: 5px; }
+  .du-acts { gap: 8px; }
+  .du-grab { width: 62px; height: 62px; font-size: 12px; }
+}
+
+/* music toggle lives on the game screen */
+.du-game-stage .du-mute { position: absolute; top: 10px; right: 10px; z-index: 3; line-height: 1.2; background: rgba(255,255,255,.92); border-color: rgba(255,255,255,.9); color: #43306b; box-shadow: 0 2px 8px rgba(30,10,70,.25); }
+.du-game-stage .du-mute.on { color: #b23d86; }
+.du-game-stage .du-mute:hover { background: #fff; }
+
+/* what's in the game */
+.du-tiles { flex: 1 1 100%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.du-tile { display: flex; flex-direction: column; gap: 1px; padding: 10px 12px 9px; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--card-bg); min-width: 0; transition: border-color .3s ease, transform .3s ease; }
+.du-tile-n { font-family: var(--font-serif); font-size: 26px; line-height: 1.1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.du-tile-l { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.du-tile-s { margin-top: 3px; font-size: 12px; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.du-tile.hit { animation: du-tile-hit .6s ease; }
+@keyframes du-tile-hit { 0% { transform: translateY(0); border-color: var(--accent); box-shadow: 0 0 0 0 var(--accent); } 35% { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent); } 100% { transform: translateY(0); } }
+@media (max-width: 900px) { .du-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .du-tile.hit { animation: none; } }

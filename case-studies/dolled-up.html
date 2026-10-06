@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dolled Up &middot; Irhah Arshad Siddiqui</title>
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dolled-up.css">
 <link rel="icon" href="data:,">
 </head>
 <body style="--accent:#c25b95; --accent-tint:#fbf5f9; --accent-tint-strong:#f7eaf1;">
@@ -19,6 +20,7 @@
       <div class="nav-links">
         <a href="../index.html#work">Projects</a>
         <a href="../about.html">About</a>
+        <a href="../playground.html">Playground</a>
         <a href="../contact.html">Contact</a>
       </div>
       <div class="nav-tools">
@@ -31,6 +33,7 @@
   <div class="mobile-menu">
     <a href="../index.html#work">Projects</a>
     <a href="../about.html">About</a>
+    <a href="../playground.html">Playground</a>
     <a href="../contact.html">Contact</a>
   </div>
 </nav>
@@ -42,79 +45,192 @@
 <div class="section-rail">
   <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
   <div class="dot" data-target="challenge"><span class="dot-label">Challenge</span></div>
-  <div class="dot" data-target="progress"><span class="dot-label">Progress</span></div>
+  <div class="dot" data-target="process"><span class="dot-label">Process</span></div>
+  <div class="dot" data-target="walkthrough"><span class="dot-label">Walkthrough</span></div>
+  <div class="dot" data-target="wardrobe"><span class="dot-label">Wardrobe</span></div>
+  <div class="dot" data-target="logo"><span class="dot-label">Logo</span></div>
+  <div class="dot" data-target="play"><span class="dot-label">Play</span></div>
   <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
 </div>
 
 <main class="wrap">
 
   <header id="overview" class="cs-header reveal">
+    <div class="cs-hero-image" data-no-zoom>
+      <div class="du-hero" data-du-hero tabindex="0" role="group" aria-label="Avatar in six different outfits. Click or press Enter to change the look.">
+        <img src="../assets/dolled-up/dolled-up-avatar-cap.jpg" alt="Anime-style avatar with long brown hair in a magenta snapback and a pink cat-print tank top, hands raised to the cap, on a lavender plaid background with stars and hearts" width="1328" height="960">
+        <img src="../assets/dolled-up/dolled-up-avatar-plaid-glasses.jpg" alt="Avatar with long brown hair and red-framed glasses in a red plaid crop top and dark jeans, one hand raised, on a lavender plaid background with stars and hearts" width="1328" height="960">
+        <img src="../assets/dolled-up/dolled-up-avatar-short-hair.jpg" alt="Avatar with short tousled brown hair in a dark red mock-neck top and black shorts, on a lavender plaid background with stars and hearts" width="1328" height="960">
+        <img src="../assets/dolled-up/dolled-up-avatar-orange-top.jpg" alt="Avatar with a short bob and tiny buns in an orange tube top and wide-leg jeans, one hand at her forehead, on a lavender plaid background with stars and hearts" width="1328" height="960">
+        <img src="../assets/dolled-up/dolled-up-avatar-sweater.jpg" alt="Avatar with a long bubble braid in a cream cable-knit sweater and white trousers, on a lavender plaid background with stars and hearts" width="1328" height="960">
+        <img src="../assets/dolled-up/dolled-up-avatar-plaid-dress.jpg" alt="Avatar with wavy short brown hair in a black and white plaid halter dress, on a lavender plaid background with stars and hearts" width="1328" height="960">
+        <span class="du-hero-hint">Tap to change the look</span>
+        <div class="du-swatches" role="group" aria-label="Choose an outfit">
+          <button class="du-swatch" type="button" style="background:#f08fc0" aria-label="Pink cat tank and cap" aria-pressed="true"></button>
+          <button class="du-swatch" type="button" style="background:#e8707c" aria-label="Red plaid crop top" aria-pressed="false"></button>
+          <button class="du-swatch" type="button" style="background:#4a0a0a" aria-label="Dark red top and shorts" aria-pressed="false"></button>
+          <button class="du-swatch" type="button" style="background:#f58540" aria-label="Orange tube top" aria-pressed="false"></button>
+          <button class="du-swatch" type="button" style="background:#f1e9d6" aria-label="Cream sweater" aria-pressed="false"></button>
+          <button class="du-swatch" type="button" style="background:#2f2f36" aria-label="Black and white plaid dress" aria-pressed="false"></button>
+        </div>
+      </div>
+    </div>
     <div class="cs-header-main">
       <span class="tag-pill">Experience Design</span>
       <span class="tag-outline">VR Design, 3D Modeling, World Building</span>
       <h1>Dolled Up</h1>
-      <p class="hmw">A dive back into dress-up games: learning an entirely new technical pipeline while designing a world worth stepping into.</p>
+      <p class="hmw">A nostalgic VR dress-up world, and a deep dive into an entirely new technical pipeline.</p>
       <div class="quick-facts">
         <div class="fact"><div class="label">Role</div><div class="value">3D Modeler, World Builder, VR Designer</div></div>
         <div class="fact"><div class="label">Timeline</div><div class="value">Spring 2026 to Present</div></div>
-        <div class="fact"><div class="label">Tools</div><div class="value">Unity, Blender</div></div>
+        <div class="fact"><div class="label">Tools</div><div class="value">Unity, Blender, VRoid Studio, Visual Studio, Gemini</div></div>
         <div class="fact"><div class="label">Status</div><div class="value">In Progress</div></div>
       </div>
-    </div>
-    <div class="cs-hero-image">
-      <!-- assets/dolled-up-hero.jpg, replace with your real project image -->
-      <div style="aspect-ratio:16/9; background:var(--bg-soft); display:flex; align-items:center; justify-content:center; color:var(--ink-faint); font-size:13px;">Dolled Up hero image</div>
     </div>
   </header>
 
   <section id="challenge" class="cs-section reveal">
     <h2>The Challenge</h2>
-    <p>Dolled Up is an immersive VR experience built in Unity, centered on a nostalgic, dreamy closet space inspired by the iconic wardrobe energy of Hannah Montana. Building it meant figuring out 3D modeling, scripting, and VR interaction design all at once, with no prior experience in any of the three.</p>
+    <p>Dolled Up is an immersive VR experience built in Unity, centered on a nostalgic, dreamy closet inspired by the wardrobe energy of Hannah Montana. With no prior experience in 3D modeling, scripting, or VR interaction design, I learned all three in parallel on a compressed timeline.</p>
   </section>
 
   <section class="cs-section reveal">
     <h2>The Solution</h2>
-    <p>A nostalgic space modeled in Blender and built out in Unity, where users can explore a playful, curated environment inspired by early-2000s pop culture aesthetics. Every script, interaction, and most of the assets were built from scratch as part of the learning process itself &mdash; working through Unity fundamentals, Blender modeling, and VR-specific interaction patterns in parallel, letting the world grow more detailed as the technical skills caught up with the vision for it.</p>
+    <p>The closet is assembled in Unity from sourced and original assets: the clothing racks were found online, while I modeled the mirror, rugs, and room d&eacute;cor myself. Every interaction is scripted, written in Visual Studio with help from Gemini, and the world grew more detailed as my technical skills caught up with the vision.</p>
   </section>
 
-  <section id="progress" class="cs-section reveal">
-    <span class="eyebrow" style="display:block; margin-bottom:14px;">Still Building</span>
-    <h2>Progress Gallery</h2>
-    <p>This one's still in motion, so here's where it stands: the foundational space first, then the most recent round of updates.</p>
-    <h3 style="font-size:15px; margin-top:32px; margin-bottom:2px;">Foundation</h3>
-    <div class="storyboard-grid">
-      <div class="storyboard-panel"><div class="ph">01</div><div class="panel-cap">Early Blender blockout of the closet space and core proportions.</div></div>
-      <div class="storyboard-panel"><div class="ph">02</div><div class="panel-cap">First pass bringing the blockout into Unity and setting up navigation.</div></div>
-      <div class="storyboard-panel"><div class="ph">03</div><div class="panel-cap">Base lighting and materials establishing the dreamy, nostalgic mood.</div></div>
+  <section id="process" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Under the Hood</span>
+    <h2>Learning the Pipeline</h2>
+    <p>Four overlapping stages, revisited continuously as my skills developed.</p>
+    <ol class="process-steps" style="--steps:4">
+      <li><h3>Model</h3><p>The mirror, rugs, and d&eacute;cor are modeled in Blender, alongside clothing racks sourced online.</p></li>
+      <li><h3>Build the world</h3><p>Everything is assembled in Unity: a starry blue wall, lavender floor, lighting, and a mirror.</p></li>
+      <li><h3>Dress the avatar</h3><p>Avatars and outfits are designed in VRoid Studio, then swapped in as models when the player picks a dress. The character can also cycle through poses.</p></li>
+      <li><h3>Make it VR</h3><p>An XR rig with locomotion and grab interactions turns the scene into a space you can stand in.</p></li>
+    </ol>
+    <div class="du-split">
+      <video src="../assets/dolled-up/dolled-up-xr-sim.mp4" poster="../assets/dolled-up/dolled-up-xr-sim-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Looping screen capture of the XR Device Simulator controlling a mannequin in Unity"></video>
+      <div>
+        <h3>No headset? No problem.</h3>
+        <p>Unity&rsquo;s XR Device Simulator let me test movement, turning, and grabbing with a keyboard and mouse, so building, testing, and fixing could happen before putting on a headset. The mannequin in this clip is the base for the playable character, which I programmed to walk and respond to controls, inspired by Dress to Impress.</p>
+      </div>
     </div>
-    <h3 style="font-size:15px; margin-top:28px; margin-bottom:2px;">Updates</h3>
-    <div class="storyboard-grid">
-      <div class="storyboard-panel"><div class="ph">04</div><div class="panel-cap">Detailed wardrobe assets and dress-up interaction points added.</div></div>
-      <div class="storyboard-panel"><div class="ph">05</div><div class="panel-cap">Refined VR interaction scripting for picking up and trying on items.</div></div>
-      <div class="storyboard-panel"><div class="ph">06</div><div class="panel-cap">Latest environment pass, closing in on the final look and feel.</div></div>
+    <div class="cubot-gallery cols-2 du-shots">
+      <figure><img src="../assets/dolled-up/dolled-up-unity-editor.jpg" alt="The Unity editor open on the DolledUpVR closet scene, with the scene hierarchy, XR simulator, and project assets visible" loading="lazy"><figcaption>The closet scene in Unity, with the XR rig, avatar, and clothing systems.</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-scene-racks.jpg" alt="Unity scene view of circular clothing racks with colorful swirled banners" loading="lazy"><figcaption>Circular racks with swirl-print banners, in the Scene view.</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-store-mannequin.jpg" alt="Game view of a wardrobe and store space with a mannequin and XR controller labels for Grab, UI Press, Turn, and Blink" loading="lazy"><figcaption>The mannequin, the playable character base, with the simulator&rsquo;s controller labels.</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-scene-lounge.jpg" alt="Unity scene view of the lounge corner of the closet with a seating area, with a console warning visible" loading="lazy"><figcaption>The lounge corner, along with a console warning that was very much part of the learning.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="walkthrough" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">The Current Build</span>
+    <h2>Walkthrough</h2>
+    <p>A walkthrough of the closet as it stands in VR: the lounge, the racks, and the avatar trying on outfits.</p>
+    <figure class="du-video">
+      <video src="../assets/dolled-up/dolled-up-walkthrough.mp4" poster="../assets/dolled-up/dolled-up-walkthrough-poster.jpg" controls playsinline preload="none" aria-label="Walkthrough of the Dolled Up closet scene"></video>
+      <figcaption>Dolled Up closet walkthrough (1:42, with sound).</figcaption>
+    </figure>
+  </section>
+
+  <section id="wardrobe" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">The Closet</span>
+    <h2>The Wardrobe</h2>
+    <p>Modeling every garment from scratch would have taken too long, so I designed the clothing in VRoid Studio instead. Each look is its own model that swaps in when the player selects a dress, and a set of poses lets the character strike a pose on command. A few of the looks so far.</p>
+    <div class="du-outfits">
+      <figure><img src="../assets/dolled-up/dolled-up-outfit-1.jpg" alt="Avatar in a blue sparkly sundress" loading="lazy"><figcaption><b>Sparkle</b>Blue glitter sundress</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-outfit-2.jpg" alt="Avatar in a navy dress with a gold sash and gold embroidery" loading="lazy"><figcaption><b>Navy &amp; Gold</b>Embroidered, with a gold sash</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-outfit-3.jpg" alt="Avatar in a cream off-the-shoulder ball gown" loading="lazy"><figcaption><b>Cream Gown</b>Off-the-shoulder ball gown</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-outfit-4.jpg" alt="Avatar in a pink plaid crop top and dark wide-leg jeans" loading="lazy"><figcaption><b>Plaid &amp; Denim</b>Crop top, wide-leg jeans</figcaption></figure>
+      <figure><img src="../assets/dolled-up/dolled-up-hero-closet.jpg" alt="Avatar in a pink dress in the starry blue closet, with a shelf and star-framed mirror behind her" loading="lazy"><figcaption><b>Pink Dress</b>Pink sundress, in the closet</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="logo" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Branding</span>
+    <h2>The Logo</h2>
+    <p>Soft pastels and chunky 3D lettering, finished with stars and fabric swatches, to match the dress-up theme.</p>
+    <figure class="du-logo-single"><img src="../assets/dolled-up/dolled-up-logo-wide.jpg" alt="The Dolled Up logo: lavender 3D lettering on a pale blue weave background with pink, purple, and denim fabric swatches" loading="lazy"></figure>
+  </section>
+
+  <section id="play" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Play</span>
+    <h2>Try It On</h2>
+    <p>As a companion to the VR build, I made a 2D version of the closet for nostalgia and to experiment with Claude Code. It draws on the dress-up games I grew up with: change your look at the racks, mirror, vanity, and jewelry cabinet, play the guitar and drums, sing along, and pet the cat.</p>
+    <div class="du-game" data-du-game>
+      <div class="du-game-stage">
+        <canvas width="2160" height="1215" tabindex="0" role="application" aria-label="Closet mini game. Use W A S D or arrow keys to walk, E to interact, Space to cycle poses, V to sing, M to mute, Escape to leave the game."></canvas>
+        <button class="du-start" type="button"><img src="../assets/dolled-up/dolled-up-wordmark-sm.png" alt="" width="720" height="280" data-no-zoom><strong>Click to play</strong><span>WASD walk &middot; E use / strum &middot; Space pose &middot; Esc leave</span></button>
+        <button type="button" class="du-mute on" aria-pressed="true">&#9834; Music on</button>
+      </div>
+      <div class="du-hud">
+        <div class="du-tiles" role="group" aria-label="What is in the game">
+          <div class="du-tile" data-tile="outfit"><span class="du-tile-n" data-du-total="outfit">10</span><span class="du-tile-l">Outfits</span><span class="du-tile-s" data-du-outfit>Starter</span></div>
+          <div class="du-tile" data-tile="hair"><span class="du-tile-n" data-du-total="hair">14</span><span class="du-tile-l">Hairstyles</span><span class="du-tile-s" data-du-hair>Long &amp; Straight</span></div>
+          <div class="du-tile" data-tile="makeup"><span class="du-tile-n" data-du-total="makeup">6</span><span class="du-tile-l">Makeup looks</span><span class="du-tile-s" data-du-makeup>Bare</span></div>
+          <div class="du-tile" data-tile="jewel"><span class="du-tile-n" data-du-total="jewel">7</span><span class="du-tile-l">Jewelry sets</span><span class="du-tile-s" data-du-jewel>None</span></div>
+          <div class="du-tile" data-tile="pose"><span class="du-tile-n" data-du-total="pose">9</span><span class="du-tile-l">Poses</span><span class="du-tile-s" data-du-pose>None</span></div>
+          <div class="du-tile" data-tile="pets"><span class="du-tile-n" data-du-pets>0</span><span class="du-tile-l">Cat pets</span><span class="du-tile-s">Press E by the cat</span></div>
+        </div>
+        <div class="du-keys"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Walk</span><span><kbd>E</kbd> Interact</span><span><kbd>Space</kbd> Pose</span><span><kbd>G</kbd> Guitar</span><span><kbd>V</kbd> Sing</span><span>Drums <kbd>A</kbd><kbd>S</kbd><kbd>W</kbd><kbd>D</kbd><kbd>E</kbd><kbd>Space</kbd> &middot; <kbd>Q</kbd> leave</span><span><kbd>M</kbd> Music</span><button type="button" class="du-reset" hidden>Play again</button></div>
+      </div>
+      <div class="du-pad" aria-hidden="true">
+        <div class="du-dpad">
+          <button type="button" class="u" data-pad="up">&uarr;</button>
+          <button type="button" class="l" data-pad="left">&larr;</button>
+          <button type="button" class="d" data-pad="down">&darr;</button>
+          <button type="button" class="r" data-pad="right">&rarr;</button>
+        </div>
+        <div class="du-acts">
+          <button type="button" class="du-grab" data-pad="act">E</button>
+          <button type="button" class="du-grab du-posebtn" data-pad="pose">POSE</button>
+          <button type="button" class="du-grab du-posebtn" data-pad="sing">SING</button>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="outcome" class="cs-section reveal">
     <h2>The Outcome</h2>
-    <p>Currently an in-progress VR prototype, but already a full end-to-end learning journey: from zero Unity experience to a functional, explorable 3D environment. Planned next steps include more interactions, music, and general polish as the space keeps growing.</p>
+    <p>Currently an in-progress VR prototype, and already a full end-to-end learning journey: from no Unity experience to a functional, explorable 3D environment. With the timeline so tight, a working space came before polish. Next steps include more interactions, music, and finishing touches.</p>
   </section>
 
   <section class="cs-section reveal">
-    <h2>Reflection</h2>
-    <p>This has been a full end-to-end learning journey, from zero Unity experience to a functional, explorable 3D environment, and that arc is still very much the point of the project.</p>
+    <div class="key-takeaways-card">
+      <h2>Reflection</h2>
+      <ul>
+        <li>Finding my own way to create a nostalgic atmosphere was the most enjoyable part of the project.</li>
+        <li>Testing the game with a full class was equally valuable, and a lot of fun.</li>
+        <li>Watching people play showed me how to improve the experience, how to reduce motion sickness in the headset, and what might confuse or disorient a player.</li>
+        <li>It was a deeply fulfilling experience.</li>
+      </ul>
+    </div>
   </section>
 
-  <div class="next-project reveal">
-    <div class="label">Next Project</div>
-    <a href="flipped.html">
-      <div class="thumb"><!-- assets/flipped-thumb.jpg --></div>
-      <div class="info">
-        <span class="tag-pill">Visual & Brand Design</span>
-        <h3>Flipped</h3>
-        <p>Brand Identity, Mascot Design</p>
-      </div>
-    </a>
+  <div class="pn-row reveal">
+    <div class="next-project">
+      <div class="label">Previous Project</div>
+      <a href="imagin8-v-park.html">
+        <div class="thumb"><img src="../assets/imagin8-v-park/portal-thumb.jpg" alt="The Imagin8V Park logo in a browser window, on a dark navy screen" loading="lazy"></div>
+        <div class="info">
+          <span class="tag-pill">Experience Design</span>
+          <h3>Imagin8V Park</h3>
+          <p>UX/UI Design, Civic Design, Educational Gaming</p>
+        </div>
+      </a>
+    </div>
+    <div class="next-project">
+      <div class="label">Next Project</div>
+      <a href="flipped.html">
+        <div class="thumb thumb-flip-hover" role="img" aria-label="Flipped logo. Hover to flip the i."><span class="flip-stage"><img class="flip-letters" src="../assets/flipped/flipped-letters-only.png" alt="" aria-hidden="true"><span class="flip-bar" aria-hidden="true"></span><span class="flip-dot" aria-hidden="true"></span></span></div>
+        <div class="info">
+          <span class="tag-pill">Visual &amp; Brand Design</span>
+          <h3>Flipped</h3>
+          <p>Brand Identity, Mascot Design</p>
+        </div>
+      </a>
+    </div>
   </div>
 
 </main>
@@ -131,5 +247,6 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script src="../js/dolled-up.js"></script>
 </body>
 </html>

@@ -36,7 +36,7 @@
 
   --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Red Hat Display', var(--font);
-  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono', Menlo, Consolas, monospace;
+  --font-mono: var(--font);
 
   /* Type scale — one family, wide weight range */
   --fs-display: clamp(38px, 6vw, 60px);
@@ -248,19 +248,35 @@ strong { color: var(--ink); font-weight: 700; }
   .mobile-menu.open { display: flex; }
 }
 
-/* ---------- Section nav (floating dot rail) ---------- */
-.section-rail { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 90; display: flex; flex-direction: column; gap: 14px; }
-@media (max-width: 900px) { .section-rail { display: none; } }
-.section-rail .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.25s ease, transform 0.25s ease; }
-.section-rail .dot.active { background: var(--accent); transform: scale(1.35); }
-.section-rail .dot .dot-label {
-  position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-  font-size: 11.5px; font-weight: 600; white-space: nowrap;
-  background: var(--card-bg); border: 1px solid var(--border);
-  padding: 5px 10px; border-radius: var(--r-pill);
-  opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+/* ---------- Section nav (right-side jump list) ----------
+   A standing vertical list of section names, always visible (not a
+   hover-only dot), right-aligned against the edge of the viewport so it
+   reads like a sidebar without taking layout space from the column of
+   text beside it. Inactive labels sit in a quiet, muted tone; the
+   section currently in view is picked out in the page's accent color
+   with a small tick mark, so it is legible at a glance on a long page. */
+.section-rail {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 90; display: flex; flex-direction: column; align-items: flex-end; gap: 13px;
 }
-.section-rail .dot:hover .dot-label { opacity: 1; }
+@media (max-width: 1100px) { .section-rail { display: none; } }
+.section-rail .dot {
+  position: relative; width: auto; height: auto; background: none; border-radius: 0;
+  display: flex; align-items: center; gap: 8px;
+  padding: 1px 0; cursor: pointer;
+  font-size: 12.5px; font-weight: 600; line-height: 1.3; white-space: nowrap;
+  color: var(--ink-faint);
+  transition: color 0.2s ease;
+}
+.section-rail .dot:hover { color: var(--ink-soft); }
+.section-rail .dot.active { color: var(--accent); }
+.section-rail .dot::after {
+  content: ""; width: 14px; height: 1.5px; border-radius: 1px;
+  background: var(--border); flex-shrink: 0;
+  transition: background 0.2s ease, width 0.2s ease;
+}
+.section-rail .dot.active::after { background: var(--accent); width: 22px; }
+.section-rail .dot .dot-label { position: static; opacity: 1; pointer-events: none; background: none; border: none; padding: 0; }
 
 /* ---------- Hero ---------- */
 .hero { padding: clamp(200px, 34vh, 360px) 0 110px; position: relative; }
@@ -471,8 +487,8 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
 }
 .origin-copy { columns: 2; column-gap: 40px; }
 .origin-copy p {
-  font-family: var(--font-mono); font-size: 10.5px; line-height: 2;
-  color: var(--ink-soft); letter-spacing: 0.005em; max-width: none;
+  font-family: var(--font); font-size: var(--fs-small); line-height: 1.8;
+  color: var(--ink-soft); max-width: none;
   break-inside: avoid; margin: 0 0 22px;
 }
 @media (max-width: 760px) { .origin-copy { columns: 1; } }
@@ -657,6 +673,11 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
 @media (max-width: 560px) { .closing-actions { flex-direction: column; } .closing-actions .btn { width: 100%; text-align: center; justify-content: center; } }
 
 .cs-hero-image { margin-top: 44px; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); }
+/* In the case-study header the hero image now leads (comes before the
+   title/text block), so it needs space below instead of above. Scoped to
+   .cs-header so cs-hero-image used further down a page (after a
+   paragraph) keeps its normal margin-top. */
+.cs-header .cs-hero-image { margin-top: 0; margin-bottom: 44px; }
 
 /* ---------- Stat row (top of case study — quiet, tinted) ---------- */
 .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 44px 0; }
@@ -737,22 +758,6 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
 .pillar-card:hover .pillar-pill { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(14,51,34,0.14); }
 .pillar-card p { font-size: 12.5px; margin-top: 0; font-weight: 400; color: var(--ink-faint); max-width: 200px; line-height: 1.45; }
 
-/* ---------- Design Process arc diagram ("How Do We Love") ----------
-   Reuses the same shared .process-arc-diagram/.pad-* component as WayHome
-   and Imagin8 V Park (see "Process arc diagram" below), just recolored to
-   this page's sage theme via scoped #process overrides, and with wrapping
-   titles allowed since this page's step names run longer. */
-#process .pad-arc { stroke: url(#padFlowGradLove); }
-#process .pad-dot { background: var(--accent); }
-#process .pad-node { min-width: 165px; }
-#process .pad-label h3 { white-space: normal; }
-#process .pad-idx { color: var(--accent); }
-@media (max-width: 900px) {
-  #process .pad-line {
-    background-image: repeating-linear-gradient(to bottom, var(--accent-tint-strong) 0, var(--accent-tint-strong) 3px, transparent 3px, transparent 9px);
-  }
-}
-
 /* ---------- Gallery block ---------- */
 .gallery-block { margin: 34px 0; }
 .gallery-block.layout-side { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
@@ -772,44 +777,6 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   padding: 10px 12px 0; color: var(--accent); font-variant-numeric: tabular-nums;
 }
 .storyboard-panel .panel-cap { font-size: 12.5px; padding: 4px 12px 12px; color: var(--ink-soft); line-height: 1.5; }
-
-/* ---------- Process arc diagram (cascading dots + animated dotted path) ---------- */
-.process-arc-diagram { position: relative; margin: 6px 0 6px; max-width: 960px; aspect-ratio: 1160 / 560; }
-.pad-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.pad-arc { fill: none; stroke: url(#padFlowGrad); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0.6 4.4; stroke-dashoffset: 100; transition: stroke-dashoffset 1.1s ease; }
-.pad-arc.in { stroke-dashoffset: 0; }
-.pad-arc.flow { animation: pad-dash-flow 2.4s linear infinite; }
-@keyframes pad-dash-flow { to { stroke-dashoffset: -20; } }
-.pad-node { position: absolute; left: calc(var(--x) - 5.5px); top: calc(var(--y) - 5.5px); width: 15%; min-width: 130px; opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease; }
-.pad-node.in { opacity: 1; transform: translateY(0); }
-.pad-rail { display: block; }
-.pad-dot { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--ink); margin-bottom: 14px; transform: scale(0); transition: transform 0.3s cubic-bezier(.34,1.56,.64,1); }
-.pad-node.in .pad-dot { transform: scale(1); }
-.pad-line { display: none; }
-.pad-label h3 { font-size: 15.5px; font-weight: 700; margin: 0 0 4px; white-space: nowrap; }
-.pad-idx { color: var(--ink-faint); font-weight: 600; margin-right: 1px; }
-.pad-label p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
-
-@media (max-width: 900px) {
-  .process-arc-diagram { aspect-ratio: auto; max-width: none; }
-  .pad-svg { display: none; }
-  .pad-node { position: static; left: auto; top: auto; width: auto; min-width: 0; display: flex; align-items: flex-start; gap: 16px; padding-bottom: 26px; opacity: 0; transform: translateY(10px); }
-  .pad-node:last-child { padding-bottom: 0; }
-  .pad-rail { display: flex; flex-direction: column; align-items: center; align-self: stretch; flex-shrink: 0; }
-  .pad-rail .pad-dot { margin-bottom: 0; flex-shrink: 0; }
-  .pad-line {
-    display: block; flex: 1; width: 2px; margin-top: 6px;
-    background-image: repeating-linear-gradient(to bottom, var(--ink-faint) 0, var(--ink-faint) 3px, transparent 3px, transparent 9px);
-    background-size: 2px 18px; background-repeat: repeat-y;
-    transform: scaleY(0); transform-origin: top; transition: transform 0.6s ease;
-  }
-  .pad-node.in .pad-line { transform: scaleY(1); }
-  .pad-line.flow { animation: pad-line-flow 0.9s linear infinite; }
-  @keyframes pad-line-flow { to { background-position: 0 18px; } }
-  .pad-node:last-child .pad-line { display: none; }
-  .pad-label { flex: 1; min-width: 0; }
-  .pad-label h3 { white-space: normal; }
-}
 
 /* ---------- HMW / guiding-question block (reusable across case studies) ---------- */
 .hmw-block {
@@ -1140,6 +1107,29 @@ html.fsg-locked, html.fsg-locked body { overflow: hidden; }
 .next-project .info { padding: 22px; }
 .next-project h3 { font-size: 21px; margin-top: 8px; }
 
+/* Previous / next project row: the same two cards at the end of every case study */
+.pn-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin: var(--gap-xl) 0 var(--gap-lg); }
+.pn-row .next-project { margin: 0; min-width: 0; }
+@media (max-width: 760px) { .pn-row { grid-template-columns: 1fr; } }
+/* Flipped card reuses the homepage flip thumbnail (a normal i at rest, the dot bounces on hover) */
+.next-project .thumb-flip-hover { position: relative; background: #593e99; }
+.next-project .thumb-flip-hover .flip-stage { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); aspect-ratio: 1 / 1; }
+.next-project .thumb-flip-hover .flip-letters { width: 100%; height: 100%; object-fit: cover; display: block; }
+.next-project a:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
+.next-project a:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
+
+/* ---------- Process steps: one numbered-card layout for every case study ---------- */
+.process-steps { display: grid; grid-template-columns: repeat(var(--steps, 4), minmax(0, 1fr)); gap: 14px; margin: 32px 0 8px; counter-reset: ps; padding: 0; list-style: none; }
+.process-steps li { counter-increment: ps; border: 1px solid var(--border); border-radius: var(--r-md); padding: 18px 18px 20px; background: var(--card-bg); }
+.process-steps li::before { content: "0" counter(ps); display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+.process-steps h3 { font-family: var(--font); font-size: 15.5px; font-weight: 700; line-height: 1.3; margin: 0 0 6px; color: var(--ink); }
+.process-steps p { font-size: 13.5px; line-height: 1.55; margin: 0; max-width: none; }
+@media (max-width: 1000px) {
+  .process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-steps li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) { .process-steps { grid-template-columns: 1fr; } }
+
 /* ---------- Footer ---------- */
 .site-footer { padding: 56px 0 80px; border-top: 1px solid var(--border); margin-top: var(--gap-xl); }
 .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: var(--fs-small); color: var(--ink-faint); }
@@ -1323,16 +1313,6 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 .brand-type-card.tinted-accent .btc-name { color: var(--accent); }
 @media (max-width: 640px) { .brand-type-row { grid-template-columns: 1fr; } }
 
-/* ---------- Imagin8 V Park: Process diagram recolored to the page accent ---------- */
-.process-arc-diagram.accent-arc .pad-arc { stroke: var(--accent); }
-.process-arc-diagram.accent-arc .pad-dot { background: var(--accent); }
-.process-arc-diagram.accent-arc .pad-idx { color: var(--accent); }
-@media (max-width: 900px) {
-  .process-arc-diagram.accent-arc .pad-line {
-    background-image: repeating-linear-gradient(to bottom, var(--accent-tint-strong) 0, var(--accent-tint-strong) 3px, transparent 3px, transparent 9px);
-  }
-}
-
 /* ---------- Imagin8 V Park: "Sweet & Salty" display font (logo/wordmark typeface) ---------- */
 @font-face {
   font-family: 'Sweet and Salty';
@@ -1365,14 +1345,6 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 .brand-type-row { margin-top: 8px; }
 
 /* ---------- Imagin8 V Park: Process diagram spacing fix ---------- */
-/* match the container's aspect ratio to the SVG viewBox (1160x760) instead of
-   the shared component's default 1160/560, so nodes get the vertical room
-   the coordinates were designed for, and allow two-line headings so text
-   doesn't run into the next node's path */
-.process-arc-diagram.accent-arc { aspect-ratio: 1160 / 760; margin-top: 28px; }
-.process-arc-diagram.accent-arc .pad-node { width: 20%; min-width: 175px; }
-.process-arc-diagram.accent-arc .pad-label h3 { white-space: normal; max-width: 175px; line-height: 1.3; }
-
 
 /* ---------- Imagin8 V Park: Terry the ghost dog special mention ---------- */
 /* Terry's art is white/glow linework on a transparent background, so it needs

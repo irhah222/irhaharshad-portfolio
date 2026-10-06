@@ -70,45 +70,6 @@
     revealTargets.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* ---------- Process arc diagram animation (case study "Process" diagrams) ---------- */
-  document.querySelectorAll("[data-process-arc]").forEach(function (diagram) {
-    var nodes = Array.prototype.slice.call(diagram.querySelectorAll(".pad-node"));
-    var arcs = Array.prototype.slice.call(diagram.querySelectorAll(".pad-arc, .pad-line"));
-    nodes.sort(function (a, b) { return (+a.dataset.step) - (+b.dataset.step); });
-    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var stepMs = reduced ? 0 : 300;
-    function arcsAfter(step) {
-      return arcs.filter(function (a) { return +a.dataset.arc === step; });
-    }
-    function revealArc(arc) {
-      arc.classList.add("in");
-      if (!reduced) {
-        setTimeout(function () { arc.classList.add("flow"); }, 1100);
-      }
-    }
-    function play() {
-      var t = 0;
-      nodes.forEach(function (node, i) {
-        (function (node, delay) { setTimeout(function () { node.classList.add("in"); }, delay); })(node, t);
-        arcsAfter(i + 1).forEach(function (arc) {
-          (function (arc, delay) { setTimeout(function () { revealArc(arc); }, delay); })(arc, t + stepMs * 0.5);
-        });
-        t += stepMs * 1.7;
-      });
-    }
-    if ("IntersectionObserver" in window) {
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { play(); obs.unobserve(entry.target); }
-        });
-      }, { threshold: 0.25 });
-      obs.observe(diagram);
-    } else {
-      nodes.forEach(function (n) { n.classList.add("in"); });
-      arcs.forEach(function (a) { a.classList.add("in"); if (!reduced) a.classList.add("flow"); });
-    }
-  });
-
   /* ---------- Category filter tabs (homepage) ---------- */
   document.addEventListener("click", function (e) {
     var tab = e.target.closest("[data-filter]");
@@ -144,18 +105,42 @@
     });
 
     if ("IntersectionObserver" in window && sections.length) {
+      // A fixed visibility threshold (e.g. 50%) can never be reached by a
+      // section taller than about 2x the viewport, so it would never be
+      // picked up as "active" on a long section -- the same class of bug
+      // fixed for the scroll-reveal animation. A thin trigger band around
+      // the vertical center of the viewport works regardless of how tall
+      // any individual section is.
+      //
+      // A single callback batch can report more than one section as
+      // intersecting at once -- e.g. a fast scroll or a jump-to-section
+      // click that crosses a short section lands the trigger band on two
+      // sections in the same frame. Picking whichever happened to be last
+      // in that batch's (unordered) entries array made the active dot
+      // flicker to the wrong section depending on scroll speed. Instead,
+      // track the full set of sections currently intersecting the band
+      // and always activate whichever one is furthest down the page --
+      // the same rule a reader's eye would use.
+      var intersecting = new Set();
       var spy = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              var id = entry.target.id;
-              dots.forEach(function (dot) {
-                dot.classList.toggle("active", dot.getAttribute("data-target") === id);
-              });
+              intersecting.add(entry.target.id);
+            } else {
+              intersecting.delete(entry.target.id);
             }
           });
+          if (!intersecting.size) return;
+          var activeId = null;
+          sections.forEach(function (s) {
+            if (intersecting.has(s.id)) activeId = s.id;
+          });
+          dots.forEach(function (dot) {
+            dot.classList.toggle("active", dot.getAttribute("data-target") === activeId);
+          });
         },
-        { threshold: 0.5 }
+        { threshold: 0, rootMargin: "-45% 0px -50% 0px" }
       );
       sections.forEach(function (s) { spy.observe(s); });
     }
@@ -241,7 +226,7 @@
      so their click still navigates. */
   (function initLightbox() {
     var candidates = Array.prototype.slice.call(document.querySelectorAll("main img"));
-    var images = candidates.filter(function (img) { return !img.closest("a") && !img.closest("[data-gallery]"); });
+    var images = candidates.filter(function (img) { return !img.closest("a") && !img.closest("[data-gallery]") && !img.closest("[data-no-zoom]"); });
     if (!images.length) return;
 
     images.forEach(function (img) {

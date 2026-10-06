@@ -13,28 +13,6 @@
   }
   #mark .logo-showcase img { max-width: 640px; }
 
-  /* Process: same diagonal cascading arc diagram component as WayHome and
-     Imagin8 V Park (desktop), falling back to the shared vertical-list
-     layout on mobile — no page-specific layout override needed, just a
-     taller canvas since AQS has one more step than WayHome's. */
-  @media (min-width: 901px) {
-    #process-aqs .process-arc-diagram.accent-arc { aspect-ratio: 1160 / 500; }
-    #process-aqs .pad-node { width: 15%; min-width: 145px; }
-    #process-aqs .pad-label h3 { max-width: 145px; }
-  }
-  /* The whole diagram is short enough that every step crosses the reveal
-     threshold in the same scroll tick, so without an explicit stagger
-     they'd all just pop in together instead of cascading. */
-  #process-aqs .pad-node:nth-of-type(1), #process-aqs .pad-node:nth-of-type(1) .pad-dot, #process-aqs .pad-node:nth-of-type(1) .pad-line { transition-delay: 0ms; }
-  #process-aqs .pad-node:nth-of-type(2), #process-aqs .pad-node:nth-of-type(2) .pad-dot, #process-aqs .pad-node:nth-of-type(2) .pad-line { transition-delay: 160ms; }
-  #process-aqs .pad-node:nth-of-type(3), #process-aqs .pad-node:nth-of-type(3) .pad-dot, #process-aqs .pad-node:nth-of-type(3) .pad-line { transition-delay: 320ms; }
-  #process-aqs .pad-node:nth-of-type(4), #process-aqs .pad-node:nth-of-type(4) .pad-dot, #process-aqs .pad-node:nth-of-type(4) .pad-line { transition-delay: 480ms; }
-  #process-aqs .pad-node:nth-of-type(5), #process-aqs .pad-node:nth-of-type(5) .pad-dot, #process-aqs .pad-node:nth-of-type(5) .pad-line { transition-delay: 640ms; }
-  #process-aqs .pad-arc[data-arc="1"] { transition-delay: 160ms; }
-  #process-aqs .pad-arc[data-arc="2"] { transition-delay: 320ms; }
-  #process-aqs .pad-arc[data-arc="3"] { transition-delay: 480ms; }
-  #process-aqs .pad-arc[data-arc="4"] { transition-delay: 640ms; }
-
   /* Palette: straight, evenly spaced polaroid-style cards. On mobile the
      row wraps at a fixed card width; from tablet width up the cards grow
      to fill the full section width instead of clustering to the left. */
@@ -69,6 +47,7 @@
       <div class="nav-links">
         <a href="../index.html#work">Projects</a>
         <a href="../about.html">About</a>
+        <a href="../playground.html">Playground</a>
         <a href="../contact.html">Contact</a>
       </div>
       <div class="nav-tools">
@@ -81,6 +60,7 @@
   <div class="mobile-menu">
     <a href="../index.html#work">Projects</a>
     <a href="../about.html">About</a>
+    <a href="../playground.html">Playground</a>
     <a href="../contact.html">Contact</a>
   </div>
 </nav>
@@ -101,6 +81,9 @@
 <main class="wrap">
 
   <header id="overview" class="cs-header reveal">
+    <div class="cs-hero-image">
+      <img src="../assets/aqs/hero-title-card.jpg" alt="AQS title card: an extreme close-up on Shahmir's eyes, a glowing shrine silhouetted on a hill below, with the AQS logo mark" style="width:100%; display:block;">
+    </div>
     <div class="cs-header-main">
       <span class="tag-pill">Visual &amp; Brand Design</span>
       <span class="tag-outline">Motion Comic, Film Direction, Illustration</span>
@@ -111,9 +94,6 @@
         <div class="fact"><div class="label">Timeline</div><div class="value">December 2020 &middot; Capstone, Indus Valley School of Art &amp; Architecture</div></div>
         <div class="fact"><div class="label">Tools</div><div class="value">Adobe Creative Suite, Procreate</div></div>
       </div>
-    </div>
-    <div class="cs-hero-image">
-      <img src="../assets/aqs/hero-title-card.jpg" alt="AQS title card: an extreme close-up on Shahmir's eyes, a glowing shrine silhouetted on a hill below, with the AQS logo mark" style="width:100%; display:block;">
     </div>
   </header>
 
@@ -171,40 +151,13 @@
     <span class="eyebrow" style="display:block; margin-bottom:14px;">Process</span>
     <h2>Idea to Finished Film</h2>
     <p>Five stages carried AQS from a rough idea to a finished piece, each one feeding the next. Most of it happened during COVID, so nearly all of it, including directing the voice actor, had to be done remotely.</p>
-    <div class="process-arc-diagram accent-arc" data-process-arc>
-      <svg class="pad-svg" viewBox="0 0 1160 500" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="padFlowGradAqs" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:var(--accent)"/>
-            <stop offset="100%" style="stop-color:var(--accent)"/>
-          </linearGradient>
-        </defs>
-        <path class="pad-arc" data-arc="1" pathLength="100" d="M46.4,50 Q234.4,31.8 278.4,130"/>
-        <path class="pad-arc" data-arc="2" pathLength="100" d="M278.4,130 Q466.4,111.7 510.4,210"/>
-        <path class="pad-arc" data-arc="3" pathLength="100" d="M510.4,210 Q698.4,191.7 742.4,290"/>
-        <path class="pad-arc" data-arc="4" pathLength="100" d="M742.4,290 Q963.8,231.1 974.4,460"/>
-      </svg>
-      <div class="pad-node" data-step="1" style="--x:4%; --y:10%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="1"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">01)</span> Research &amp; Interviews</h3><p>Interviews with local experts, UNDP &amp; PCRWR reports</p></div>
-      </div>
-      <div class="pad-node" data-step="2" style="--x:24%; --y:26%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="2"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">02)</span> Storywriting</h3><p>Shahmir's journey, the spirit world's rules</p></div>
-      </div>
-      <div class="pad-node" data-step="3" style="--x:44%; --y:42%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="3"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">03)</span> Storyboarding</h3><p>Every shot and beat, before final art</p></div>
-      </div>
-      <div class="pad-node" data-step="4" style="--x:64%; --y:58%;">
-        <span class="pad-rail"><span class="pad-dot"></span><span class="pad-line" data-arc="4"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">04)</span> Illustration &amp; Voice Direction</h3><p>Procreate, scene by scene, while directing the voice actor remotely over email</p></div>
-      </div>
-      <div class="pad-node" data-step="5" style="--x:84%; --y:92%;">
-        <span class="pad-rail"><span class="pad-dot"></span></span>
-        <div class="pad-label"><h3><span class="pad-idx">05)</span> Animation</h3><p>After Effects: camera, particles, light</p></div>
-      </div>
-    </div>
+    <ol class="process-steps" style="--steps:5">
+      <li><h3>Research &amp; Interviews</h3><p>Interviews with local experts, UNDP &amp; PCRWR reports</p></li>
+      <li><h3>Storywriting</h3><p>Shahmir's journey, the spirit world's rules</p></li>
+      <li><h3>Storyboarding</h3><p>Every shot and beat, before final art</p></li>
+      <li><h3>Illustration &amp; Voice Direction</h3><p>Procreate, scene by scene, while directing the voice actor remotely over email</p></li>
+      <li><h3>Animation</h3><p>After Effects: camera, particles, light</p></li>
+    </ol>
   </section>
 
   <section id="gallery" class="cs-section reveal">
@@ -282,16 +235,29 @@
     </div>
   </section>
 
-  <div class="next-project reveal">
-    <div class="label">Next Project</div>
-    <a href="mr-whiskerworths.html">
-      <div class="thumb"><!-- assets/mr-whiskerworths-thumb.jpg --></div>
-      <div class="info">
-        <span class="tag-pill">Visual & Brand Design</span>
-        <h3>Mr. Whiskerworth's</h3>
-        <p>Brand Identity, Packaging Design</p>
-      </div>
-    </a>
+  <div class="pn-row reveal">
+    <div class="next-project">
+      <div class="label">Previous Project</div>
+      <a href="flipped.html">
+        <div class="thumb thumb-flip-hover" role="img" aria-label="Flipped logo. Hover to flip the i."><span class="flip-stage"><img class="flip-letters" src="../assets/flipped/flipped-letters-only.png" alt="" aria-hidden="true"><span class="flip-bar" aria-hidden="true"></span><span class="flip-dot" aria-hidden="true"></span></span></div>
+        <div class="info">
+          <span class="tag-pill">Visual &amp; Brand Design</span>
+          <h3>Flipped</h3>
+          <p>Brand Identity, Mascot Design</p>
+        </div>
+      </a>
+    </div>
+    <div class="next-project">
+      <div class="label">Next Project</div>
+      <a href="mr-whiskerworths.html">
+        <div class="thumb"><img src="../assets/mr-whiskerworths/whiskerworths-thumb.jpg" alt="Mr. Whiskerworth&#x27;s logo: a top hat and curled mustache above the wordmark, with a small bird perched below" loading="lazy"></div>
+        <div class="info">
+          <span class="tag-pill">Visual &amp; Brand Design</span>
+          <h3>Mr. Whiskerworth's</h3>
+          <p>Brand Identity, Packaging Design</p>
+        </div>
+      </a>
+    </div>
   </div>
 
 </main>
