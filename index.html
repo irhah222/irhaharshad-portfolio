@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Irhah Arshad Siddiqui &middot; Experience Designer</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=6">
 <link rel="icon" href="data:,">
 </head>
 <body>
@@ -38,9 +38,6 @@
   </div>
 </nav>
 
-<button class="theme-fab" data-theme-toggle aria-label="Toggle theme">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-</button>
 
 <main class="wrap">
 
@@ -56,7 +53,7 @@
         <p>Most recently: M.S. in Design + Innovation, UW&ndash;Madison &middot; Based in Madison, WI</p>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+        <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">View Resume</a>
         <a class="btn btn-secondary" href="contact.html">Get In Touch</a>
       </div>
     </div>
@@ -352,18 +349,42 @@
     </div>
   </section>
 
+  <style>
+    .origin-copy { columns: 1; max-width: 60ch; }
+    .origin-copy p { font-size: 16px; line-height: 1.7; margin: 0 0 16px; }
+    .origin-copy p:last-child { margin-bottom: 0; }
+    /* Closing line: quieter, so the end of the page feels calm */
+    .origin-statement { font-size: clamp(24px, 3.2vw, 36px); line-height: 1.3; max-width: 24ch; }
+    .origin-rule { margin: 56px 0 32px; }
+    .origin-cta { margin-top: 24px; }
+    .origin-grid { align-items: start; }
+    /* Project grid: a lone last card centres instead of hanging at the left */
+    .project-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+    .project-card { flex: 0 0 calc((100% - 44px) / 3); min-width: 0; }
+    @media (max-width: 900px) { .project-card { flex-basis: calc((100% - 22px) / 2); } }
+    @media (max-width: 560px) { .project-card { flex-basis: 100%; } }
+    /* Section rhythm: trim the stacked margins between homepage sections */
+    .work-title { margin-top: 56px; }
+    .project-grid { padding-bottom: 56px; }
+    .hiw-section { padding-bottom: 48px; }
+    .origin-section { margin-top: 64px; }
+    /* Toolkit: partial rows centre under their labels */
+    .tools-tile-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+    .tools-tile { flex: 0 0 126px; }
+    @media (max-width: 560px) { .tools-tile { flex-basis: calc(50% - 5px); } }
+  </style>
   <section class="origin-section reveal">
     <div class="origin-grid">
       <h2 class="origin-heading">What I create,<br>creates me.</h2>
       <div class="origin-copy">
-        <p>I operate with a deep awareness of output. Growing up in Quetta, Pakistan, my world was small, bounded, and quiet. To make sense of it, I turned to the television screen, watching animation where every single second was drawn with deliberate intention &mdash; proving how an entire universe could be built out of play, atmosphere, and light.</p>
-        <p>It taught me that space is never neutral. When an experience isn&rsquo;t designed with care, it degrades into noise and chaos. But when every detail is handled with purpose, design becomes a portal into clarity, dignity, and human connection.</p>
-        <p>Having recently completed my Master&rsquo;s in Design + Innovation at UW&ndash;Madison, I am open to opportunities where I can build digital products and spatial environments. Guided by research and grounded in craft, I aim to create experiences that invite people in, bring order to complexity, and respect the human on the other side.</p>
+        <p>Growing up in Quetta, Pakistan, my world was small, bounded, and quiet. To make sense of it, I turned to animation, where every second was drawn with deliberate intention: proof that a whole universe could be built from play, atmosphere, and light.</p>
+        <p>It taught me that space is never neutral. When an experience isn&rsquo;t designed with care, it degrades into noise. When every detail has a purpose, design becomes a portal into clarity, dignity, and human connection.</p>
+        <p>I recently completed my Master&rsquo;s in Design + Innovation at UW&ndash;Madison, and I&rsquo;m open to roles building digital products and spatial environments. Guided by research and grounded in craft, I make experiences that invite people in, bring order to complexity, and respect the human on the other side.</p>
       </div>
     </div>
     <div class="origin-glow-wrap">
       <hr class="origin-rule">
-      <p class="origin-statement">Every great product starts with an <em>intentional</em> conversation. Shall we?</p>
+      <p class="origin-statement">Got something worth designing? <em>Let&rsquo;s talk.</em></p>
       <div class="origin-cta">
         <a class="btn btn-primary" href="mailto:irhahdesigns@gmail.com">Say Hello</a>
       </div>
@@ -383,6 +404,6 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

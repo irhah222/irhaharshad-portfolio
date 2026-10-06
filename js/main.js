@@ -3,40 +3,6 @@
 (function () {
   "use strict";
 
-  /* ---------- Theme (light/dark) ---------- */
-  var THEME_KEY = "irhah-theme";
-  function getStoredTheme() {
-    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
-  }
-  function setStoredTheme(v) {
-    try { localStorage.setItem(THEME_KEY, v); } catch (e) {}
-  }
-  function applyTheme(theme) {
-    if (theme === "dark" || theme === "light") {
-      document.documentElement.setAttribute("data-theme", theme);
-    } else {
-      document.documentElement.removeAttribute("data-theme");
-    }
-  }
-  function currentIsDark() {
-    var attr = document.documentElement.getAttribute("data-theme");
-    if (attr === "dark") return true;
-    if (attr === "light") return false;
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  }
-  (function initTheme() {
-    var stored = getStoredTheme();
-    applyTheme(stored);
-  })();
-
-  document.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-theme-toggle]");
-    if (!btn) return;
-    var next = currentIsDark() ? "light" : "dark";
-    applyTheme(next);
-    setStoredTheme(next);
-  });
-
   /* ---------- Mobile nav ---------- */
   document.addEventListener("click", function (e) {
     var btn = e.target.closest("[data-hamburger]");
@@ -726,20 +692,9 @@
     }
     requestAnimationFrame(frame);
 
-    // Open into a ghost ring while hovering a project card, paired with a
-    // fixed corner badge on the thumbnail itself (injected below) — the
-    // ring follows the pointer, the badge marks the card whether or not
-    // the pointer has reached it yet.
+    // Open into a ghost ring while hovering a project card. The cursor
+    // change is the only hover cue: no extra arrow badge on the thumbnail.
     document.querySelectorAll(".project-card").forEach(function (card) {
-      var thumb = card.querySelector(".thumb");
-      if (thumb && !thumb.querySelector(".thumb-badge")) {
-        var badge = document.createElement("span");
-        badge.className = "thumb-badge";
-        badge.setAttribute("aria-hidden", "true");
-        badge.innerHTML =
-          '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
-        thumb.appendChild(badge);
-      }
       card.addEventListener("mouseenter", function () { dot.classList.add("is-project"); });
       card.addEventListener("mouseleave", function () { dot.classList.remove("is-project"); });
     });
@@ -747,7 +702,7 @@
 
   /* ---------- Designer ID card (About page) ----------
      Illustrated lanyard card: injects the shared SVG artwork, types out
-     the rotating "Loves:" field, tilts + sheens toward the cursor on
+     the rotating "Loves:" field, tilts toward the cursor on
      hover, and flips to a back face on click/tap. Self-contained so it
      only does anything on pages that actually have a [data-id-card]. */
   (function initIdCard() {
@@ -808,11 +763,10 @@
     }
     tickTypewriter();
 
-    // Tilt + sheen toward the cursor (skipped on touch, which has no hover).
+    // Tilt toward the cursor (skipped on touch, which has no hover).
     if (!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches)) {
       cards.forEach(function (card) {
         var stage = card.closest(".id-card-stage");
-        var sheen = card.querySelector(".id-card-sheen");
         if (!stage) return;
         var raf = null;
         stage.addEventListener("mousemove", function (e) {
@@ -820,15 +774,12 @@
           var x = (e.clientX - r.left) / r.width - 0.5;
           var y = (e.clientY - r.top) / r.height - 0.5;
           var rotateY = x * 16, rotateX = -y * 16;
-          card.classList.add("hovering");
           if (raf) cancelAnimationFrame(raf);
           raf = requestAnimationFrame(function () {
             card.style.transform = "rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg)";
-            if (sheen) sheen.style.backgroundPosition = ((x + 0.5) * 100) + "% " + ((y + 0.5) * 100) + "%";
           });
         });
         stage.addEventListener("mouseleave", function () {
-          card.classList.remove("hovering");
           if (raf) cancelAnimationFrame(raf);
           card.style.transform = "";
         });

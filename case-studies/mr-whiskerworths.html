@@ -4,10 +4,122 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mr. Whiskerworth's &middot; Irhah Arshad Siddiqui</title>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css?v=6">
 <link rel="icon" href="data:,">
+<style>
+  /* Mr. Whiskerworth's: the client's own cream and teal stay fixed in both themes */
+  :root { --ww-cream: #FAF0D0; --ww-teal: #11383A; }
+  .ww-goals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+  .ww-goal { border-radius: var(--r-lg); padding: 26px 26px 28px; background: var(--g-bg); color: var(--g-fg); }
+  .ww-goal .g-num { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; opacity: .75; }
+  .ww-goal h3 { font-size: var(--fs-h3); color: inherit; margin-top: 10px; }
+  .ww-goal p { font-size: 14.5px; line-height: 1.6; margin-top: 8px; color: inherit; opacity: .94; }
+  @media (max-width: 640px) { .ww-goals { grid-template-columns: 1fr; } }
+
+  /* Plates: brand cream surfaces the artwork sits on */
+  .ww-plate { border-radius: var(--r-md); background: var(--ww-cream); border: 1px solid rgba(17,56,58,0.14); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .ww-plate img { display: block; max-width: 100%; height: auto; }
+  .ww-plate-white { background: #fff; padding: 14px; }
+  .ww-cs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ww-cs-row figure { margin: 0; }
+  .ww-cs-row figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; }
+  @media (max-width: 640px) { .ww-cs-row { grid-template-columns: 1fr; } }
+  .ww-logo-stage { padding: clamp(28px, 6vw, 56px); margin-top: 8px; }
+  .ww-logo-stage img { width: 100%; max-width: 330px; }
+
+  /* Logo variations */
+  .ww-lv-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 8px; }
+  .ww-lv-row .logo-variant-card { width: auto; }
+  .ww-lv-row .lv-img-wrap { height: 190px; background: var(--ww-cream); padding: 22px; }
+  .ww-lv-row .lv-img-wrap img { width: auto; max-width: 100%; max-height: 100%; }
+  .ww-lv-row .lv-tab p { font-size: 12.5px; line-height: 1.5; margin: 4px 0 0; color: var(--ink-soft); }
+  @media (max-width: 760px) { .ww-lv-row { grid-template-columns: 1fr; } .ww-lv-row .lv-img-wrap { height: 150px; } }
+
+  /* Color palette */
+  .ww-palette { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .wp-label { font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 10px; }
+  .wp-group { display: grid; gap: 10px; align-content: start; grid-template-columns: 1fr; }
+  .wp-group .wp-label { margin: 0; }
+  .wp-swatch {
+    appearance: none; font: inherit; cursor: pointer; text-align: left; border: 0; position: relative;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 2px;
+    min-height: 150px; padding: 16px; border-radius: 18px; background: var(--c); color: var(--t);
+    box-shadow: 0 6px 16px rgba(22,21,29,0.12); transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .wp-swatch:hover { transform: translateY(-4px); box-shadow: 0 14px 26px rgba(22,21,29,0.2); }
+  .wp-swatch:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .wp-swatch.wp-light { box-shadow: inset 0 0 0 1.5px rgba(17,56,58,0.2), 0 6px 16px rgba(22,21,29,0.08); }
+  .wp-swatch .n { font-size: 14px; font-weight: 700; line-height: 1.25; }
+  .wp-swatch .h { font-size: 12px; font-weight: 600; letter-spacing: .03em; opacity: .85; font-variant-numeric: tabular-nums; }
+  @media (max-width: 900px) { .ww-palette { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wp-swatch { min-height: 112px; } }
+  @media (prefers-reduced-motion: reduce) { .wp-swatch, .wp-swatch:hover { transition: none; transform: none; } }
+
+  /* Fonts */
+  .ww-type { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; margin-top: 8px; }
+  .wt-card { border-radius: 20px; padding: 26px 28px 26px; display: flex; flex-direction: column; gap: 18px; min-width: 0; overflow: hidden; }
+  .wt-label { font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0; opacity: .75; }
+  .wt-name { font-size: 14px; font-weight: 700; margin: 0; }
+  .wt-card p { color: inherit; max-width: none; }
+  .wt-sample, .wt-rows { line-height: 1; }
+  .wt-sample svg, .wt-rows svg { display: block; }
+  .wt-rows { display: grid; gap: 12px; }
+  .wt-asikue { grid-column: span 5; background: var(--ww-teal); color: var(--ww-cream); justify-content: space-between; }
+  .wt-aimla { grid-column: span 7; background: var(--ww-cream); color: var(--ww-teal); border: 1px solid rgba(17,56,58,0.14); }
+  .wt-poppins { grid-column: span 12; background: var(--card-bg); color: var(--ink); border: 1px solid var(--border); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 28px; }
+  .wtp-lead { display: flex; flex-direction: column; gap: 14px; justify-content: space-between; }
+  .wtp-aa { font-family: 'Poppins', var(--font); font-weight: 600; font-size: 96px; line-height: 1; letter-spacing: -0.02em; }
+  .wtp-weights { display: grid; gap: 14px; align-content: center; font-family: 'Poppins', var(--font); }
+  .wtp-weights p { margin: 0; font-size: 17px; line-height: 1.45; color: var(--ink); max-width: none; }
+  .wtp-weights span { display: block; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 2px; }
+  @media (max-width: 860px) { .wt-asikue, .wt-aimla, .wt-poppins { grid-column: span 12; } .wt-poppins { grid-template-columns: 1fr; } .wtp-aa { font-size: 72px; } }
+
+  /* Icons */
+  .ww-icons { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 14px; padding: clamp(18px, 3vw, 30px); justify-items: center; }
+  .ww-icons img { width: 100%; max-width: 80px; border-radius: 50%; transition: transform .25s ease; }
+  .ww-icons img:hover { transform: scale(1.1) rotate(-4deg); }
+  @media (max-width: 860px) { .ww-icons { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  @media (max-width: 420px) { .ww-icons { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; } }
+  @media (prefers-reduced-motion: reduce) { .ww-icons img, .ww-icons img:hover { transition: none; transform: none; } }
+
+  /* Mascot */
+  .ww-mascot-row { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; margin-top: 8px; }
+  .ww-mascot-stage { padding: 24px 20px 16px; }
+  .ww-mascot-stage img { max-height: 380px; width: auto; }
+  .ww-mascot-copy p { font-size: 18px; line-height: 1.65; margin: 0; max-width: 46ch; }
+  .ww-mascot-copy p + p { margin-top: 14px; }
+  .ww-mascot-copy p.ww-lead { font-size: 21px; line-height: 1.5; color: var(--ink); max-width: 40ch; }
+  .ww-mascot-copy p:not(.ww-lead) { font-size: 16px; }
+  @media (max-width: 760px) { .ww-mascot-row { grid-template-columns: 1fr; } .ww-mascot-stage { max-width: 320px; margin: 0 auto; } }
+  .ww-sheet { padding: clamp(14px, 3vw, 28px); }
+
+  .ww-legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .ww-legend li { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-soft); padding: 6px 12px 6px 8px; border: 1px solid var(--border); border-radius: 999px; background: var(--card-bg); }
+  .ww-legend-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; }
+  .ww-legend-grid li { justify-content: flex-start; }
+  @media (max-width: 560px) { .ww-legend-grid { grid-template-columns: 1fr; } }
+  #system-overview .process-steps { border-bottom: 0; margin-bottom: 0; }
+  #outcome .stat-row { margin-bottom: 0; }
+  .ww-legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; background: var(--c); }
+  .ww-surface { border-radius: var(--r-md); background: #FBF6E0; border: 1px solid rgba(17,56,58,0.14); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .ww-two-up { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; margin: 28px 0; align-items: start; }
+  .ww-two-up figure { margin: 0; }
+  .ww-two-up img { width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--bg-soft); }
+  .ww-two-up figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.5; }
+  @media (max-width: 640px) { .ww-two-up { grid-template-columns: 1fr; } }
+  .ww-social-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 320px); gap: clamp(28px, 5vw, 64px); align-items: stretch; margin-top: 28px; }
+  .ww-social-copy { display: flex; flex-direction: column; }
+  .ww-social-copy > p { margin: 0 0 20px; }
+  .ww-social-list { list-style: none; margin: 0; padding: 0; flex: 1; display: grid; grid-auto-rows: 1fr; border-top: 1px solid var(--border); }
+  .ww-social-list li { display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .ww-social-list strong { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .ww-social-list span { font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+  .ww-social-layout figure { margin: 0; }
+  .ww-social-layout img { width: 100%; display: block; border-radius: var(--r-md); }
+  .ww-social-layout figcaption { font-size: 12.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.5; }
+  @media (max-width: 760px) { .ww-social-layout { grid-template-columns: 1fr; } .ww-social-list { grid-auto-rows: auto; } .ww-social-layout figure { max-width: 320px; } }
+</style>
 </head>
-<body style="--accent:#6b4a2f; --accent-tint:#f6f4f3; --accent-tint-strong:#ece7e4;">
+<body style="--accent:#416c4d; --accent-tint:#f1f5f2; --accent-tint-strong:#dde8df;">
 
 <nav class="site-nav">
   <div class="nav-row">
@@ -37,14 +149,14 @@
   </div>
 </nav>
 
-<button class="theme-fab" data-theme-toggle aria-label="Toggle theme">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-</button>
 
 <div class="section-rail">
   <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
   <div class="dot" data-target="challenge"><span class="dot-label">Challenge</span></div>
-  <div class="dot" data-target="logo"><span class="dot-label">The Mark</span></div>
+  <div class="dot" data-target="brand"><span class="dot-label">Brand Goals</span></div>
+  <div class="dot" data-target="branding"><span class="dot-label">Branding</span></div>
+  <div class="dot" data-target="mascot"><span class="dot-label">Mascot</span></div>
+  <div class="dot" data-target="packaging"><span class="dot-label">Packaging</span></div>
   <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
 </div>
 
@@ -52,14 +164,13 @@
 
   <header id="overview" class="cs-header reveal">
     <div class="cs-hero-image">
-      <!-- assets/mr-whiskerworths-hero.jpg, replace with your real project image -->
-      <div style="aspect-ratio:16/9; background:var(--bg-soft); display:flex; align-items:center; justify-content:center; color:var(--ink-faint); font-size:13px;">Mr. Whiskerworth&rsquo;s hero image</div>
+      <img src="../assets/mr-whiskerworths/ww-hero.webp" alt="Mr. Whiskerworth's stacked wordmark beside the mascot: a grey cat in a green tailcoat, red bow tie and monocle, seated in an armchair with a cane" style="width:100%; display:block;">
     </div>
     <div class="cs-header-main">
       <span class="tag-pill">Visual &amp; Brand Design</span>
-      <span class="tag-outline">Brand Identity, Packaging Design</span>
+      <span class="tag-outline">Brand Identity, Character Design, Packaging Design</span>
       <h1>Mr. Whiskerworth&rsquo;s</h1>
-      <p class="hmw">A gourmet cat food brand that had to feel premium enough to justify the price, and warm enough to still feel like home.</p>
+      <p class="hmw">A gourmet cat food brand: premium enough to earn the price, warm enough to feel like home.</p>
       <div class="quick-facts">
         <div class="fact"><div class="label">Role</div><div class="value">Lead Graphic Designer</div></div>
         <div class="fact"><div class="label">Timeline</div><div class="value">September 2024</div></div>
@@ -70,31 +181,239 @@
 
   <section id="challenge" class="cs-section reveal">
     <h2>The Challenge</h2>
-    <p>Mr. Whiskerworth's is a premium cat food brand built around a mascot with real personality: a monocle-wearing feline gentleman meant to carry the whole identity. The brief had a built-in tension: feel premium enough to justify a gourmet position, while staying warm and approachable enough that everyday pet owners still feel invited in.</p>
+    <p>Mr. Whiskerworth&rsquo;s is a premium cat food brand built from scratch: mascot, logo, and packaging. The brief held one tension. It had to feel gourmet, yet still welcome everyday pet owners.</p>
+    <p style="margin-top:14px;">The mascot settled it: a monocled gentleman who is refined, not stiff, and playful, not cartoonish.</p>
   </section>
 
-  <section class="cs-section reveal">
-    <h2>The Solution</h2>
-    <p>I built out a full mascot design, a refined gentleman cat in a tailored suit, and a color system that shifts across the packaging line to distinguish different age ranges while staying recognizably one brand.</p>
+  <section id="brand" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Brand Foundation</span>
+    <h2>Brand Goals</h2>
+    <p>Mealtime should be an experience of both taste and nourishment. Mr. Whiskerworth is the brand&rsquo;s voice, and the guidelines sum it up in one line: <em>healthy bowls, licked clean</em>.</p>
+    <div class="ww-goals">
+      <div class="ww-goal" style="--g-bg:#416C4D; --g-fg:#fff;">
+        <div class="g-num">01</div>
+        <h3>Deliver premium nutrition</h3>
+        <p>Fresh, high-quality ingredients, formulated for every life stage.</p>
+      </div>
+      <div class="ww-goal" style="--g-bg:#E17C68; --g-fg:#11383A;">
+        <div class="g-num">02</div>
+        <h3>Build trust</h3>
+        <p>Be open about sourcing, preparation, and what each ingredient does.</p>
+      </div>
+      <div class="ww-goal" style="--g-bg:#36619C; --g-fg:#fff;">
+        <div class="g-num">03</div>
+        <h3>Make mealtime a delight</h3>
+        <p>Flavors and textures that suit a cat&rsquo;s natural tastes.</p>
+      </div>
+      <div class="ww-goal" style="--g-bg:#DFB65D; --g-fg:#11383A;">
+        <div class="g-num">04</div>
+        <h3>Lead with care</h3>
+        <p>Sustainable sourcing, packaging, and delivery.</p>
+      </div>
+    </div>
   </section>
 
-  <section id="logo" class="cs-section reveal">
-    <span class="eyebrow" style="display:block; margin-bottom:14px;">Identity</span>
-    <h2>The Mark</h2>
-    <p>The logo does double duty by folding the character straight into the typography, so the mascot is present even where he isn't literally drawn.</p>
-    <div class="differentiator-callout" style="background:var(--accent);">
-      <p><strong>Letterform detail:</strong> the K curves into a cat's tail, the O becomes a monocle &mdash; the character is built into the wordmark itself.</p>
+  <section id="system-overview" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Scope</span>
+    <h2>What I Designed</h2>
+    <p>I built the identity as a working brand guideline, so anyone could pick it up and use it.</p>
+    <ol class="process-steps" style="--steps:5">
+      <li><h3>Logo System</h3><p>Main logo, three variations, clear space</p></li>
+      <li><h3>Mascot</h3><p>Character, poses, twelve expressions</p></li>
+      <li><h3>Type &amp; Color</h3><p>Three typefaces, ten-color palette</p></li>
+      <li><h3>Icons &amp; Social</h3><p>Twenty icons, content pillars</p></li>
+      <li><h3>Packaging</h3><p>Four flavors across three life stages</p></li>
+    </ol>
+  </section>
+
+    <section id="branding" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Visual Identity</span>
+    <h2>Branding</h2>
+    <p style="margin-bottom:36px;">The logo folds the character into the type. A top hat crowns the wordmark, a monocle sits inside the &ldquo;O,&rdquo; and the &ldquo;K&rdquo; sweeps into a cat&rsquo;s tail.</p>
+
+    <h3 class="brand-block-label">Logo</h3>
+    <div class="ww-plate ww-logo-stage">
+      <img src="../assets/mr-whiskerworths/ww-logo-primary.webp" alt="The Mr. Whiskerworth's logo: a top hat above the stacked wordmark, the K curling into a cat's tail" width="704" height="754">
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Logo Variations</h3>
+    <div class="ww-lv-row">
+      <div class="logo-variant-card">
+        <div class="lv-img-wrap"><img src="../assets/mr-whiskerworths/ww-logo-wordmark.webp" alt="The Mr-Ww wordmark" width="644" height="156" loading="lazy"></div>
+        <div class="lv-tab"><div class="name">Wordmark</div><p>Small spaces like profile images and tags.</p></div>
+      </div>
+      <div class="logo-variant-card">
+        <div class="lv-img-wrap"><img src="../assets/mr-whiskerworths/ww-logo-linear.webp" alt="The horizontal linear logo with the top hat over the left of the wordmark" width="1002" height="216" loading="lazy"></div>
+        <div class="lv-tab"><div class="name">Linear Logo</div><p>Wide, narrow spaces like website headers.</p></div>
+      </div>
+      <div class="logo-variant-card">
+        <div class="lv-img-wrap"><img src="../assets/mr-whiskerworths/ww-logo-icon.webp" alt="The brand icon: a top hat, monocle, nose, and curled mustache" width="248" height="386" loading="lazy"></div>
+        <div class="lv-tab"><div class="name">Brand Icon</div><p>Recognizable without any text.</p></div>
+      </div>
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Clear Space</h3>
+    <p style="margin-bottom:14px;">Keep one top hat&rsquo;s height of space on every side. Nothing else crosses it.</p>
+    <div class="ww-cs-row">
+      <figure><div class="ww-plate ww-plate-white"><img src="../assets/mr-whiskerworths/ww-clearspace-white.webp" alt="Construction grid of the logo on white, with ghosted top hats marking the clear space above, below, left, and right" width="618" height="495" loading="lazy"></div><figcaption>On white</figcaption></figure>
+      <figure><div class="ww-plate ww-plate-white"><img src="../assets/mr-whiskerworths/ww-clearspace-cream.webp" alt="Construction grid of the logo on brand cream, with ghosted top hats marking the clear space on all four sides" width="618" height="495" loading="lazy"></div><figcaption>On brand cream</figcaption></figure>
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Color Palette</h3>
+    <p style="margin-bottom:22px;">Greens and blues for trust, golds and reds for warmth, with cream as the canvas. Tap a swatch to copy its hex.</p>
+    <div class="ww-palette">
+      <div class="wp-group">
+        <p class="wp-label">Base</p>
+        <button type="button" class="wp-swatch" style="--c:#11383A; --t:#FAF0D0;" data-hex="#11383A" aria-label="Copy #11383A, Deep Teal"><span class="n">Deep Teal</span><span class="h">#11383A</span></button>
+        <button type="button" class="wp-swatch wp-light" style="--c:#FAF0D0; --t:#11383A;" data-hex="#FAF0D0" aria-label="Copy #FAF0D0, Cream"><span class="n">Cream</span><span class="h">#FAF0D0</span></button>
+      </div>
+      <div class="wp-group">
+        <p class="wp-label">Greens</p>
+        <button type="button" class="wp-swatch" style="--c:#065129; --t:#FAF0D0;" data-hex="#065129" aria-label="Copy #065129, Forest Green"><span class="n">Forest Green</span><span class="h">#065129</span></button>
+        <button type="button" class="wp-swatch" style="--c:#416C4D; --t:#FAF0D0;" data-hex="#416C4D" aria-label="Copy #416C4D, Sage Green"><span class="n">Sage Green</span><span class="h">#416C4D</span></button>
+      </div>
+      <div class="wp-group">
+        <p class="wp-label">Blues</p>
+        <button type="button" class="wp-swatch" style="--c:#22416C; --t:#FAF0D0;" data-hex="#22416C" aria-label="Copy #22416C, Navy"><span class="n">Navy</span><span class="h">#22416C</span></button>
+        <button type="button" class="wp-swatch" style="--c:#36619C; --t:#FAF0D0;" data-hex="#36619C" aria-label="Copy #36619C, Royal Blue"><span class="n">Royal Blue</span><span class="h">#36619C</span></button>
+      </div>
+      <div class="wp-group">
+        <p class="wp-label">Golds</p>
+        <button type="button" class="wp-swatch" style="--c:#BB984F; --t:#11383A;" data-hex="#BB984F" aria-label="Copy #BB984F, Antique Gold"><span class="n">Antique Gold</span><span class="h">#BB984F</span></button>
+        <button type="button" class="wp-swatch" style="--c:#DFB65D; --t:#11383A;" data-hex="#DFB65D" aria-label="Copy #DFB65D, Honey Gold"><span class="n">Honey Gold</span><span class="h">#DFB65D</span></button>
+      </div>
+      <div class="wp-group">
+        <p class="wp-label">Reds</p>
+        <button type="button" class="wp-swatch" style="--c:#BB5949; --t:#FFFFFF;" data-hex="#BB5949" aria-label="Copy #BB5949, Brick Red"><span class="n">Brick Red</span><span class="h">#BB5949</span></button>
+        <button type="button" class="wp-swatch" style="--c:#E17C68; --t:#0A2426;" data-hex="#E17C68" aria-label="Copy #E17C68, Coral"><span class="n">Coral</span><span class="h">#E17C68</span></button>
+      </div>
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Fonts</h3>
+    <div class="ww-type">
+      <div class="wt-card wt-asikue">
+        <p class="wt-label">Logo</p>
+        <div class="wt-sample" style="font-size:104px;"><svg style="width:311.27em;max-width:100%;height:auto" class="ts ts-asikue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2993 810" role="img" aria-label="Asikue, set in Asikue Medium"><path fill="currentColor" d="M185 591V609Q185 681 214 710Q230 726 230 746Q230 790 155 790H83Q8 790 8 746V744Q8 721 27 703Q59 668 94 568L152 393Q203 238 188 163Q187 158 186 152Q184 145 184 138Q184 89 239 89H342Q378 89 391 126L566 642Q573 663 583 679Q593 695 606 706Q626 723 626 742V744Q622 790 516 790H465Q374 790 374 742Q374 726 385 712Q398 699 398 678Q398 671 396 664Q395 657 393 649L373 590Q366 566 340 566H212Q186 566 185 591ZM221 503H318Q343 503 335 479L269 285Q261 259 253 285Q236 340 222 388Q209 437 201 478Q196 503 221 503ZM872 800Q837 800 802 795Q768 790 748 790Q715 790 698 768Q680 746 674 698Q667 648 676 618Q686 588 708 588Q724 588 738 604Q752 620 766 644Q779 667 795 690Q811 714 831 730Q851 746 878 746Q898 746 910 736Q922 727 922 712Q922 690 897 668Q872 645 836 620Q799 595 762 566Q726 536 701 499Q676 462 676 416Q676 376 696 346Q715 315 750 297Q784 279 828 279Q864 279 888 288Q911 296 927 296Q936 296 948 293Q961 290 971 290Q1016 290 1028 367Q1034 404 1027 424Q1020 445 1000 445Q981 445 964 428Q948 411 932 388Q915 366 896 349Q876 332 852 332Q836 332 826 340Q815 349 815 363Q815 385 840 408Q864 430 900 455Q936 480 972 510Q1008 540 1032 577Q1057 614 1057 660Q1057 723 1006 762Q956 800 872 800ZM1134 127Q1134 90 1160 68Q1187 45 1230 45Q1272 45 1298 68Q1325 90 1325 127Q1325 164 1299 186Q1273 209 1230 209Q1187 209 1160 186Q1134 164 1134 127ZM1320 653Q1320 680 1324 692Q1328 705 1340 714Q1355 726 1360 734Q1366 741 1366 751Q1366 790 1279 790H1200Q1113 790 1113 751Q1113 741 1118 734Q1124 726 1139 714Q1150 705 1154 692Q1158 680 1158 653V442Q1158 415 1152 402Q1145 388 1125 371Q1113 362 1108 356Q1103 349 1103 339Q1103 320 1122 308Q1142 297 1170 291Q1197 285 1223 282Q1249 280 1261 280Q1298 280 1312 293Q1325 306 1325 341Q1325 361 1322 386Q1320 411 1320 437ZM1624 588V653Q1624 680 1628 692Q1632 705 1643 714Q1658 726 1664 734Q1669 741 1669 751Q1669 790 1583 790H1503Q1416 790 1416 751Q1416 741 1422 734Q1427 726 1442 714Q1453 705 1457 692Q1461 680 1461 653V182Q1461 153 1455 140Q1449 127 1431 114Q1416 105 1411 98Q1406 90 1406 81Q1406 60 1424 48Q1443 36 1470 30Q1496 24 1522 22Q1547 20 1561 20Q1600 20 1614 33Q1629 46 1629 81Q1629 101 1626 126Q1624 151 1624 177V508Q1624 524 1631 524Q1636 524 1643 518Q1682 487 1705 446Q1728 404 1719 362Q1712 326 1733 306Q1754 285 1800 285Q1841 285 1863 302Q1885 318 1885 350Q1885 385 1856 422Q1828 459 1778 494Q1768 501 1769 506Q1770 510 1780 518Q1813 539 1846 603L1866 640Q1880 667 1894 686Q1908 704 1922 714Q1945 731 1945 750Q1945 766 1927 778Q1909 790 1872 790H1803Q1766 790 1752 776Q1737 762 1726 731Q1708 678 1675 617L1654 575Q1649 567 1642 567Q1636 567 1630 573Q1624 579 1624 588ZM2288 748Q2240 800 2161 800Q2016 800 2016 631V442Q2016 416 2011 402Q2006 388 1989 372Q1979 361 1975 354Q1971 348 1971 340Q1971 321 1990 310Q2008 298 2034 292Q2061 285 2086 282Q2110 280 2123 280Q2158 280 2171 293Q2184 306 2184 341Q2184 361 2182 386Q2179 411 2179 437V622Q2179 660 2196 682Q2213 705 2241 705Q2264 705 2280 692Q2297 679 2297 662V442Q2297 416 2292 402Q2287 388 2270 372Q2260 361 2256 354Q2252 348 2252 340Q2252 321 2270 310Q2289 298 2316 292Q2342 285 2366 282Q2391 280 2404 280Q2439 280 2452 293Q2465 306 2465 341Q2465 361 2462 386Q2460 411 2460 437V653Q2460 680 2464 692Q2468 705 2479 714Q2494 726 2500 734Q2505 741 2505 751Q2505 769 2478 782Q2450 795 2402 795Q2365 795 2344 784Q2323 772 2312 752Q2306 740 2300 740Q2296 740 2288 748ZM2691 497 2707 496Q2754 494 2780 469Q2807 444 2807 401Q2807 369 2794 350Q2780 331 2759 331Q2728 331 2709 370Q2690 408 2690 471Q2690 478 2690 484Q2690 491 2691 497ZM2957 421Q2957 461 2932 484Q2908 508 2846 524Q2815 531 2780 536Q2744 542 2697 544Q2711 605 2748 641Q2784 677 2837 677Q2863 677 2886 666Q2910 656 2927 631Q2943 608 2959 608Q2982 608 2975 651Q2968 695 2940 728Q2912 762 2869 781Q2826 800 2774 800Q2706 800 2654 768Q2602 735 2574 676Q2545 617 2545 540Q2545 461 2574 402Q2604 344 2657 311Q2710 278 2781 278Q2861 278 2909 318Q2957 357 2957 421Z"/></svg></div>
+        <p class="wt-name">Asikue Medium</p>
+      </div>
+      <div class="wt-card wt-aimla">
+        <p class="wt-label">Display Headings</p>
+        <div class="wt-sample" style="font-size:110px;"><svg style="width:374.44em;max-width:100%;height:auto" class="ts ts-big" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3404 780" role="img" aria-label="Aa Bb Cc, set in Aimla Regular"><path fill="currentColor" d="M368 677 336 560H168L136 677Q130 700 128 724Q126 749 132 760H10L200 60H304L494 760H372Q378 749 376 724Q374 700 368 677ZM195 460H309L252 251ZM806 725Q777 748 744 759Q710 770 677 770Q637 770 607 756Q577 743 558 720Q538 698 528 668Q519 639 519 608Q519 575 530 542Q542 510 564 484Q587 459 621 444Q655 428 699 428Q727 428 755 436Q783 445 806 461Q805 432 797 412Q789 391 776 377Q762 363 745 356Q728 350 710 350Q684 350 659 366Q634 381 619 413L540 352Q576 298 623 274Q670 250 718 250Q755 250 789 263Q823 276 849 300Q875 323 890 356Q906 388 906 427V701L914 760H806ZM806 578Q793 552 764 535Q736 518 709 518Q690 518 675 525Q660 532 650 544Q640 556 634 572Q629 587 629 603Q629 640 652 662Q674 683 711 683Q737 683 764 668Q790 653 806 623ZM1429 60Q1478 60 1514 75Q1551 90 1576 114Q1600 139 1612 171Q1624 203 1624 236Q1624 268 1613 300Q1602 331 1579 356Q1627 388 1651 437Q1675 486 1675 539Q1675 581 1660 620Q1645 660 1615 691Q1585 722 1540 741Q1495 760 1435 760H1224L1232 701V119L1224 60ZM1332 316H1428Q1471 316 1492 292Q1514 268 1514 239Q1514 202 1488 181Q1463 160 1428 160H1332ZM1332 660H1434Q1467 660 1492 650Q1516 639 1532 622Q1549 605 1557 584Q1565 562 1565 539Q1565 516 1557 494Q1549 472 1532 454Q1516 437 1492 426Q1467 416 1434 416H1332ZM1729 780V119Q1729 102 1728 88Q1727 75 1721 60L1829 10V291Q1855 271 1886 260Q1917 250 1950 250Q1990 250 2029 266Q2068 281 2099 313Q2130 345 2150 394Q2169 443 2169 511Q2169 560 2156 606Q2142 653 2115 690Q2088 726 2048 748Q2008 770 1955 770Q1923 770 1892 760Q1860 749 1829 726V730ZM1829 638Q1849 661 1872 672Q1895 683 1920 683Q1955 683 1981 668Q2007 652 2024 628Q2041 603 2050 572Q2059 540 2059 508Q2059 478 2052 449Q2044 420 2028 398Q2012 375 1989 361Q1966 347 1934 347Q1905 347 1877 363Q1849 379 1829 414ZM2726 50Q2793 50 2842 78Q2890 106 2919 151L2832 218Q2816 188 2790 169Q2764 150 2726 150Q2677 150 2644 176Q2610 202 2589 242Q2568 281 2558 326Q2549 372 2549 411Q2549 450 2559 496Q2569 541 2590 580Q2612 619 2646 645Q2681 671 2729 671Q2764 671 2794 654Q2824 637 2841 605L2918 669Q2886 719 2834 744Q2782 770 2724 770Q2652 770 2598 740Q2545 710 2510 660Q2474 611 2456 548Q2439 484 2439 418Q2439 349 2458 283Q2476 217 2512 166Q2548 114 2602 82Q2655 50 2726 50ZM3186 250Q3253 250 3302 278Q3350 306 3379 351L3292 418Q3276 388 3250 369Q3224 350 3186 350Q3153 350 3130 364Q3106 378 3090 400Q3074 423 3066 451Q3059 479 3059 508Q3059 540 3068 570Q3077 599 3095 622Q3113 644 3140 658Q3166 671 3200 671Q3235 671 3265 654Q3295 637 3312 605L3389 669Q3357 719 3305 744Q3253 770 3195 770Q3149 770 3105 753Q3061 736 3026 703Q2992 670 2970 620Q2949 571 2949 506Q2949 458 2964 412Q2980 366 3010 330Q3040 294 3084 272Q3129 250 3186 250Z"/></svg></div>
+        <div class="wt-rows" style="font-size:64px; margin-top:28px;">
+          <svg style="width:199.12em;max-width:100%;height:auto" class="ts ts-row" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4741 760" role="img" aria-label="Numerals 0 to 9 in Aimla Regular"><path fill="currentColor" d="M545 381Q545 471 522 538Q500 606 463 650Q426 695 379 718Q332 740 282 740Q232 740 184 718Q136 697 98 654Q61 610 38 544Q15 478 15 388Q15 348 22 306Q28 263 41 222Q54 181 76 144Q97 108 126 80Q155 52 194 36Q232 20 280 20Q330 20 378 42Q425 64 462 109Q500 154 522 222Q545 289 545 381ZM435 380Q435 314 422 265Q409 216 387 184Q365 152 337 136Q309 120 280 120Q251 120 223 136Q195 152 174 184Q152 216 138 266Q125 315 125 381Q125 414 132 459Q139 504 156 544Q174 584 204 612Q234 640 280 640Q309 640 337 624Q365 608 387 576Q409 544 422 495Q435 446 435 380ZM660 731V130H600V30H760V731ZM853 730Q853 672 874 623Q896 574 928 532Q960 489 998 451Q1035 413 1067 376Q1099 340 1120 303Q1142 266 1142 226Q1142 202 1133 182Q1124 163 1108 149Q1093 135 1072 128Q1052 120 1029 120Q998 120 964 136Q929 153 910 188L823 121Q840 95 864 76Q887 57 914 44Q941 32 970 26Q998 20 1026 20Q1069 20 1110 34Q1150 48 1182 75Q1213 102 1232 142Q1252 182 1252 233Q1252 276 1237 312Q1222 349 1198 382Q1175 414 1146 444Q1116 473 1086 502Q1057 532 1030 564Q1004 595 987 630H1194Q1211 630 1224 629Q1236 628 1253 622V730ZM1506 290Q1536 290 1556 278Q1576 265 1586 246Q1596 227 1596 204Q1595 182 1584 163Q1572 144 1549 132Q1526 119 1492 119Q1457 119 1427 136Q1397 153 1380 185L1303 121Q1335 71 1387 46Q1439 20 1497 20Q1575 20 1624 54Q1672 89 1692 138Q1711 188 1702 242Q1692 295 1654 334Q1693 362 1714 403Q1736 444 1740 490Q1745 535 1732 580Q1719 624 1688 660Q1658 696 1610 718Q1562 740 1497 740Q1439 740 1387 714Q1335 689 1303 639L1380 575Q1397 607 1427 624Q1457 641 1492 641Q1539 641 1570 622Q1601 604 1616 576Q1632 548 1633 516Q1634 483 1620 455Q1605 427 1577 408Q1549 390 1506 390H1441V290ZM2193 731H2093V561H1788L2093 30H2193V461H2243V561H2193ZM1948 461H2093V210ZM2693 30V138Q2676 132 2664 131Q2651 130 2634 130H2413V259Q2435 242 2460 234Q2485 227 2511 227Q2567 227 2610 249Q2653 271 2682 307Q2710 343 2724 389Q2739 435 2739 483Q2739 531 2724 577Q2708 623 2678 660Q2647 696 2600 718Q2553 740 2490 740Q2434 740 2382 712Q2329 685 2293 629L2380 562Q2400 601 2430 620Q2461 640 2493 640Q2527 640 2552 626Q2578 613 2596 590Q2613 568 2622 539Q2630 510 2630 480Q2630 450 2622 422Q2613 393 2596 370Q2578 348 2552 334Q2527 321 2492 321Q2475 321 2456 326Q2438 331 2420 340Q2403 349 2388 362Q2373 376 2363 393H2313V30ZM2791 388Q2791 319 2804 253Q2818 187 2848 136Q2879 84 2928 52Q2977 20 3048 20Q3115 20 3164 48Q3212 76 3241 121L3154 188Q3138 158 3112 139Q3086 120 3048 120Q3008 120 2982 138Q2955 156 2938 185Q2922 214 2914 250Q2906 286 2903 322Q2935 294 2973 278Q3011 261 3055 261Q3105 261 3144 280Q3182 300 3208 332Q3234 364 3247 406Q3260 449 3260 495Q3260 540 3246 584Q3232 628 3204 662Q3177 697 3136 718Q3094 740 3039 740Q2994 740 2950 720Q2905 699 2870 656Q2834 613 2812 546Q2791 480 2791 388ZM2904 449Q2910 501 2924 538Q2937 574 2955 596Q2973 619 2994 630Q3016 640 3037 640Q3063 640 3084 627Q3105 614 3120 593Q3134 572 3142 545Q3150 518 3150 491Q3150 466 3144 443Q3137 420 3122 402Q3108 384 3086 373Q3064 362 3033 362Q2995 362 2958 383Q2922 404 2904 449ZM3397 731 3544 130H3364Q3347 130 3334 131Q3322 132 3305 138V30H3670L3646 129V130L3500 731ZM3959 20Q4002 20 4040 34Q4077 47 4105 72Q4133 96 4149 132Q4165 168 4165 213Q4165 246 4149 279Q4133 312 4105 334Q4159 366 4183 412Q4207 457 4207 507Q4207 560 4188 603Q4169 646 4136 676Q4103 707 4058 724Q4013 740 3961 740Q3909 740 3864 724Q3819 707 3786 676Q3753 646 3734 603Q3715 560 3715 507Q3715 457 3739 412Q3763 366 3817 334Q3789 312 3773 279Q3757 246 3757 213Q3757 168 3773 132Q3789 96 3816 72Q3844 47 3881 34Q3918 20 3959 20ZM3962 290Q3985 290 4002 282Q4020 275 4032 262Q4043 250 4049 234Q4055 219 4055 203Q4055 161 4025 140Q3995 119 3956 119Q3917 119 3887 140Q3857 161 3857 203Q3857 219 3863 234Q3869 250 3880 262Q3892 275 3910 282Q3927 290 3950 290ZM4097 521Q4097 492 4086 468Q4076 444 4058 426Q4039 409 4014 400Q3990 390 3962 390Q3934 390 3910 400Q3885 409 3866 426Q3848 444 3838 468Q3827 492 3827 521Q3827 551 3838 574Q3850 596 3869 611Q3888 626 3912 633Q3937 640 3962 640Q3989 640 4014 632Q4038 624 4056 609Q4075 594 4086 572Q4097 550 4097 521ZM4726 372Q4726 441 4712 507Q4699 573 4668 624Q4638 676 4589 708Q4540 740 4469 740Q4402 740 4354 712Q4305 684 4276 639L4363 572Q4379 602 4405 621Q4431 640 4469 640Q4509 640 4536 622Q4563 604 4580 575Q4596 546 4604 510Q4611 474 4614 438Q4582 466 4544 482Q4506 499 4462 499Q4412 499 4374 480Q4335 460 4309 428Q4283 396 4270 354Q4257 311 4257 265Q4257 220 4271 176Q4285 132 4312 98Q4340 63 4382 42Q4423 20 4478 20Q4523 20 4568 40Q4612 61 4648 104Q4683 147 4704 214Q4726 280 4726 372ZM4613 311Q4607 259 4594 222Q4580 186 4562 164Q4544 141 4522 130Q4501 120 4480 120Q4454 120 4433 133Q4412 146 4398 167Q4383 188 4375 215Q4367 242 4367 269Q4367 294 4374 317Q4381 340 4395 358Q4409 376 4431 387Q4453 398 4484 398Q4522 398 4558 377Q4595 356 4613 311Z"/></svg>
+        </div>
+        <p class="wt-name">Aimla Regular</p>
+      </div>
+      <div class="wt-card wt-poppins">
+        <div class="wtp-lead">
+          <p class="wt-label">Body Copy</p>
+          <div class="wtp-aa" aria-hidden="true">Aa</div>
+          <p class="wt-name">Poppins</p>
+        </div>
+        <div class="wtp-weights">
+          <p style="font-weight:400;"><span>Regular</span>A blend worthy of the finest feline connoisseur, curated for those with a refined palate.</p>
+          <p style="font-weight:500;"><span>Medium</span>Complete &amp; balanced nutrition for every life stage.</p>
+          <p style="font-weight:700;"><span>Bold</span>100% Nutrition!</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Icons</h3>
+    <p style="margin-bottom:14px;">Twenty round icons cover proteins, calories, digestion, coat health, and activity, so a tub reads at a glance.</p>
+    <div class="ww-plate ww-icons">
+      <img src="../assets/mr-whiskerworths/ww-icon-01.webp" alt="Icon of a cat food bowl with a cat face" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-02.webp" alt="Icon of a cat face" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-03.webp" alt="Icon of a chicken" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-04.webp" alt="Icon of a cow" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-05.webp" alt="Icon of a goat" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-06.webp" alt="Icon of a fish" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-07.webp" alt="Icon of a plate with fork, knife and a KCAL label" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-08.webp" alt="Icon of a crossed-out water drop" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-09.webp" alt="Icon of a steak" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-10.webp" alt="Icon of a covered serving dish" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-11.webp" alt="Icon of a checkmark inside a ring of connected dots" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-12.webp" alt="Icon of a steaming bowl" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-13.webp" alt="Icon of a clipboard checklist beside a bowl" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-14.webp" alt="Icon of a flask with an X" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-15.webp" alt="Icon of a twisted ribbon inside a circle" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-16.webp" alt="Icon of a stomach" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-17.webp" alt="Icon of a balance scale with meat and grain" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-18.webp" alt="Icon of a seated cat beside a food bowl" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-19.webp" alt="Icon of a leaping cat" width="80" height="80" loading="lazy"><img src="../assets/mr-whiskerworths/ww-icon-20.webp" alt="Icon of a hair follicle with sparkles" width="80" height="80" loading="lazy">
+    </div>
+  </section>
+
+  <section id="mascot" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Brand Character</span>
+    <h2>Meet Mr. Whiskerworth</h2>
+    <div class="ww-mascot-row">
+      <div class="ww-plate ww-mascot-stage"><img src="../assets/mr-whiskerworths/ww-mascot-full.webp" alt="Mr. Whiskerworth full-length: a grey cat in a top hat, monocle, red bow tie, and dark green suit, holding a cocktail glass" width="507" height="922" loading="lazy"></div>
+      <div class="ww-mascot-copy">
+        <span class="eyebrow" style="display:block; margin-bottom:12px;">Character sketch</span>
+        <p class="ww-lead">A refined, dapper feline with a sharp monocle, a tailored suit, and a perfectly groomed tail.</p>
+        <p>But he is not just about looks. He is driven by a passion to make sure every cat, from playful kitten to distinguished elder, gets the highest quality meals. To him, cat food should be a gourmet experience, packed with nutrition and balanced for taste and health.</p>
+      </div>
+    </div>
+
+    <h3 class="brand-block-label" style="margin-top:56px;">Character Sheet</h3>
+    <p style="margin-bottom:14px;">One sheet so he can appear anywhere: six poses and scenes, plus twelve head expressions.</p>
+    <div class="ww-plate ww-sheet"><img src="../assets/mr-whiskerworths/ww-character-sheet-full.webp" alt="Mr. Whiskerworth character sheet: a hat tip, standing, armchair, and dining poses, a thinking pose, a tumble, a chef pose, and twelve head expressions" width="1837" height="745" loading="lazy"></div>
+  </section>
+
+<section id="packaging" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Packaging</span>
+    <h2>The Product Line</h2>
+    <p>Four flavors, each with its own color and mascot scene, across three life stages. Color marks the flavor. A small tab marks the life stage.</p>
+    <p style="margin:20px 0 0; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);">Flavors</p>
+    <ul class="ww-legend ww-legend-grid" style="margin-top:8px;" aria-label="Flavor colors and protein pairings">
+      <li><i style="--c:#36619C;"></i>Aristocrat&rsquo;s Delight &middot; Chicken &amp; Beef</li>
+      <li><i style="--c:#DFB65D;"></i>Majesty&rsquo;s Reserve &middot; Mutton &amp; Fish</li>
+      <li><i style="--c:#E17C68;"></i>Highland Hunt &middot; Chicken &amp; Mutton</li>
+      <li><i style="--c:#416C4D;"></i>Admiral&rsquo;s Choice &middot; Chicken &amp; Fish</li>
+    </ul>
+
+    <div class="cubot-gallery cols-2" style="margin-top:32px;">
+      <figure>
+        <img src="../assets/mr-whiskerworths/ww-tubs-floating.webp" alt="Four Mr. Whiskerworth's tubs in gold, blue, green, and red floating on a cream background with a soft shadow" loading="lazy">
+        <figcaption>The four tubs together.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/mr-whiskerworths/ww-tubs-wall.webp" alt="Rows of Mr. Whiskerworth's tubs in green, gold, blue, and red lined up like a shelf, each showing the mascot, a flavor name, and 100% nutrition badge" loading="lazy">
+        <figcaption>On the shelf, color does the sorting.</figcaption>
+      </figure>
+    </div>
+
+    <p style="margin:26px 0 0; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);">Life stage tabs</p>
+    <ul class="ww-legend" aria-label="Life stage tabs" style="margin-top:8px;">
+      <li><i style="--c:#1FBDB7;"></i>Kitten &middot; up to 6 months</li>
+      <li><i style="--c:#8A5DA3;"></i>Adult &middot; 6 months to 10 years</li>
+      <li><i style="--c:#E8A33A;"></i>Senior &middot; 10 years and up</li>
+    </ul>
+  </section>
+
+  <section id="social" class="cs-section reveal">
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">Marketing</span>
+    <h2>Social Media</h2>
+    <div class="ww-social-layout">
+      <div class="ww-social-copy">
+        <p>Playful but informative, built around five recurring formats.</p>
+        <ul class="ww-social-list">
+          <li><strong>Whisker Wisdom</strong><span>Weekly cat health tips.</span></li>
+          <li><strong>Behind the scenes</strong><span>How the meals are made.</span></li>
+          <li><strong>Caption This!</strong><span>Posts that invite the community in.</span></li>
+          <li><strong>Testimonials</strong><span>Customer stories.</span></li>
+          <li><strong>Feline Fridays</strong><span>Quirky cat facts.</span></li>
+        </ul>
+      </div>
+      <figure>
+        <img src="../assets/mr-whiskerworths/ww-render-vertical.webp" alt="Vertical 3D render of blue and green Mr. Whiskerworth's tubs among large copper spheres on a soft pink-grey background" loading="lazy">
+        <figcaption>A vertical render for story-format use.</figcaption>
+      </figure>
     </div>
   </section>
 
   <section id="outcome" class="cs-section reveal">
     <h2>The Outcome</h2>
-    <p>The final identity system includes logo variations, a complete color palette, the full mascot character design, and packaging visuals, positioned to read as a new standard for how premium pet food can look on a shelf.</p>
+    <p>A cohesive brand, ready for the shelf: logo system, palette, mascot, and packaging.</p>
+    <div class="stat-row">
+      <div class="stat-tile"><div class="num">3</div><div class="label">Logo variations</div></div>
+      <div class="stat-tile"><div class="num">12</div><div class="label">Mascot expressions</div></div>
+      <div class="stat-tile"><div class="num">10</div><div class="label">Brand colors</div></div>
+      <div class="stat-tile"><div class="num">12</div><div class="label">Packs: 4 flavors &times; 3 life stages</div></div>
+    </div>
   </section>
 
   <section class="cs-section reveal">
-    <h2>Reflection</h2>
-    <p>[Your voice goes here: a short, honest reflection on what you'd carry forward or do differently next time.]</p>
+    <div class="key-takeaways-card">
+      <h2>Reflection</h2>
+      <ul>
+        <li>It was fun to build a brand for pets.</li>
+        <li>I got to exercise my illustration and creativity.</li>
+        <li>I enjoyed working on the packaging.</li>
+      </ul>
+    </div>
   </section>
 
   <div class="pn-row reveal">
@@ -128,13 +447,24 @@
   <div class="wrap footer-row">
     <div>© 2026 Irhah Arshad Siddiqui. Madison, WI.</div>
     <div class="footer-links">
-      <a href="mailto:irhah.1998@gmail.com">Email</a>
+      <a href="mailto:irhahdesigns@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/irhah-arshad" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.behance.net/irhaharshad" target="_blank" rel="noopener">Behance</a>
     </div>
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+  (function () {
+    document.querySelectorAll('.wp-swatch').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var h = b.querySelector('.h'), hex = b.getAttribute('data-hex');
+        var done = function () { h.textContent = 'Copied'; setTimeout(function () { h.textContent = hex; }, 1200); };
+        try { navigator.clipboard.writeText(hex).then(done, done); } catch (e) { done(); }
+      });
+    });
+  })();
+</script>
+<script src="../js/main.js?v=6"></script>
 </body>
 </html>

@@ -4,10 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact &middot; Irhah Arshad Siddiqui</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=6">
 <link rel="icon" href="data:,">
+<style>
+  .ct-main { padding-top: clamp(150px, 22vh, 210px); padding-bottom: 110px; text-align: left; }
+  .ct-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 96px); align-items: start; }
+  .ct-eyebrow { display: block; margin-bottom: 18px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .ct-title { font-size: clamp(32px, 4.4vw, 52px); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin: 0; max-width: 14ch; text-wrap: balance; }
+  .ct-sub { margin: 20px 0 0; font-size: clamp(15px, 1.5vw, 17px); line-height: 1.65; color: var(--ink-soft); max-width: 36ch; text-wrap: pretty; }
+  .ct-label { display: block; margin: 0 0 12px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .ct-email {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%;
+    padding: 14px 14px 14px clamp(20px, 3vw, 30px); border-radius: 999px;
+    background: var(--bg-soft); border: 1px solid var(--border);
+    color: var(--ink); text-decoration: none; cursor: pointer; font-family: var(--font);
+    font-size: clamp(17px, 2.3vw, 26px); font-weight: 500; letter-spacing: -0.01em;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .ct-email:hover { transform: translateY(-2px); background: var(--card-bg); box-shadow: 0 14px 32px rgba(22,21,29,0.10); }
+  .ct-email:focus-visible, .ct-row:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+  .ct-arrow { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; transition: transform .25s ease; }
+  .ct-arrow svg { width: 52%; height: 52%; }
+  .ct-email:hover .ct-arrow { transform: rotate(45deg); }
+  .ct-hint { display: flex; align-items: center; gap: 8px; margin: 14px 0 0 clamp(20px, 3vw, 30px); font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); min-height: 18px; }
+  .ct-hint svg { width: 14px; height: 14px; flex: none; }
+  .ct-hint.done { color: var(--ink); }
+  .ct-links { margin-top: 48px; }
+  .ct-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 4px;
+    border-top: 1px solid var(--border); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 16px;
+    transition: padding .25s ease, color .25s ease;
+  }
+  .ct-row:last-child { border-bottom: 1px solid var(--border); }
+  .ct-row:hover { padding-left: 14px; padding-right: 14px; }
+  .ct-row svg { width: 16px; height: 16px; flex: none; color: var(--ink-soft); transition: transform .25s ease; }
+  .ct-row:hover svg { transform: translate(2px, -2px); color: var(--ink); }
+  @media (max-width: 860px) { .ct-grid { grid-template-columns: 1fr; gap: 36px; } .ct-title { max-width: 16ch; } }
+  @media (max-width: 480px) { .ct-email { gap: 10px; padding-left: 18px; } .ct-arrow { width: 36px; height: 36px; } .ct-links { margin-top: 36px; } }
+  @media (prefers-reduced-motion: reduce) { .ct-email, .ct-row, .ct-arrow, .ct-row svg { transition: none; } }
+</style>
 </head>
 <body>
+
 
 <nav class="site-nav">
   <div class="nav-row">
@@ -19,6 +57,7 @@
       <div class="nav-links">
         <a href="index.html#work">Projects</a>
         <a href="about.html">About</a>
+        <a href="playground.html">Playground</a>
         <a href="contact.html">Contact</a>
       </div>
       <div class="nav-tools">
@@ -31,23 +70,38 @@
   <div class="mobile-menu">
     <a href="index.html#work">Projects</a>
     <a href="about.html">About</a>
+    <a href="playground.html">Playground</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-<button class="theme-fab" data-theme-toggle aria-label="Toggle theme">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-</button>
 
-<main class="wrap" style="padding-top:190px; padding-bottom:120px; max-width:640px;">
-  <div class="reveal">
-    <h1 style="font-size:clamp(30px,4vw,44px); margin-bottom:20px;">Let's talk.</h1>
-    <p style="font-size:17px;">Open to Experience Design and UX Design roles. Reach out directly, or find me on LinkedIn and Behance.</p>
-    <div style="margin-top:28px; display:flex; flex-direction:column; gap:14px; font-size:16px;">
-      <a href="mailto:irhah.1998@gmail.com" style="color:var(--accent); font-weight:600;">irhah.1998@gmail.com</a>
-      <a href="tel:+16086095925" style="color:var(--ink-soft);">608-609-5925</a>
-      <a href="https://www.linkedin.com/in/irhah-arshad" target="_blank" rel="noopener" style="color:var(--ink-soft);">linkedin.com/in/irhah-arshad</a>
-      <a href="https://www.behance.net/irhaharshad" target="_blank" rel="noopener" style="color:var(--ink-soft);">behance.net/irhaharshad</a>
+<main class="wrap ct-main">
+  <div class="ct-grid reveal">
+    <div>
+      <span class="ct-eyebrow">Let&rsquo;s talk</span>
+      <h1 class="ct-title">Got a project or a role in mind?</h1>
+      <p class="ct-sub">I&rsquo;d love to hear what you&rsquo;re working on. Email is the fastest way to reach me.</p>
+    </div>
+
+    <div>
+      <span class="ct-label">Email</span>
+      <a class="ct-email" id="ctEmail" href="mailto:irhahdesigns@gmail.com" aria-label="Email irhahdesigns@gmail.com">
+        <span>irhahdesigns@gmail.com</span>
+        <span class="ct-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <div class="ct-hint" id="ctHint" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+        <span id="ctHintText">Click to copy &amp; email</span>
+      </div>
+
+      <div class="ct-links">
+        <span class="ct-label">Elsewhere</span>
+        <a class="ct-row" href="https://www.linkedin.com/in/irhah-arshad" target="_blank" rel="noopener"><span>LinkedIn</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="ct-row" href="https://www.behance.net/irhaharshad" target="_blank" rel="noopener"><span>Behance</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="ct-row" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener"><span>R&eacute;sum&eacute; (PDF)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="ct-row" href="index.html#work"><span>View my work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      </div>
     </div>
   </div>
 </main>
@@ -56,13 +110,37 @@
   <div class="wrap footer-row">
     <div>© 2026 Irhah Arshad Siddiqui. Madison, WI.</div>
     <div class="footer-links">
-      <a href="mailto:irhah.1998@gmail.com">Email</a>
+      <a href="mailto:irhahdesigns@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/irhah-arshad" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.behance.net/irhaharshad" target="_blank" rel="noopener">Behance</a>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=6"></script>
+<script>
+  (function () {
+    var link = document.getElementById("ctEmail"), hint = document.getElementById("ctHintText"), box = document.getElementById("ctHint");
+    if (!link) return;
+    var addr = "irhahdesigns@gmail.com", timer;
+    function note(msg) {
+      hint.textContent = msg; box.classList.add("done");
+      clearTimeout(timer);
+      timer = setTimeout(function () { hint.textContent = "Click to copy & email"; box.classList.remove("done"); }, 3500);
+    }
+    function fallbackCopy() {
+      try {
+        var t = document.createElement("textarea"); t.value = addr; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0";
+        document.body.appendChild(t); t.select(); var ok = document.execCommand("copy"); document.body.removeChild(t); return ok;
+      } catch (e) { return false; }
+    }
+    link.addEventListener("click", function () {
+      // the mailto link still opens the mail app; copying is a bonus in case it doesn't
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(function () { note("Copied to clipboard"); }, function () { note(fallbackCopy() ? "Copied to clipboard" : addr); });
+      } else { note(fallbackCopy() ? "Copied to clipboard" : addr); }
+    });
+  })();
+</script>
 </body>
 </html>

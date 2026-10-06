@@ -62,36 +62,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #121117;
-    --bg-soft: #1a1920;
-    --ink: #f3f2f7;
-    --ink-soft: #b7b5c4;
-    --ink-faint: #7d7b8a;
-    --border: rgba(255, 255, 255, 0.11);
-    --card-bg: #1c1b23;
-    --nav-bg: rgba(18, 17, 23, 0.58);
-    --nav-border: rgba(255, 255, 255, 0.09);
-    --accent-tint: var(--bg-soft);
-    --accent-tint-strong: var(--border);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #121117;
-  --bg-soft: #1a1920;
-  --ink: #f3f2f7;
-  --ink-soft: #b7b5c4;
-  --ink-faint: #7d7b8a;
-  --border: rgba(255, 255, 255, 0.11);
-  --card-bg: #1c1b23;
-  --nav-bg: rgba(18, 17, 23, 0.58);
-  --nav-border: rgba(255, 255, 255, 0.09);
-  --accent-tint: var(--bg-soft);
-  --accent-tint-strong: var(--border);
-  color-scheme: dark;
-}
 
 /* ---------- Reset / base ---------- */
 * { box-sizing: border-box; }
@@ -179,21 +149,8 @@ strong { color: var(--ink); font-weight: 700; }
 .site-nav .logo img { height: 54px; width: auto; }
 .site-nav .logo .logo-light { display: block; }
 .site-nav .logo .logo-dark { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .site-nav .logo .logo-light { display: none; }
-  :root:not([data-theme="light"]) .site-nav .logo .logo-dark { display: block; }
-}
-:root[data-theme="dark"] .site-nav .logo .logo-light { display: none; }
-:root[data-theme="dark"] .site-nav .logo .logo-dark { display: block; }
 
 .coe-logo-light { display: block; }
-.coe-logo-dark { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .coe-logo-light { display: none; }
-  :root:not([data-theme="light"]) .coe-logo-dark { display: block; }
-}
-:root[data-theme="dark"] .coe-logo-light { display: none; }
-:root[data-theme="dark"] .coe-logo-dark { display: block; }
 
 .nav-links { display: flex; gap: 30px; font-size: 14.5px; font-weight: 600; }
 .nav-links a { opacity: 0.78; transition: opacity 0.2s ease, transform 0.2s ease; display: inline-block; }
@@ -210,28 +167,6 @@ strong { color: var(--ink); font-weight: 700; }
 .icon-btn svg { width: 18px; height: 18px; }
 .hamburger { display: none; }
 
-/* ---------- Floating theme toggle ---------- */
-.theme-fab {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 95;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  color: var(--ink);
-  cursor: pointer;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.25s cubic-bezier(.2,.8,.3,1.2), box-shadow 0.25s ease, background 0.2s ease;
-}
-.theme-fab:hover { transform: translateY(-3px) scale(1.05); }
-.theme-fab svg { width: 20px; height: 20px; }
-@media (max-width: 720px) { .theme-fab { right: 16px; bottom: 16px; width: 44px; height: 44px; } }
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -307,8 +242,6 @@ strong { color: var(--ink); font-weight: 700; }
   mask-image: radial-gradient(circle at 50% 50%, black 0%, black 32%, transparent 68%);
   mix-blend-mode: normal;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero-orb-wrap { mix-blend-mode: screen; } }
-:root[data-theme="dark"] .hero-orb-wrap { mix-blend-mode: screen; }
 .hero-orb-clip { position: relative; width: 100%; height: 100%; overflow: hidden; clip-path: circle(50% at 50% 50%); }
 #heroGlow { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 /* film-grain layer -- sits outside the blurred canvas so the texture
@@ -577,23 +510,8 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   .thumb-hover-video .hover-video { transition: none; }
 }
 
-/* Fixed corner badge: a small static "view" affordance pinned to the
-   thumbnail's corner, independent of the trailing glass cursor below.
-   Fades in with the card hover, doesn't chase the pointer. */
-.thumb-badge {
-  position: absolute; top: 14px; right: 14px; width: 42px; height: 42px; border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: scale(0.7);
-  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
-  pointer-events: none;
-  z-index: 2;
-}
-.thumb-badge svg { width: 16px; height: 16px; display: block; stroke: #1b1330; }
-.project-card:hover .thumb-badge { opacity: 1; transform: scale(1); }
-@media (pointer: coarse) { .thumb-badge { display: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .thumb-badge, .project-card .thumb img { transition: none; }
+  .project-card .thumb img { transition: none; }
 }
 
 /* ---------- Flipped: a normal i at rest; hover bounces the dot down into
@@ -1035,14 +953,6 @@ html.fsg-locked, html.fsg-locked body { overflow: hidden; }
   .trailer-layout { grid-template-columns: 1fr; gap: 24px; }
 }
 
-/* accent-tint is set per-page as a fixed light wash (inline on body), so it doesn't
-   adapt in dark mode; give tinted surfaces an explicit dark-mode-safe background instead
-   of pairing a theme-flipping text color with a background that never flips. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .type-specimen { background: color-mix(in srgb, var(--accent) 18%, var(--card-bg)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-}
-:root[data-theme="dark"] .type-specimen { background: color-mix(in srgb, var(--accent) 18%, var(--card-bg)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-
 /* ---------- Task flow cards + core-differentiator callout (reusable across case studies) ---------- */
 .task-flow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
 @media (max-width: 780px) { .task-flow-grid { grid-template-columns: 1fr; } }
@@ -1071,13 +981,6 @@ html.fsg-locked, html.fsg-locked body { overflow: hidden; }
 .key-takeaways-card ul { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .key-takeaways-card li { position: relative; padding-left: 22px; font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
 .key-takeaways-card li::before { content: "\2022"; position: absolute; left: 2px; top: 0; color: var(--accent); font-weight: 700; }
-/* accent-tint is a fixed light wash set per-page (inline on body), so it doesn't adapt
-   in dark mode; give the card an explicit dark-mode-safe background instead, matching
-   the same treatment used for .type-specimen above. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .key-takeaways-card { background: color-mix(in srgb, var(--accent) 18%, var(--card-bg)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-}
-:root[data-theme="dark"] .key-takeaways-card { background: color-mix(in srgb, var(--accent) 18%, var(--card-bg)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
 
 /* ---------- Caption under a small square brand tile (reusable across case studies) ---------- */
 .brand-tile-caption { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; text-align: center; }
@@ -1118,17 +1021,35 @@ html.fsg-locked, html.fsg-locked body { overflow: hidden; }
 .next-project a:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
 .next-project a:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
 
-/* ---------- Process steps: one numbered-card layout for every case study ---------- */
-.process-steps { display: grid; grid-template-columns: repeat(var(--steps, 4), minmax(0, 1fr)); gap: 14px; margin: 32px 0 8px; counter-reset: ps; padding: 0; list-style: none; }
-.process-steps li { counter-increment: ps; border: 1px solid var(--border); border-radius: var(--r-md); padding: 18px 18px 20px; background: var(--card-bg); }
-.process-steps li::before { content: "0" counter(ps); display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
-.process-steps h3 { font-family: var(--font); font-size: 15.5px; font-weight: 700; line-height: 1.3; margin: 0 0 6px; color: var(--ink); }
-.process-steps p { font-size: 13.5px; line-height: 1.55; margin: 0; max-width: none; }
-@media (max-width: 1000px) {
-  .process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .process-steps li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* ---------- Process steps: editorial ledger, one layout for every case study ----------
+   <ol class="process-steps"><li><h3>Title</h3><p>Description</p></li>…</ol>
+   Plain ordered list: number | title | description, divided by hairlines.
+   No boxes, no connectors, nothing that depends on color, hover or JS.
+   The number is the accent mixed toward --ink so it stays >= 4.4:1 against
+   the page in both themes, for every project accent. */
+.process-steps { display: block; margin: 32px 0 8px; counter-reset: ps; padding: 0; list-style: none; border-bottom: 1px solid var(--border); }
+.process-steps li {
+  counter-increment: ps; display: grid; grid-template-columns: 72px minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: 6px 28px; align-items: baseline; padding: 26px 0; margin: 0;
+  border: 0; border-top: 1px solid var(--border); border-radius: 0; background: none;
+  transition: padding-left 0.25s ease, background-color 0.25s ease;
 }
-@media (max-width: 560px) { .process-steps { grid-template-columns: 1fr; } }
+.process-steps li::before {
+  content: "0" counter(ps); margin: 0; font-family: var(--font-serif); font-size: 30px; font-weight: 700; line-height: 1;
+  letter-spacing: -0.01em; font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--accent) 70%, var(--ink));
+}
+.process-steps h3 { font-family: var(--font-serif); font-size: 21px; font-weight: 700; line-height: 1.3; margin: 0; color: var(--ink); }
+.process-steps p { font-size: 15px; line-height: 1.6; margin: 0; max-width: 62ch; }
+@media (hover: hover) {
+  .process-steps li:hover { padding-left: 14px; background-color: color-mix(in srgb, var(--accent) 7%, transparent); }
+}
+@media (max-width: 760px) {
+  .process-steps li { grid-template-columns: 44px minmax(0, 1fr); gap: 6px 16px; padding: 22px 0; }
+  .process-steps li::before { grid-row: 1 / span 2; font-size: 24px; }
+  .process-steps li:hover { padding-left: 0; background-color: transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .process-steps li { transition: none; } .process-steps li:hover { padding-left: 0; } }
 
 /* ---------- Footer ---------- */
 .site-footer { padding: 56px 0 80px; border-top: 1px solid var(--border); margin-top: var(--gap-xl); }
@@ -1348,8 +1269,7 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 
 /* ---------- Imagin8 V Park: Terry the ghost dog special mention ---------- */
 /* Terry's art is white/glow linework on a transparent background, so it needs
-   a dark backdrop to read at all in light mode; kept fixed-dark regardless of
-   theme so it looks the same and stays legible either way. */
+   a dark backdrop to read at all in light mode; kept fixed-dark so it stays legible. */
 .terry-callout {
   display: flex; align-items: center; gap: 24px; margin-top: 18px; padding: 22px 26px;
   border-radius: 16px; background: #0f2a44;
@@ -1386,10 +1306,6 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .glass-cursor { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
-}
-:root[data-theme="dark"] .glass-cursor { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.26); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
 @media (pointer: coarse) { .glass-cursor { display: none; } }
 
 /* Grown state: the same circle opens into a thin "ghost ring" with a
@@ -1413,9 +1329,8 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 }
 
 /* ---------- About page ---------- */
-.about-hero { padding: 168px 0 var(--gap-xl); }
-.about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: start; }
-@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+.about-hero { padding-block: 168px var(--gap-xl); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(40px, 6vw, 80px); align-items: start; }
 
 .about-copy h1 { font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px; }
 .about-copy p { font-size: 17px; max-width: 62ch; }
@@ -1429,15 +1344,28 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 .about-block .edu-entry + .edu-entry { margin-top: 14px; }
 .about-block .tag-row { display: flex; flex-wrap: wrap; gap: 10px; }
 
-.about-visual { display: flex; flex-direction: column; align-items: center; }
+.about-visual { display: flex; flex-direction: column; align-items: center; position: sticky; top: 156px; }
+/* One column: the photo card sits right after the intro and resume button
+   (instead of dropping to the very bottom), and the detail blocks follow. */
+@media (max-width: 860px) {
+  .about-hero { padding-top: 148px; }
+  .about-copy .btn { align-self: flex-start; }
+  .about-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .about-copy { display: contents; }
+  .about-visual { position: static; order: 1; margin-top: 48px; }
+  .about-block { order: 2; }
+  .about-block:first-of-type { margin-top: 56px; }
+}
+@media (max-width: 480px) { .about-hero { padding-top: 140px; padding-inline: 24px; } .about-block { margin-top: 40px; } }
 
 /* ---------- Photo / ID card (about page) ----------
    The graduation photo and the illustrated designer ID share one flip
-   card: idle swing, tilt-toward-cursor + sheen on hover (works on
+   card: idle swing, tilt-toward-cursor on hover (works on
    whichever face is showing), click/tap flips the photo over to
    reveal the ID on the back. Card colors are hardcoded (#4C0F4B etc.)
    so they never collide with the site's own --card-bg/--ink tokens. */
-.id-card-block { width: 100%; max-width: 250px; margin: 0 auto; }
+.id-card-block { width: 100%; max-width: 280px; margin: 0 auto; container-type: inline-size; }
+@media (max-width: 860px) { .id-card-block { max-width: 264px; } }
 .id-card-stage { width: 100%; perspective: 1400px; }
 .id-card-wrap {
   position: relative; width: 100%;
@@ -1467,8 +1395,6 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
   transform: rotateY(180deg);
   background: #F8E8FF; border: 1px solid #4C0F4B;
 }
-:root[data-theme="dark"] .id-card-face.back { border-color: #ecc9ff; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .id-card-face.back { border-color: #ecc9ff; } }
 
 .id-card-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 .flip-badge {
@@ -1500,6 +1426,7 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
   margin: 0; font-family: var(--font); font-weight: 400; font-size: clamp(9.5px, 0.95vw, 11px);
   line-height: 1.25; color: #4C0F4B; overflow-wrap: break-word;
 }
+@supports (font-size: 1cqw) { .id-card-fields .field-line { font-size: clamp(9px, 4.1cqw, 12px); } .id-card-label { font-size: clamp(11px, 5.4cqw, 15px); } }
 .id-card-fields .field-label { font-weight: 600; }
 .id-card-fields .caret {
   display: inline-block; width: 1px; background: #4C0F4B; margin-left: 1px;
@@ -1507,19 +1434,11 @@ html.lightbox-locked, html.lightbox-locked body { overflow: hidden; }
 }
 @keyframes id-card-caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
-.id-card-sheen {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s ease;
-  mix-blend-mode: overlay; border-radius: 15.636% / 10.697%;
-  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.55) 48%, rgba(255,255,255,.75) 50%, rgba(255,255,255,.55) 52%, transparent 60%);
-  background-size: 250% 250%; background-position: 0% 0%;
-}
-.id-card.hovering .id-card-sheen { opacity: 1; }
 
 .id-card-hint { margin-top: 14px; text-align: center; font-size: 11.5px; color: var(--ink-faint); }
 
 /* ---------- Playground: space background ----------
-   The Playground always shows a starfield, independent of the site's
-   own light/dark toggle -- it's just what a playground looks like.
+   The Playground always shows a starfield, it's just what a playground looks like.
    These tokens/gradient set the still backdrop; the twinkling stars +
    occasional shooting star are drawn on #spaceStars by
    initSpaceStars() in main.js. */
@@ -1537,7 +1456,6 @@ body.space-page {
   background: #06060b;
   background-attachment: fixed;
 }
-body.space-page .theme-fab { display: none; }
 body.space-page .site-nav .logo .logo-light { display: none; }
 body.space-page .site-nav .logo .logo-dark { display: block; }
 body.space-page .more-work .hiw-eyebrow { text-align: center; }
