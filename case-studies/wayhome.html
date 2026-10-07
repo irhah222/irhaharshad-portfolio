@@ -10,6 +10,58 @@
 <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16.png">
 <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
   <style>.cs-cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 4px}.cs-cta .btn{display:inline-flex;align-items:center;gap:8px}.cs-cta svg{width:15px;height:15px}</style>
+  <style>
+    .persona { padding: var(--gap-lg, 72px) 0; border-top: 1px solid var(--border); }
+    .persona .p-kicker { display: block; margin-bottom: 10px; }
+    .persona .p-title { font-size: var(--fs-display, 40px); font-weight: 800; margin: 0 0 36px; }
+    .p-card { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 0; background: var(--accent-tint); border-radius: 28px; overflow: hidden; }
+    .p-photo { margin: 0; position: relative; min-height: 100%; background: var(--accent-tint-strong); }
+    .p-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block; }
+    .p-info { padding: clamp(26px, 4vw, 40px); display: flex; flex-direction: column; gap: 18px; }
+    .p-name { margin: 0; font-size: clamp(26px, 3.2vw, 34px); line-height: 1.15; }
+    .p-role { margin: 4px 0 0; font-size: 15px; color: var(--ink-soft); }
+    .p-quote { margin: 0; padding: 18px 20px 18px 22px; background: #fff; border-left: 4px solid #F2C36B; border-radius: 6px 16px 16px 6px; font-size: clamp(16px, 1.7vw, 18.5px); line-height: 1.55; color: var(--ink); }
+    .p-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; margin: 0; }
+    .p-facts div { min-width: 0; }
+    .p-facts dt { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+    .p-facts dd { margin: 0; font-size: 15px; font-weight: 500; color: var(--ink); }
+    .p-traits { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .p-traits li { padding: 5px 13px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--accent-tint-strong); font-size: 13px; font-weight: 500; color: #2E2870; }
+    .p-summary { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+    .p-story { margin: 20px 0 0; border: 1px solid var(--border); border-radius: var(--r-md, 18px); background: var(--card-bg, #fff); }
+    .p-story summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 22px; cursor: pointer; list-style: none; font-size: 14.5px; font-weight: 600; color: var(--accent); }
+    .p-story summary::-webkit-details-marker { display: none; }
+    .p-story summary::after { content: "+"; font-size: 20px; line-height: 1; font-weight: 400; }
+    .p-story[open] summary::after { content: "2"; }
+    .p-story summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-md, 18px); }
+    .p-story-body { padding: 0 22px 20px; }
+    .p-story-body p { margin: 0; max-width: 66ch; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+    .p-story-body p + p { margin-top: 10px; }
+    .p-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+    .p-meters-title { margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .p-box { padding: 20px 20px; border: 1px solid var(--border); border-radius: var(--r-md, 18px); background: var(--card-bg, #fff); }
+    .p-box h4 { margin: 0 0 12px; display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--ink); }
+    .p-box h4 span { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 10px; background: var(--accent-tint); color: var(--accent); }
+    .p-box h4 svg { width: 17px; height: 17px; }
+    .p-box ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .p-box li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+    .p-box li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: #F2C36B; }
+    .p-meters { margin-top: 16px; padding: 22px 24px; border: 1px solid var(--border); border-radius: var(--r-md, 18px); background: var(--card-bg, #fff); }
+    .p-meter-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 32px; }
+    .p-meter .lab { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .p-meter .lab span { color: var(--ink-faint); font-weight: 500; }
+    .p-bar { height: 10px; border-radius: 999px; background: var(--accent-tint-strong); overflow: hidden; }
+    .p-bar i { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
+    .p-bar i.warm { background: #F2C36B; }
+    .p-note { margin: 18px 2px 0; font-size: 13.5px; color: var(--ink-faint); }
+    @media (max-width: 980px) { .p-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 760px) {
+      .p-card { grid-template-columns: 1fr; }
+      .p-photo { aspect-ratio: 4 / 3; min-height: 0; }
+      .p-meter-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) { .p-grid { grid-template-columns: 1fr; } .p-facts { grid-template-columns: 1fr 1fr; } }
+  </style>
 </head>
 <body style="--accent:#4741a6; --accent-tint:#f1effa; --accent-tint-strong:#e4ddf7;">
 
@@ -132,6 +184,56 @@
         <div class="quote">"They keep building luxury apartments, but most people I know don't want extra amenities for high rent."<span class="cite">Survey response</span></div>
       </div>
     </div>
+  </section>
+
+  <section class="persona reveal" id="persona" aria-labelledby="persona-title">
+    <span class="eyebrow p-kicker">Who We Designed For</span>
+    <h2 class="p-title" id="persona-title">Meet Annie</h2>
+
+    <div class="p-card">
+      <figure class="p-photo"><img src="../assets/wayhome/persona-annie.jpg" alt="Portrait of Annie Kugisaki, the WayHome persona: a smiling college student with long dark hair in a pink t-shirt" loading="lazy" decoding="async"></figure>
+      <div class="p-info">
+        <div>
+          <h3 class="p-name">Annie Kugisaki</h3>
+          <p class="p-role">Sophomore looking for off-campus housing</p>
+        </div>
+        <blockquote class="p-quote">&ldquo;I&rsquo;ve been so annoyed ever since I moved to Madison. It feels like I have to sign a lease before I even understand what I&rsquo;m signing!&rdquo;</blockquote>
+        <dl class="p-facts">
+          <div><dt>Age</dt><dd>19</dd></div>
+          <div><dt>Education</dt><dd>Business Consumer</dd></div>
+          <div><dt>Occupation</dt><dd>UW&ndash;Madison student</dd></div>
+          <div><dt>Location</dt><dd>Madison, Wisconsin</dd></div>
+        </dl>
+        <ul class="p-traits"><li>Sporty</li><li>Studious</li><li>Overwhelmed</li><li>Picky</li></ul>
+        <p class="p-summary">A first-time renter facing early leasing pressure, scattered information, and cost uncertainty.</p>
+      </div>
+    </div>
+
+    <details class="p-story">
+      <summary>Read Annie&rsquo;s story</summary>
+      <div class="p-story-body">
+        <p>Annie is a 19-year-old Business Consumer major looking for an apartment after her freshman year. She likes to study ahead so she has time for the things she enjoys later, like shopping and playing baseball. She prefers clear instructions and directions she can refer back to, so nothing is confusing.</p>
+        <p>She gets annoyed when she has to look for housing during the same time as her academic semester, and frustrated when she has to learn about off-campus housing all by herself. Although she is intelligent and hardworking, she feels thrown into a ditch with no way of climbing out. Annie believes UW&ndash;Madison needs to do a better job of providing off-campus housing resources for its students.</p>
+      </div>
+    </details>
+
+    <div class="p-grid">
+        <div class="p-box"><h4><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span>Goals &amp; motivations</h4><ul><li>Affordable, near campus</li><li>Decide without feeling rushed</li><li>Avoid a lease she will regret</li><li>Balance housing with classes</li></ul></div>
+        <div class="p-box"><h4><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v4M12 17.2v.1"/></svg></span>Fears &amp; frustrations</h4><ul><li>Pressure to commit too early</li><li>Not understanding lease terms</li><li>An overpriced or run-down place</li><li>Navigating it with no guidance</li></ul></div>
+        <div class="p-box"><h4><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></svg></span>Behaviors</h4><ul><li>Budgets carefully</li><li>Researches what apartments include</li><li>Avoids landlords unless necessary</li><li>Plans her days with an agenda</li></ul></div>
+        <div class="p-box"><h4><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z"/></svg></span>Needs</h4><ul><li>Save money each month</li><li>Find a place by semester&rsquo;s end</li><li>Learn more about apartments</li><li>Time for studies and classes</li></ul></div>
+    </div>
+
+    <div class="p-meters">
+      <h3 class="p-meters-title">Her tendencies</h3>
+      <div class="p-meter-row">
+        <div class="p-meter"><div class="lab">Tech confidence</div><div class="p-bar" role="img" aria-label="Tech confidence: moderate"><i style="width:58%"></i></div></div>
+        <div class="p-meter"><div class="lab">Social comfort</div><div class="p-bar" role="img" aria-label="Social comfort: moderate"><i style="width:50%"></i></div></div>
+        <div class="p-meter"><div class="lab">Frustration level</div><div class="p-bar" role="img" aria-label="Frustration level: very high"><i class="warm" style="width:93%"></i></div></div>
+      </div>
+    </div>
+
+    <p class="p-note">Annie is a composite persona based on the survey and interview findings above.</p>
   </section>
 
   <section class="turning-point reveal">
