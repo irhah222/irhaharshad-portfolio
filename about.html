@@ -16,6 +16,13 @@
     .ab-sub { margin: 26px 0 0; max-width: 56ch; font-size: 16.5px; line-height: 1.7; color: var(--ink-soft); }
     .ab-intro .btn { margin-top: 28px; }
 
+    .ab-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px clamp(36px, 6vw, 80px); align-items: center; }
+    .ab-intro .ab-statement { font-size: clamp(22px, 2.7vw, 34px); }
+    .ab-photo { margin: 0; width: clamp(220px, 24vw, 280px); }
+    .ab-photo .id-card-block { margin: 0; }
+    .ab-photo figcaption { margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--ink); text-align: center; }
+    @media (max-width: 860px) { .ab-intro { grid-template-columns: 1fr; } .ab-photo { width: min(60vw, 240px); margin: 8px auto 0; } }
+
     /* scattered picture cards */
     .ab-scatter { display: flex; flex-direction: column; max-width: 820px; margin: clamp(48px, 7vw, 90px) auto 0; padding-bottom: 20px; }
     .pc { margin: 0; width: clamp(210px, 26vw, 300px); transition: transform .45s cubic-bezier(.2,.8,.3,1), opacity .6s ease; }
@@ -99,38 +106,40 @@
 <main class="wrap ab-main">
 
   <section class="ab-intro reveal">
-    <span class="ab-eyebrow">About me</span>
-    <p class="ab-statement">Hi! I&rsquo;m Irhah, a UX designer, experience designer, and storyteller building meaningful experiences across digital, physical, and virtual spaces. When I&rsquo;m not designing, you&rsquo;ll catch me playing games, watching anime and Studio Ghibli, sipping tea, or hanging out with cats.</p>
-    <p class="ab-sub">I recently completed my Master&rsquo;s in Design &amp; Innovation at UW&ndash;Madison, bridging my background in communication design with UX, product design, and emerging technologies. My goal is to create products and experiences that foster connection, curiosity, and positive change.</p>
-    <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">View Resume</a>
-  </section>
-
-  <section class="ab-scatter" aria-label="A few things about me">
-    <figure class="pc pc-id" data-side="l">
-      <div class="id-card-block">
-        <div class="id-card-stage">
-          <div class="id-card-wrap">
-            <div class="id-card" data-id-card>
-              <div class="id-card-flip" data-flip>
-                <div class="id-card-face front">
-                  <img class="id-card-photo" src="assets/about/irhah-graduation.jpg" alt="Irhah Arshad Siddiqui at her graduation, holding her cap, on the UW&ndash;Madison campus">
-                  <span class="flip-badge" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v6h6"/><path d="M21 21v-6h-6"/><path d="M4.5 9A8 8 0 0 1 20 8M19.5 15A8 8 0 0 1 4 16"/></svg>
-                  </span>
-                </div>
-                <div class="id-card-face back">
-                  <svg class="id-card-art" viewBox="0 0 275 402" fill="none" xmlns="http://www.w3.org/2000/svg" data-card-svg></svg>
-                  <span class="id-card-label">Designer ID</span>
-                  <div class="id-card-fields" data-fields></div>
-                </div>
+    <div class="ab-intro-text">
+      <span class="ab-eyebrow">About me</span>
+      <p class="ab-statement">Hi! I&rsquo;m Irhah, a UX designer, experience designer, and storyteller building meaningful experiences across digital, physical, and virtual spaces. When I&rsquo;m not designing, you&rsquo;ll catch me playing games, watching anime and Studio Ghibli, sipping tea, hanging out with cats, or getting lost in nature.</p>
+      <p class="ab-sub">I recently completed my Master&rsquo;s in Design &amp; Innovation at UW&ndash;Madison, bridging my background in communication design with UX, product design, and emerging technologies. My goal is to create products and experiences that foster connection, curiosity, and positive change.</p>
+      <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+    </div>
+    <figure class="ab-photo">
+    <div class="id-card-block">
+      <div class="id-card-stage">
+        <div class="id-card-wrap">
+          <div class="id-card" data-id-card>
+            <div class="id-card-flip" data-flip>
+              <div class="id-card-face front">
+                <img class="id-card-photo" src="assets/about/irhah-graduation.jpg" alt="Irhah Arshad Siddiqui at her graduation, holding her cap, on the UW&ndash;Madison campus">
+                <span class="flip-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v6h6"/><path d="M21 21v-6h-6"/><path d="M4.5 9A8 8 0 0 1 20 8M19.5 15A8 8 0 0 1 4 16"/></svg>
+                </span>
+              </div>
+              <div class="id-card-face back">
+                <svg class="id-card-art" viewBox="0 0 275 402" fill="none" xmlns="http://www.w3.org/2000/svg" data-card-svg></svg>
+                <span class="id-card-label">Designer ID</span>
+                <div class="id-card-fields" data-fields></div>
               </div>
             </div>
           </div>
         </div>
-        <p class="id-card-hint">Tap the photo to flip it</p>
       </div>
+      <p class="id-card-hint">Tap the photo to flip it</p>
+    </div>
       <figcaption>Designer</figcaption>
     </figure>
+  </section>
+
+  <section class="ab-scatter" aria-label="A few things about me">
     <figure class="pc" data-side="r" style="--tint:#e1eefb; --rot:2.2deg">
       <div class="pc-media">
         <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4.2l-.6 3.6a2.4 2.4 0 0 1-4.2 1.1L14.8 15H9.2l-1.4 1.9a2.4 2.4 0 0 1-4.2-1.1L3 12.2A4 4 0 0 1 7 8z"/><path d="M8 10.5v3M6.5 12h3"/><circle cx="15.5" cy="11" r=".6"/><circle cx="17.5" cy="13" r=".6"/></svg>
@@ -172,6 +181,13 @@
         <!-- PHOTO SLOT: <img src="assets/about/interests/tea.jpg" alt="..."> -->
       </div>
       <figcaption>Tea drinker</figcaption>
+    </figure>
+    <figure class="pc" data-side="r" style="--tint:#e4f1dc; --rot:2.2deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-7"/><path d="M12 14c-4 0-6.5-2.6-6.5-6.5C9.5 7.5 12 10 12 14z"/><path d="M12 12c0-3.4 2.2-5.8 6-6 .2 3.8-2.2 6-6 6z"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/nature.jpg" alt="..."> -->
+      </div>
+      <figcaption>Nature lover</figcaption>
     </figure>
   </section>
 
