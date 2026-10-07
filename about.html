@@ -17,7 +17,8 @@
     .ab-intro .btn { margin-top: 28px; }
 
     .ab-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px clamp(36px, 6vw, 80px); align-items: center; }
-    .ab-intro .ab-statement { font-size: clamp(22px, 2.7vw, 34px); }
+    .ab-intro .ab-statement, .ab-intro .ab-sub { font-family: var(--font); font-weight: 400; font-size: 17px; line-height: 1.75; letter-spacing: 0; color: var(--ink-soft); max-width: 58ch; margin: 0; }
+    .ab-intro .ab-sub { margin-top: 16px; }
     .ab-photo { margin: 0; width: clamp(220px, 24vw, 280px); }
     .ab-photo .id-card-block { margin: 0; }
     .ab-photo figcaption { margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--ink); text-align: center; }
@@ -139,58 +140,6 @@
     </figure>
   </section>
 
-  <section class="ab-scatter" aria-label="A few things about me">
-    <figure class="pc" data-side="r" style="--tint:#e1eefb; --rot:2.2deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4.2l-.6 3.6a2.4 2.4 0 0 1-4.2 1.1L14.8 15H9.2l-1.4 1.9a2.4 2.4 0 0 1-4.2-1.1L3 12.2A4 4 0 0 1 7 8z"/><path d="M8 10.5v3M6.5 12h3"/><circle cx="15.5" cy="11" r=".6"/><circle cx="17.5" cy="13" r=".6"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/gamer.jpg" alt="..."> -->
-      </div>
-      <figcaption>Gamer</figcaption>
-    </figure>
-    <figure class="pc" data-side="l" style="--tint:#efe8fb; --rot:-2.4deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/anime.jpg" alt="..."> -->
-      </div>
-      <figcaption>Anime fan</figcaption>
-    </figure>
-    <figure class="pc" data-side="r" style="--tint:#e3f3ea; --rot:2deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9.5a4.2 4.2 0 0 1 .5 8.5H7z"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/ghibli.jpg" alt="..."> -->
-      </div>
-      <figcaption>Studio Ghibli</figcaption>
-    </figure>
-    <figure class="pc" data-side="l" style="--tint:#fde6ec; --rot:-2.2deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9V8a2 2 0 1 0-2-2"/><path d="M12 9l9 6.2a1 1 0 0 1-.6 1.8H3.6a1 1 0 0 1-.6-1.8L12 9z"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/dress.jpg" alt="..."> -->
-      </div>
-      <figcaption>Dress-up games</figcaption>
-    </figure>
-    <figure class="pc" data-side="r" style="--tint:#fdeee0; --rot:2.4deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10V4.5L9 7.2c1.9-.5 4.1-.5 6 0L19 4.5V10a7 7 0 0 1-14 0z"/><circle cx="9.5" cy="11" r=".7"/><circle cx="14.5" cy="11" r=".7"/><path d="M11 14h2"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/cat.jpg" alt="..."> -->
-      </div>
-      <figcaption>Cat person</figcaption>
-    </figure>
-    <figure class="pc" data-side="l" style="--tint:#fbf3d4; --rot:-2deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h11v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V9z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H15.5"/><path d="M8.5 3.5c-.8 1 .8 1.6 0 2.8M12 3.5c-.8 1 .8 1.6 0 2.8"/><path d="M4 20.5h13"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/tea.jpg" alt="..."> -->
-      </div>
-      <figcaption>Tea drinker</figcaption>
-    </figure>
-    <figure class="pc" data-side="r" style="--tint:#e4f1dc; --rot:2.2deg">
-      <div class="pc-media">
-        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-7"/><path d="M12 14c-4 0-6.5-2.6-6.5-6.5C9.5 7.5 12 10 12 14z"/><path d="M12 12c0-3.4 2.2-5.8 6-6 .2 3.8-2.2 6-6 6z"/></svg>
-        <!-- PHOTO SLOT: <img src="assets/about/interests/nature.jpg" alt="..."> -->
-      </div>
-      <figcaption>Nature lover</figcaption>
-    </figure>
-  </section>
-
   <section class="ab-section">
     <h2>Experience</h2>
     <div class="ab-row"><div><h3>Independent</h3><span class="role">Freelance Designer</span></div><span class="when">May 2024 &ndash; Jan 2025</span><p>Designed end-to-end brand identities for businesses including MagicBox and Mr. Whiskerworth&rsquo;s, from visual systems and packaging to storytelling-driven brand assets.</p></div>
@@ -228,18 +177,5 @@
 </footer>
 
 <script src="js/main.js?v=6"></script>
-<script>
-  (function () {
-    var cards = document.querySelectorAll(".pc");
-    if (!("IntersectionObserver" in window)) return;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } });
-    }, { threshold: 0.15 });
-    cards.forEach(function (c) {
-      var r = c.getBoundingClientRect();
-      if (r.top > window.innerHeight * 0.9) { c.classList.add("pre"); io.observe(c); }
-    });
-  })();
-</script>
 </body>
 </html>
