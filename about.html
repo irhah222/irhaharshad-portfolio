@@ -6,7 +6,61 @@
 <title>About &middot; Irhah Arshad Siddiqui</title>
 <link rel="stylesheet" href="css/style.css?v=6">
 <link rel="icon" href="data:,">
-  <style>@media (max-width: 1024px) { .about-hero { padding-top: 172px; } } @media (max-width: 480px) { .about-hero { padding-inline: 32px; } }</style>
+    <style>
+    .ab-main { padding-top: clamp(150px, 22vh, 200px); padding-bottom: 110px; }
+    .ab-eyebrow { display: block; margin-bottom: 20px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+    .ab-statement { font-family: var(--font-serif); font-weight: 400; font-size: clamp(24px, 3.3vw, 40px); line-height: 1.28; letter-spacing: -0.005em; color: var(--ink); max-width: 28em; margin: 0; text-wrap: pretty; }
+    .ab-sub { margin: 26px 0 0; max-width: 56ch; font-size: 16.5px; line-height: 1.7; color: var(--ink-soft); }
+    .ab-intro .btn { margin-top: 28px; }
+
+    /* scattered picture cards */
+    .ab-scatter { display: flex; flex-direction: column; max-width: 820px; margin: clamp(48px, 7vw, 90px) auto 0; padding-bottom: 20px; }
+    .pc { margin: 0; width: clamp(210px, 26vw, 300px); transition: transform .45s cubic-bezier(.2,.8,.3,1), opacity .6s ease; }
+    .pc + .pc { margin-top: clamp(-210px, -15vw, -120px); }
+    .pc[data-side="l"] { align-self: flex-start; margin-left: clamp(0px, 3vw, 40px); }
+    .pc[data-side="r"] { align-self: flex-end; margin-right: clamp(0px, 3vw, 40px); }
+    .pc:not(.pc-id) { transform: rotate(var(--rot, 0deg)); }
+    .pc:not(.pc-id):hover { transform: rotate(0deg) translateY(-6px); }
+    .pc.pre { opacity: 0; }
+    .pc[data-side="l"].pre { transform: translateX(-56px) rotate(var(--rot, 0deg)); }
+    .pc[data-side="r"].pre { transform: translateX(56px) rotate(var(--rot, 0deg)); }
+    .pc-media { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; background: var(--tint); overflow: hidden; display: grid; place-items: center; box-shadow: 0 14px 30px rgba(22,21,29,0.10); }
+    .pc-icon { width: 34%; height: auto; color: rgba(52,50,62,0.55); }
+    .pc-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pc figcaption { margin-top: 12px; font-size: 15px; font-weight: 600; color: var(--ink); text-align: center; }
+    .pc-id { width: clamp(220px, 26vw, 280px); }
+    .pc-id .id-card-block { margin: 0; }
+    .pc-id figcaption { margin-top: 10px; }
+
+    /* experience */
+    .ab-section { margin-top: clamp(56px, 7vw, 96px); }
+    .ab-section > h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); margin: 0 0 8px; }
+    .ab-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.55fr) minmax(0, 1.35fr); gap: 12px 40px; padding: 26px 0; border-top: 1px solid var(--border); align-items: baseline; }
+    .ab-row:last-of-type { border-bottom: 1px solid var(--border); }
+    .ab-row h3 { font-size: 18px; margin: 0; }
+    .ab-row .role { display: block; margin-top: 4px; font-size: 15px; color: var(--ink-soft); font-weight: 400; font-family: var(--font); }
+    .ab-row .when { font-size: 14px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+    .ab-row p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+    .ab-also { margin: 22px 0 0; font-size: 14.5px; color: var(--ink-soft); }
+    .ab-also strong { color: var(--ink); }
+    .ab-edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 40px; margin-top: 8px; }
+    .ab-edu p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+    .ab-edu .deg { color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+    .ab-tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; margin-top: 8px; }
+    .ab-tools h3 { font-size: 15px; margin: 0 0 14px; color: var(--ink-faint); font-family: var(--font); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .ab-tools .tag-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 860px) {
+      .ab-row { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
+      .ab-edu, .ab-tools { grid-template-columns: 1fr; }
+      .pc { width: min(44vw, 230px); }
+      .pc + .pc { margin-top: -90px; }
+      .pc-id { width: min(60vw, 240px); }
+      .pc-id + .pc { margin-top: 12px; }
+      .pc[data-side="l"] { margin-left: 0; } .pc[data-side="r"] { margin-right: 0; }
+    }
+    @media (max-width: 480px) { .ab-main { padding-inline: 24px; } .pc[data-side="r"] { margin-right: 4px; } }
+    @media (prefers-reduced-motion: reduce) { .pc { transition: none; } .pc.pre { opacity: 1; transform: rotate(var(--rot, 0deg)); } }
+  </style>
 </head>
 <body>
 
@@ -39,64 +93,17 @@
 </nav>
 
 
-<main class="wrap about-hero">
-  <div class="about-grid reveal">
-    <div class="about-copy">
-      <h1>Hi! I&rsquo;m Irhah.</h1>
-      <p>I&rsquo;m a UX Designer, Experience Designer, and storyteller focused on building meaningful experiences across digital, physical, and virtual spaces. My work combines design research, visual storytelling, and interaction design to create experiences that are both engaging and accessible.</p>
-      <p>I recently completed my Master&rsquo;s in Design &amp; Innovation at UW&ndash;Madison, bridging my background in communication design with UX, product design, and emerging technologies. My goal is to create products and experiences that foster connection, curiosity, and positive change.</p>
-      <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+<main class="wrap ab-main">
 
-      <div class="about-block">
-        <h3>Education</h3>
-        <div class="edu-entry">
-          <p class="edu-degree">Master&rsquo;s in Design &amp; Innovation</p>
-          <p>University of Wisconsin&ndash;Madison &middot; 2025 &ndash; Aug 2026</p>
-        </div>
-        <div class="edu-entry">
-          <p class="edu-degree">Bachelor&rsquo;s in Communication Design</p>
-          <p>Indus Valley School of Art &amp; Architecture, Karachi &middot; 2017 &ndash; 2020</p>
-        </div>
-      </div>
+  <section class="ab-intro reveal">
+    <span class="ab-eyebrow">About me</span>
+    <p class="ab-statement">Hi! I&rsquo;m Irhah, a UX designer, experience designer, and storyteller building meaningful experiences across digital, physical, and virtual spaces. When I&rsquo;m not designing, you&rsquo;ll catch me playing games, watching anime and Studio Ghibli, sipping tea, or hanging out with cats.</p>
+    <p class="ab-sub">I recently completed my Master&rsquo;s in Design &amp; Innovation at UW&ndash;Madison, bridging my background in communication design with UX, product design, and emerging technologies. My goal is to create products and experiences that foster connection, curiosity, and positive change.</p>
+    <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+  </section>
 
-      <div class="about-block">
-        <h3>Creative Fields</h3>
-        <div class="tag-row">
-          <span class="tag-outline">UX Design</span>
-          <span class="tag-outline">Illustration</span>
-          <span class="tag-outline">Brand Identity</span>
-          <span class="tag-outline">Game Design</span>
-          <span class="tag-outline">Experience Design</span>
-          <span class="tag-outline">Motion Comics</span>
-        </div>
-      </div>
-
-      <div class="about-block">
-        <h3>Softwares</h3>
-        <div class="tag-row">
-          <span class="tag-outline">Adobe Creative Suite</span>
-          <span class="tag-outline">Figma</span>
-          <span class="tag-outline">Procreate</span>
-          <span class="tag-outline">Blender</span>
-          <span class="tag-outline">Unity</span>
-          <span class="tag-outline">Onshape</span>
-        </div>
-      </div>
-
-      <div class="about-block">
-        <h3>Interests</h3>
-        <div class="tag-row">
-          <span class="tag-outline">Anime</span>
-          <span class="tag-outline">Gaming</span>
-          <span class="tag-outline">Studio Ghibli</span>
-          <span class="tag-outline">Dress-up Games</span>
-          <span class="tag-outline">Cats</span>
-          <span class="tag-outline">Tea</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="about-visual">
+  <section class="ab-scatter" aria-label="A few things about me">
+    <figure class="pc pc-id" data-side="l">
       <div class="id-card-block">
         <div class="id-card-stage">
           <div class="id-card-wrap">
@@ -119,8 +126,75 @@
         </div>
         <p class="id-card-hint">Tap the photo to flip it</p>
       </div>
+      <figcaption>Designer</figcaption>
+    </figure>
+    <figure class="pc" data-side="r" style="--tint:#e1eefb; --rot:2.2deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4.2l-.6 3.6a2.4 2.4 0 0 1-4.2 1.1L14.8 15H9.2l-1.4 1.9a2.4 2.4 0 0 1-4.2-1.1L3 12.2A4 4 0 0 1 7 8z"/><path d="M8 10.5v3M6.5 12h3"/><circle cx="15.5" cy="11" r=".6"/><circle cx="17.5" cy="13" r=".6"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/gamer.jpg" alt="..."> -->
+      </div>
+      <figcaption>Gamer</figcaption>
+    </figure>
+    <figure class="pc" data-side="l" style="--tint:#efe8fb; --rot:-2.4deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/anime.jpg" alt="..."> -->
+      </div>
+      <figcaption>Anime fan</figcaption>
+    </figure>
+    <figure class="pc" data-side="r" style="--tint:#e3f3ea; --rot:2deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9.5a4.2 4.2 0 0 1 .5 8.5H7z"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/ghibli.jpg" alt="..."> -->
+      </div>
+      <figcaption>Studio Ghibli</figcaption>
+    </figure>
+    <figure class="pc" data-side="l" style="--tint:#fde6ec; --rot:-2.2deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9V8a2 2 0 1 0-2-2"/><path d="M12 9l9 6.2a1 1 0 0 1-.6 1.8H3.6a1 1 0 0 1-.6-1.8L12 9z"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/dress.jpg" alt="..."> -->
+      </div>
+      <figcaption>Dress-up games</figcaption>
+    </figure>
+    <figure class="pc" data-side="r" style="--tint:#fdeee0; --rot:2.4deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10V4.5L9 7.2c1.9-.5 4.1-.5 6 0L19 4.5V10a7 7 0 0 1-14 0z"/><circle cx="9.5" cy="11" r=".7"/><circle cx="14.5" cy="11" r=".7"/><path d="M11 14h2"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/cat.jpg" alt="..."> -->
+      </div>
+      <figcaption>Cat person</figcaption>
+    </figure>
+    <figure class="pc" data-side="l" style="--tint:#fbf3d4; --rot:-2deg">
+      <div class="pc-media">
+        <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h11v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V9z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H15.5"/><path d="M8.5 3.5c-.8 1 .8 1.6 0 2.8M12 3.5c-.8 1 .8 1.6 0 2.8"/><path d="M4 20.5h13"/></svg>
+        <!-- PHOTO SLOT: <img src="assets/about/interests/tea.jpg" alt="..."> -->
+      </div>
+      <figcaption>Tea drinker</figcaption>
+    </figure>
+  </section>
+
+  <section class="ab-section">
+    <h2>Experience</h2>
+    <div class="ab-row"><div><h3>Independent</h3><span class="role">Freelance Designer</span></div><span class="when">May 2024 &ndash; Jan 2025</span><p>Designed end-to-end brand identities for businesses including MagicBox and Mr. Whiskerworth&rsquo;s, from visual systems and packaging to storytelling-driven brand assets.</p></div>
+    <div class="ab-row"><div><h3>AA Joyland Pvt. Ltd</h3><span class="role">Creative Lead</span></div><span class="when">May 2023 &ndash; May 2024</span><p>Led experience design and brand strategy across four entertainment brands, directing a team of 5 designers across digital, print, and environmental work.</p></div>
+    <div class="ab-row"><div><h3>Azcorp Entertainment Pvt. Ltd</h3><span class="role">Lead Designer &amp; Illustrator</span></div><span class="when">Apr 2021 &ndash; Jan 2023</span><p>Created illustrations and comic content for UNICEF and Malala Fund campaigns, reaching audiences across Pakistan through broadcast, digital, and print.</p></div>
+    <p class="ab-also"><strong>Earlier:</strong> Creative Intern, VCast Online (2020) &middot; Creative Intern, Ogilvy &amp; Mather (2019)</p>
+  </section>
+
+  <section class="ab-section">
+    <h2>Education</h2>
+    <div class="ab-edu">
+      <div><p class="deg">Master&rsquo;s in Design &amp; Innovation</p><p>University of Wisconsin&ndash;Madison &middot; 2025 &ndash; Aug 2026</p></div>
+      <div><p class="deg">Bachelor&rsquo;s in Communication Design</p><p>Indus Valley School of Art &amp; Architecture, Karachi &middot; 2017 &ndash; 2020</p></div>
     </div>
-  </div>
+  </section>
+
+  <section class="ab-section">
+    <div class="ab-tools">
+      <div><h3>Creative fields</h3><div class="tag-row"><span class="tag-outline">UX Design</span><span class="tag-outline">Illustration</span><span class="tag-outline">Brand Identity</span><span class="tag-outline">Game Design</span><span class="tag-outline">Experience Design</span><span class="tag-outline">Motion Comics</span></div></div>
+      <div><h3>Softwares</h3><div class="tag-row"><span class="tag-outline">Adobe Creative Suite</span><span class="tag-outline">Figma</span><span class="tag-outline">Procreate</span><span class="tag-outline">Blender</span><span class="tag-outline">Unity</span><span class="tag-outline">Onshape</span></div></div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -135,5 +209,18 @@
 </footer>
 
 <script src="js/main.js?v=6"></script>
+<script>
+  (function () {
+    var cards = document.querySelectorAll(".pc");
+    if (!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    cards.forEach(function (c) {
+      var r = c.getBoundingClientRect();
+      if (r.top > window.innerHeight * 0.9) { c.classList.add("pre"); io.observe(c); }
+    });
+  })();
+</script>
 </body>
 </html>

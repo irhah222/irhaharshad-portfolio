@@ -25,6 +25,29 @@
     .mw-soon-link { margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border-strong, var(--ink-faint)); padding-bottom: 2px; }
     .mw-soon-link:hover { border-bottom-color: var(--ink); }
     .more-work .hiw-eyebrow { display: block; text-align: center; }
+
+    /* Imposter Lamp: cycling photo window whose light responds to how near the pointer is */
+    .mw-soon { grid-column: 1 / -1; aspect-ratio: auto !important; padding: 44px 28px; }
+    .lamp-tile { --near: 0; isolation: isolate; border-color: rgba(22,21,29,0.1); }
+    .lamp-stage { position: absolute; inset: 0; filter: brightness(calc(0.93 + var(--near) * 0.09)); }
+    .lamp-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.7s ease; }
+    .lamp-slide.on { opacity: 1; }
+    .lamp-tile .mw-cat, .lamp-tile .mw-caption, .lamp-status { z-index: 2; }
+    .lamp-status { position: absolute; top: 14px; right: 14px; display: inline-flex; align-items: center; gap: 7px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #2c1f45;
+      background: rgba(255,255,255,0.78); padding: 5px 10px; border-radius: 999px; }
+    .lamp-status i { width: 7px; height: 7px; border-radius: 50%; background: #b9b6c4; transition: background 0.3s, box-shadow 0.3s; }
+    .lamp-tile.is-lit .lamp-status i { background: #ff4a57; box-shadow: 0 0 6px 1px rgba(255,74,87,0.55); }
+    .lamp-caption { display: grid; gap: 8px; padding-top: 48px; }
+    .lamp-caption .mw-title-text { margin-bottom: 3px; }
+    .lamp-sub { display: block; font-size: 12px; line-height: 1.4; color: rgba(255,255,255,0.82); max-width: 34ch; }
+    .lamp-dots { display: flex; gap: 2px; margin-left: -4px; }
+    .lamp-dots button { all: unset; box-sizing: border-box; width: 18px; height: 18px; display: grid; place-items: center; cursor: pointer; }
+    .lamp-dots button::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: transform 0.25s, background 0.25s; }
+    .lamp-dots button[aria-current="true"]::before { background: #fff; transform: scale(1.5); }
+    .lamp-dots button:focus-visible { outline: 2px solid #fff; outline-offset: 0; border-radius: 50%; }
+    @media (max-width: 560px) { .lamp-tile { aspect-ratio: 3 / 4 !important; } }
+    @media (prefers-reduced-motion: reduce) { .lamp-slide { transition: none; } .lamp-tile, .lamp-stage { transition: none; } }
   </style>
 </head>
 <body class="gradient-page">
@@ -75,6 +98,24 @@
         <video src="assets/more-work/cosmic-companion.mp4" poster="assets/more-work/cosmic-companion-poster.jpg" autoplay muted loop playsinline></video>
         <span class="mw-cat">3D</span>
         <div class="mw-caption"><span class="mw-title-text">Cosmic Companion</span></div>
+      </div>
+      <div class="mw-tile lamp-tile" id="lampTile" aria-label="Imposter Lamp photo slideshow">
+        <div class="lamp-stage">
+        <video class="lamp-slide on" src="assets/more-work/imposter-lamp/lamp-01.mp4" poster="assets/more-work/imposter-lamp/lamp-01-poster.jpg" muted playsinline preload="auto" aria-label="The lamp with its LED ring lit"></video>
+        <img class="lamp-slide" src="assets/more-work/imposter-lamp/lamp-02.jpg" alt="The finished lamp with its red 3D-printed shade and LED ring, sitting on the workshop table" loading="lazy" decoding="async">
+        <img class="lamp-slide" src="assets/more-work/imposter-lamp/lamp-05.jpg" alt="The base from another angle, next to the ultrasonic sensor" loading="lazy" decoding="async">
+        <img class="lamp-slide" src="assets/more-work/imposter-lamp/lamp-06.jpg" alt="Close-up of the red arm laser-etched with tiny crewmates" loading="lazy" decoding="async">
+        <img class="lamp-slide" src="assets/more-work/imposter-lamp/lamp-08.jpg" alt="The arm prototype with a red crewmate figure beside the stool" loading="lazy" decoding="async">
+        </div>
+        <span class="mw-cat">3D &middot; Interactive</span>
+        <span class="lamp-status" aria-hidden="true"><i></i><b id="lampStatus">Move closer</b></span>
+        <div class="mw-caption lamp-caption">
+          <div>
+            <span class="mw-title-text">Imposter Lamp</span>
+            <span class="lamp-sub">3D modelled and built by me. The light changes as something gets closer.</span>
+          </div>
+          <div class="lamp-dots" id="lampDots" role="group" aria-label="Choose a photo"></div>
+        </div>
       </div>
       <div class="mw-tile mw-soon">
         <div class="mw-soon-body">
@@ -127,5 +168,81 @@
 </footer>
 
 <script src="js/main.js?v=6"></script>
+
+<script>
+(function () {
+  var tile = document.getElementById('lampTile');
+  if (!tile) return;
+  var slides = Array.prototype.slice.call(tile.querySelectorAll('.lamp-slide'));
+  var dotsEl = document.getElementById('lampDots');
+  var status = document.getElementById('lampStatus');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch = window.matchMedia && matchMedia('(hover: none)').matches;
+  var idx = 0, timer = null, visible = false, dots = [];
+
+  slides.forEach(function (_, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', 'Photo ' + (i + 1) + ' of ' + slides.length);
+    b.addEventListener('click', function () { show(i); restart(); });
+    dotsEl.appendChild(b); dots.push(b);
+  });
+
+  function show(i) {
+    idx = (i + slides.length) % slides.length;
+    slides.forEach(function (el, k) {
+      var on = k === idx; el.classList.toggle('on', on);
+      if (el.tagName === 'VIDEO') { if (on) { try { el.currentTime = 0; if (!reduce && visible) el.play().catch(function(){}); } catch (e) {} } else { el.pause(); } }
+    });
+    dots.forEach(function (d, k) { d.setAttribute('aria-current', k === idx ? 'true' : 'false'); });
+  }
+  function dwell() { return slides[idx].tagName === 'VIDEO' ? 3200 : 1900; }
+  function restart() { clearTimeout(timer); if (!reduce && visible && !document.hidden) timer = setTimeout(next, dwell()); }
+  function next() { show(idx + 1); restart(); }
+  show(0);
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) { show(idx); restart(); } else { clearTimeout(timer); slides[idx].tagName === 'VIDEO' && slides[idx].pause(); } }, { threshold: 0.25 }).observe(tile);
+  } else { visible = true; restart(); }
+  document.addEventListener('visibilitychange', function () { document.hidden ? clearTimeout(timer) : restart(); });
+
+  /* Proximity light: the closer the pointer, the brighter the glow, like the lamp's distance sensor */
+  var near = 0, target = 0, gx = 50, gy = 50, raf = 0, pressed = false;
+  var RANGE = 280;
+  function onMove(e) {
+    var r = tile.getBoundingClientRect();
+    var cx = Math.max(r.left, Math.min(e.clientX, r.right));
+    var cy = Math.max(r.top, Math.min(e.clientY, r.bottom));
+    var d = Math.hypot(e.clientX - cx, e.clientY - cy);
+    target = d === 0 ? 1 : Math.max(0, 1 - d / RANGE);
+    target = Math.pow(target, 1.4);
+    gx = (cx - r.left) / r.width * 100; gy = (cy - r.top) / r.height * 100;
+    kick();
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+  function tick() {
+    raf = 0;
+    var t = pressed ? 1 : target;
+    near += (t - near) * 0.12;
+    if (Math.abs(t - near) < 0.003) near = t;
+    tile.style.setProperty('--near', near.toFixed(3));
+    var lit = near > 0.35;
+    tile.classList.toggle('is-lit', lit);
+    status.textContent = lit ? 'Light on' : (touch ? 'Touch me' : 'Move closer');
+    if (near !== t) kick();
+  }
+  if (touch) status.textContent = 'Touch me';
+  if (!reduce) {
+    window.addEventListener('pointermove', onMove, { passive: true });
+    document.addEventListener('pointerleave', function () { target = 0; kick(); });
+    tile.addEventListener('pointerdown', function () { pressed = true; gx = 50; gy = 40; kick(); });
+    window.addEventListener('pointerup', function () { pressed = false; target = 0; kick(); });
+    window.addEventListener('pointercancel', function () { pressed = false; target = 0; kick(); });
+  } else {
+    /* Reduced motion: no animation, but still a lit state on hover or focus */
+    tile.addEventListener('pointerenter', function () { near = 1; tile.style.setProperty('--near', 1); tile.classList.add('is-lit'); status.textContent = 'Light on'; });
+    tile.addEventListener('pointerleave', function () { near = 0; tile.style.setProperty('--near', 0); tile.classList.remove('is-lit'); status.textContent = 'Move closer'; });
+  }
+})();
+</script>
 </body>
 </html>

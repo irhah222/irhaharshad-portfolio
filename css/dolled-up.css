@@ -130,7 +130,7 @@
 
 .du-shots img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 50%; }
 .du-logo-single { margin: 30px 0 0; max-width: none; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); }
-.du-logo-single img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.du-logo-single img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
 
 @media (max-width: 480px) {
   .du-pad { gap: 10px; }
