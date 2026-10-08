@@ -496,8 +496,13 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   transition: transform 0.4s cubic-bezier(.2,.8,.3,1.2), box-shadow 0.4s ease;
 }
 .project-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(.2,.8,.2,1); }
-.project-card:hover .thumb { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.project-card:hover .thumb:not(.thumb-flip-hover):not(.thumb-hover-video) img { transform: scale(1.04); }
+/* Hover effects are limited to devices with a real hover pointer: on touch
+   screens (iOS especially) a hover that changes what is shown makes the first
+   tap only "hover" and the second tap follow the link. */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .thumb { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .project-card:hover .thumb:not(.thumb-flip-hover):not(.thumb-hover-video) img { transform: scale(1.04); }
+}
 
 /* How Do We Love?: the still cubot art fades into the looping motion
    clip on hover, sized so the character matches the still art's scale. */
@@ -505,7 +510,9 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   opacity: 0; transition: opacity 0.35s ease;
 }
-.project-card:hover .thumb-hover-video .hover-video { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .thumb-hover-video .hover-video { opacity: 1; }
+}
 @media (prefers-reduced-motion: reduce) {
   .thumb-hover-video .hover-video { transition: none; }
 }
@@ -537,8 +544,10 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   transform: translate(-50%, -50%);
   transition: top 0.62s cubic-bezier(.27, 2.1, .42, 1);
 }
-.project-card:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
-.project-card:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
+  .project-card:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
+}
 @media (prefers-reduced-motion: reduce) {
   .thumb-flip-hover .flip-bar, .thumb-flip-hover .flip-dot { transition: none; }
 }
@@ -858,7 +867,10 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   background: var(--bg-soft); cursor: pointer; text-align: left; font: inherit; color: inherit;
 }
 .fsg-thumb img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.35s ease; }
-.fsg-thumb:hover img, .fsg-thumb:focus-visible img { transform: scale(1.05); }
+.fsg-thumb:focus-visible img { transform: scale(1.05); }
+@media (hover: hover) and (pointer: fine) {
+  .fsg-thumb:hover img { transform: scale(1.05); }
+}
 .fsg-thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .fsg-cap {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 14px 12px;
@@ -866,13 +878,19 @@ body.gradient-page .site-nav { background: rgba(255, 255, 255, 0.6); }
   background: linear-gradient(to top, rgba(10,9,16,0.8), rgba(10,9,16,0));
   opacity: 0; transform: translateY(6px); transition: opacity 0.25s ease, transform 0.25s ease;
 }
-.fsg-thumb:hover .fsg-cap, .fsg-thumb:focus-visible .fsg-cap { opacity: 1; transform: translateY(0); }
+.fsg-thumb:focus-visible .fsg-cap { opacity: 1; transform: translateY(0); }
+@media (hover: hover) and (pointer: fine) {
+  .fsg-thumb:hover .fsg-cap { opacity: 1; transform: translateY(0); }
+}
 .fsg-expand {
   position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; border-radius: 50%;
   background: rgba(10,9,16,0.55); color: #fff; display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.25s ease;
 }
-.fsg-thumb:hover .fsg-expand, .fsg-thumb:focus-visible .fsg-expand { opacity: 1; }
+.fsg-thumb:focus-visible .fsg-expand { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .fsg-thumb:hover .fsg-expand { opacity: 1; }
+}
 .fsg-expand svg { width: 15px; height: 15px; }
 
 .fsg-overlay {
@@ -1004,7 +1022,9 @@ html.fsg-locked, html.fsg-locked body { overflow: hidden; }
 .next-project { margin: var(--gap-xl) 0 var(--gap-lg); }
 .next-project .label { font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
 .next-project a { display: block; border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; transition: transform 0.3s cubic-bezier(.2,.8,.3,1.2), box-shadow 0.3s ease; }
-.next-project a:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+@media (hover: hover) and (pointer: fine) {
+  .next-project a:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+}
 .next-project .thumb { aspect-ratio: 16/8; background: var(--bg-soft); overflow: hidden; }
 .next-project .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .next-project .info { padding: 22px; }
@@ -1018,8 +1038,10 @@ html.fsg-locked, html.fsg-locked body { overflow: hidden; }
 .next-project .thumb-flip-hover { position: relative; background: #593e99; }
 .next-project .thumb-flip-hover .flip-stage { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); aspect-ratio: 1 / 1; }
 .next-project .thumb-flip-hover .flip-letters { width: 100%; height: 100%; object-fit: cover; display: block; }
-.next-project a:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
-.next-project a:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
+@media (hover: hover) and (pointer: fine) {
+  .next-project a:hover .thumb-flip-hover .flip-bar { top: 51.907%; }
+  .next-project a:hover .thumb-flip-hover .flip-dot { top: 62.241%; }
+}
 
 /* ---------- Process steps: editorial ledger, one layout for every case study ----------
    <ol class="process-steps"><li><h3>Title</h3><p>Description</p></li>…</ol>
