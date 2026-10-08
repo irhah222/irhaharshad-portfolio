@@ -13,7 +13,7 @@
   <style>
     .persona { padding: var(--gap-lg, 72px) 0; border-top: 1px solid var(--border); }
     .persona .p-kicker { display: block; margin-bottom: 10px; }
-    .persona .p-title { font-size: var(--fs-display, 40px); font-weight: 800; margin: 0 0 36px; }
+    .persona .p-title { font-size: var(--fs-h2); font-weight: 400; margin: 0 0 28px; }
     .p-card { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 0; background: var(--accent-tint); border-radius: 28px; overflow: hidden; }
     .p-photo { margin: 0; position: relative; min-height: 100%; background: var(--accent-tint-strong); }
     .p-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block; }
@@ -62,6 +62,34 @@
     }
     @media (max-width: 520px) { .p-grid { grid-template-columns: 1fr; } .p-facts { grid-template-columns: 1fr 1fr; } }
   </style>
+  <style>
+    .decisions { padding: var(--gap-lg, 72px) 0; border-top: 1px solid var(--border); }
+    .decisions .d-kicker { display: block; margin-bottom: 10px; }
+    .decisions .d-title { font-size: var(--fs-h2); font-weight: 400; margin: 0 0 14px; }
+    .d-lead { margin: 0 0 32px; max-width: 60ch; font-size: 16.5px; line-height: 1.65; color: var(--ink-soft); }
+    .d-list { list-style: none; margin: 0; padding: 0 0 0 26px; position: relative; display: flex; flex-direction: column; gap: 18px; }
+    .d-list::before { content: ""; position: absolute; left: 6px; top: 10px; bottom: 10px; width: 2px; background: var(--accent-tint-strong); }
+    .d-list li { position: relative; padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--r-md, 18px); background: var(--card-bg, #fff); }
+    .d-list li::before { content: ""; position: absolute; left: -26px; top: 28px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 3px var(--accent); }
+    .d-list h3 { margin: 10px 0 6px; font-size: 18px; }
+    .d-list p { margin: 0; max-width: 64ch; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+    .d-list .d-result { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); color: var(--ink); }
+    .d-list .d-result strong { margin-right: 6px; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    .d-tag { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .d-pivot { background: var(--accent-tint-strong); color: #2E2870; }
+    .d-constraint { background: #fbeccb; color: #6b4a07; }
+    .d-feedback { background: #e3f1ea; color: #1f5a3c; }
+    @media (max-width: 760px) { .d-list { padding-left: 20px; } .d-list li::before { left: -20px; } .d-list::before { left: 0; } .d-list li { padding: 18px; } }
+  </style>
+  <style>
+    .tf-video { margin: 0 0 20px; padding: 0; display: flex; justify-content: center; }
+    .tf-video video { display: block; width: 100%; max-width: 190px; height: auto; background: #fff; }
+    @media (max-width: 780px) { .tf-video video { max-width: 230px; } }
+  </style>
+  <style>#outcome .key-takeaways-card { margin-top: 28px; }</style>
+  <style>.rf-lead { margin: -26px 0 30px; max-width: 62ch; font-size: 16px; line-height: 1.6; color: var(--ink-soft); } .rf-lead strong { color: var(--ink); } .key-takeaways-card li strong { color: var(--ink); }</style>
+  <style>.research-findings .rf-title { font-size: var(--fs-h2); font-weight: 400; margin-bottom: 28px; }</style>
+  <style>.proto-cta { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 24px; padding: 18px 22px; border: 1px solid var(--border); border-radius: var(--r-md, 14px); background: var(--accent-tint); } .proto-cta p { margin: 0; font-size: 16px; color: var(--ink); max-width: 52ch; }</style>
 </head>
 <body style="--accent:#4741a6; --accent-tint:#f1effa; --accent-tint-strong:#e4ddf7;">
 
@@ -96,8 +124,11 @@
 
 <div class="section-rail">
   <div class="dot active" data-target="overview"><span class="dot-label">Overview</span></div>
+  <div class="dot" data-target="problem"><span class="dot-label">Problem</span></div>
+  <div class="dot" data-target="design"><span class="dot-label">Solution</span></div>
   <div class="dot" data-target="research"><span class="dot-label">Research</span></div>
-  <div class="dot" data-target="gallery"><span class="dot-label">Gallery</span></div>
+  <div class="dot" data-target="persona"><span class="dot-label">Persona</span></div>
+  <div class="dot" data-target="pivots"><span class="dot-label">Decisions</span></div>
   <div class="dot" data-target="outcome"><span class="dot-label">Outcome</span></div>
 </div>
 
@@ -124,8 +155,8 @@
 
   <section id="problem" class="cs-section reveal">
     <h2>The Problem</h2>
-    <p>For UW&ndash;Madison students, a housing search doesn't happen on its own timeline. Leases open before the semester has even settled in, and only 27% of students found reliable housing information easy to access in the first place, leaving most students piecing together trust from strangers. The pressure isn't always predictable either: a roommate backs out, a lease falls through, and a search that had months to unfold suddenly has days, not weeks, left on the clock.</p>
-    <p style="margin-top:18px; font-size:14.5px; color:var(--ink-faint);">I surveyed and interviewed UW&ndash;Madison students directly to understand this problem more closely.</p>
+    <p>When I moved to Madison, I saw firsthand how stressful finding housing is for students. Leases open before the semester has even settled in, information is scattered across friends, group chats, and strangers, and the pressure isn&rsquo;t always predictable: a roommate backs out, a lease falls through, and a search that had months suddenly has days.</p>
+    <p style="margin-top:18px;">To see how widespread it was, I surveyed <strong>302 UW&ndash;Madison students</strong> and held <strong>3&nbsp;in&#8209;depth&nbsp;interviews</strong>.</p>
   </section>
 
   <section class="reveal">
@@ -137,8 +168,49 @@
     </div>
   </section>
 
+  <section id="design" class="cs-section reveal">
+    <h2>The Solution</h2>
+    <p style="max-width:62ch;">That question became WayHome, a mobile app built around three tasks that adapts to how much time a student has left. Here&rsquo;s what it does; the rest of this page is how I got there.</p>
+    <div class="task-flow-grid">
+      <div class="task-flow-card">
+        <div class="tf-video"><video src="../assets/wayhome/wayhome-urgency-checkin.mp4" poster="../assets/wayhome/wayhome-urgency-checkin-poster.jpg" muted loop playsinline preload="none" aria-label="Screen recording of the Urgency Check-in flow in the WayHome prototype" data-autoplay></video></div>
+        <span class="step-num">1</span>
+        <h3>Urgency Check-in</h3>
+        <p>A student selects their timeline, and the app activates Priority Match, Guided Search, or Just Browsing mode &mdash; from there, only verified, move-in-ready listings are shown.</p>
+      </div>
+      <div class="task-flow-card">
+        <div class="tf-video"><video src="../assets/wayhome/wayhome-browse-listings.mp4" poster="../assets/wayhome/wayhome-browse-listings-poster.jpg" muted loop playsinline preload="none" aria-label="Screen recording of browsing verified listings in Just Browsing mode" data-autoplay></video></div>
+        <span class="step-num">2</span>
+        <h3>Browse Verified Listings</h3>
+        <p>Every listing shows a true cost breakdown of rent, utilities, and deposit, a visible verification badge, and a direct way to contact the landlord or apply.</p>
+      </div>
+      <div class="task-flow-card">
+        <div class="tf-video"><video src="../assets/wayhome/wayhome-community.mp4" poster="../assets/wayhome/wayhome-community-poster.jpg" muted loop playsinline preload="none" aria-label="Screen recording of writing a new post in the WayHome community" data-autoplay></video></div>
+        <span class="step-num">3</span>
+        <h3>Peer Community Support</h3>
+        <p>Students can post for help, read advice from others who've been through it, and connect with peers navigating similar housing situations.</p>
+      </div>
+    </div>
+    <div class="proto-cta">
+      <p>Try it yourself: the Figma prototype is fully interactive across all three task flows.</p>
+      <a class="btn btn-primary" href="https://www.figma.com/proto/ZAwCmvMGgN39klncyHO3Mu/Wayhome?node-id=38-1685&p=f&t=3XaIU2OvqpK5Th4k-1&scaling=scale-down&content-scaling=fixed&page-id=38%3A1684&starting-point-node-id=38%3A1685&show-proto-sidebar=1" target="_blank" rel="noopener">View Prototype</a>
+    </div>
+    <div class="differentiator-callout">
+      <p><strong>Core differentiator:</strong> The app adapts to urgency level. Priority Match surfaces only 3 verified options when time is critical, eliminating choice paralysis when it matters most.</p>
+    </div>
+
+    <div class="mockup-showcase">
+      <div class="frame square">
+        <img src="../assets/wayhome/wayhome-splash-mockup.jpg" alt="WayHome splash screen shown on a phone mockup with a soft purple glow">
+      </div>
+      <div class="frame wide">
+        <img src="../assets/wayhome/wayhome-screens-collage.jpg" alt="Three WayHome screens layered together: the home dashboard with Priority Match, a listings overview, and a saved listing">
+      </div>
+    </div>
+  </section>
+
   <section class="cs-section reveal">
-    <span class="eyebrow" style="display:block; margin-bottom:14px;">Step by Step</span>
+    <span class="eyebrow" style="display:block; margin-bottom:14px;">How I Got Here</span>
     <h2>Process</h2>
     <ol class="process-steps" style="--steps:4">
       <li><h3>Research</h3><p>Student Surveys, Pain Point Mapping, User Interviews, Competitive Analysis</p></li>
@@ -236,15 +308,9 @@
     <p class="p-note">Annie is a composite persona based on the survey and interview findings above.</p>
   </section>
 
-  <section class="turning-point reveal">
-    <span class="eyebrow" style="display:block; margin-bottom:16px;">Key Pivot</span>
-    <blockquote>"After brainstorming three concepts, I chose the Emergency Housing Navigator concept &mdash; later refined into WayHome &mdash; because it was the most distinct, highest-urgency, and most underserved need I'd found. A student in crisis with only days to act had no existing solution built for them."</blockquote>
-    <cite>Design Process &middot; Concept Decision</cite>
-  </section>
-
   <section id="gallery" class="cs-section reveal">
     <h2>Storyboarding</h2>
-    <p>I had fun storyboarding after the brainstorming process. It helped me empathize with the user and imagine what it would really be like to be a distressed student with 7 days to find housing.</p>
+    <p>After research and brainstorming, I had fun storyboarding. It helped me empathize with the user and imagine what it would really be like to be a distressed student with 7 days to find housing. The storyboard follows Zara, whose roommate backs out, as the worst-case scenario the app has to handle.</p>
 
     <div style="margin-top:28px; border-radius:var(--r-md); overflow:hidden; border:1px solid var(--border);">
       <img src="../assets/wayhome/wayhome-storyboard.jpg" alt="Six-panel storyboard following Zara through a 7-day housing crisis, from her roommate backing out to finding safe temporary housing through WayHome" style="width:100%; display:block;">
@@ -253,7 +319,7 @@
 
   <section class="cs-section reveal">
     <h2>My Approach</h2>
-    <p>Based on these insights, I mapped six task flows and worked through low-fidelity wireframes, paper prototyping tested with 2 UW&ndash;Madison students, and multiple rounds of testing before landing on the high-fidelity design system. The goal was three adaptive urgency modes that could meet a student wherever they were in their timeline, without adding one more overwhelming app to the pile.</p>
+    <p>Based on these insights, I mapped six task flows, then moved from low-fidelity wireframes to paper prototypes to a high-fidelity design system. The goal was three adaptive urgency modes that could meet a student wherever they were in their timeline, without adding one more overwhelming app to the pile.</p>
 
     <span class="eyebrow" style="display:block; margin:22px 0 10px;">Six Task Flows</span>
     <div style="border-radius:var(--r-md); overflow:hidden; border:1px solid var(--border);">
@@ -284,7 +350,7 @@
 
   <section class="cs-section reveal">
     <h2>Building the Brand</h2>
-    <p>The visual identity needed to feel calm without feeling clinical: a purple base for trust and clarity, with amber as an accent for urgency and warmth, set in Poppins for a rounded, approachable typeface that still reads clearly under stress.</p>
+    <p>The visual identity needed to feel calm without feeling clinical: a purple base for trust and clarity, with amber as an accent for urgency and warmth, set in Poppins for a rounded, approachable typeface that still reads clearly under stress. I deliberately avoided red. It&rsquo;s UW&ndash;Madison&rsquo;s color, but red signals alarm, and a student already under pressure shouldn&rsquo;t feel like they&rsquo;re in an emergency.</p>
     <div class="brand-specimen-row">
       <div class="type-specimen">
         <div class="row-top"><span>Type Face</span><span class="val">Poppins</span></div>
@@ -314,93 +380,54 @@
     </div>
   </section>
 
-  <section class="cs-section reveal">
-    <span class="eyebrow" style="display:block; margin-bottom:14px;">The Final Design</span>
-    <h2>Three tasks, one focused experience</h2>
-    <div class="task-flow-grid">
-      <div class="task-flow-card">
-        <span class="step-num">1</span>
-        <h3>Urgency Check-in</h3>
-        <p>A student selects their timeline, and the app activates Priority Match, Guided Search, or Just Browsing mode &mdash; from there, only verified, move-in-ready listings are shown.</p>
-      </div>
-      <div class="task-flow-card">
-        <span class="step-num">2</span>
-        <h3>Browse Verified Listings</h3>
-        <p>Every listing shows a true cost breakdown of rent, utilities, and deposit, a visible verification badge, and a direct way to contact the landlord or apply.</p>
-      </div>
-      <div class="task-flow-card">
-        <span class="step-num">3</span>
-        <h3>Peer Community Support</h3>
-        <p>Students can post for help, read advice from others who've been through it, and connect with peers navigating similar housing situations.</p>
-      </div>
-    </div>
-    <div class="differentiator-callout">
-      <p><strong>Core differentiator:</strong> The app adapts to urgency level. Priority Match surfaces only 3 verified options when time is critical, eliminating choice paralysis when it matters most.</p>
-    </div>
-
-    <div class="mockup-showcase">
-      <div class="frame square">
-        <img src="../assets/wayhome/wayhome-splash-mockup.jpg" alt="WayHome splash screen shown on a phone mockup with a soft purple glow">
-      </div>
-      <div class="frame wide">
-        <img src="../assets/wayhome/wayhome-screens-collage.jpg" alt="Three WayHome screens layered together: the home dashboard with Priority Match, a listings overview, and a saved listing">
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-section reveal">
-    <div style="display:flex; gap:40px; flex-wrap:wrap; align-items:center;">
-      <div style="flex:1 1 380px; min-width:280px;">
-        <span class="eyebrow" style="display:block; margin-bottom:14px;">The Prototype</span>
-        <h2>See it in action</h2>
-        <p style="margin-top:16px;">At the end, I built a high-fidelity interactive prototype in Figma across three complete task flows:</p>
-        <ul class="prototype-list">
-          <li>Urgency check-in</li>
-          <li>Browsing and selecting a verified listing</li>
-          <li>Connecting with peer support</li>
-        </ul>
-        <p>The goal was to validate that a housing tool could adapt to a student&rsquo;s urgency level while still feeling intuitive, trustworthy, and human.</p>
-        <a class="btn btn-primary" href="https://www.figma.com/proto/ZAwCmvMGgN39klncyHO3Mu/Wayhome?node-id=38-1685&p=f&t=3XaIU2OvqpK5Th4k-1&scaling=scale-down&content-scaling=fixed&page-id=38%3A1684&starting-point-node-id=38%3A1685&show-proto-sidebar=1" target="_blank" rel="noopener" style="margin-top:24px;">View Prototype</a>
-      </div>
-      <div style="flex:0 1 220px; min-width:160px; border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--border);">
-        <img src="../assets/wayhome/wayhome-prototype-demo.gif" alt="Animated walkthrough of the WayHome prototype: posting to the community board and receiving an application confirmation" style="width:100%; display:block;">
-      </div>
-    </div>
+  <section id="pivots" class="decisions reveal">
+    <span class="eyebrow d-kicker">Decisions &amp; Constraints</span>
+    <h2 class="d-title">What shaped the design</h2>
+    <p class="d-lead">Designing for someone with days, not months, to decide meant cutting things down instead of adding to them. Looking back across the process, these are the moments that changed the direction.</p>
+    <ol class="d-list">
+      <li>
+        <span class="d-tag d-pivot">Pivot</span>
+        <h3>Choosing the concept</h3>
+        <p>After brainstorming three concepts, I chose the Emergency Housing Navigator, later refined into WayHome. It was the most distinct, highest-urgency, and most underserved need I&rsquo;d found.</p>
+        <p class="d-result"><strong>Result</strong> A student in crisis with only days to act had no existing solution built for them.</p>
+      </li>
+      <li>
+        <span class="d-tag d-feedback">Feedback</span>
+        <h3>Instructor feedback on the concept</h3>
+        <p>My instructor suggested narrowing from the broad &ldquo;how to find a house&rdquo; problem to students under real time pressure, and treating tools like a cost calculator as supports rather than the core.</p>
+        <p class="d-result"><strong>Result</strong> I framed the design around one question: what does someone with days to decide need right now? The cost calculator lives inside each listing instead of leading the app.</p>
+      </li>
+      <li>
+        <span class="d-tag d-constraint">Constraint</span>
+        <h3>Designing for a crisis</h3>
+        <p>People in an urgent search are stressed and short on time, so the app couldn&rsquo;t be one more overwhelming thing to manage.</p>
+        <p class="d-result"><strong>Result</strong> Three urgency modes. <em>Priority Match</em> shows only 3 verified listings when time is critical. <em>Guided Search</em> paces students who have a few months, with checklists and reminders, since interviews showed how much they second-guess themselves alone. A third mode, <em>Just Browsing</em>, came out of testing (next).</p>
+      </li>
+      <li>
+        <span class="d-tag d-pivot">Pivot</span>
+        <h3>Paper prototype testing</h3>
+        <p>I tested paper prototypes with 2 UW&ndash;Madison students before building anything in Figma.</p>
+        <p class="d-result"><strong>Result</strong> Even early-stage students wanted a low-pressure way to look around, which shaped Just Browsing mode, with no deadlines or urgency cues.</p>
+      </li>
+      <li>
+        <span class="d-tag d-feedback">Feedback</span>
+        <h3>Heuristic evaluation</h3>
+        <p>An evaluation of the designs pushed me to carry verification badges and priority labeling into every mode.</p>
+        <p class="d-result"><strong>Result</strong> Trust signals are never more than a glance away, a direct answer to the 45% who found reliable information hard to find.</p>
+      </li>
+    </ol>
   </section>
 
   <section id="outcome" class="cs-section reveal">
     <h2>Outcome</h2>
-    <p>The final design delivers three adaptive urgency modes, each one traced back to a specific piece of research rather than a guess at what students might want.</p>
-
-    <div class="trace-grid">
-      <div class="trace-card reveal">
-        <span class="eyebrow">Survey-informed</span>
-        <h3>Priority Match</h3>
-        <p>For the 91% of students who felt pressured by early timelines &mdash; and the students in genuine housing crises &mdash; it surfaces just 3 verified, move-in-ready listings based on their preferences, cutting the decision fatigue an open-ended search creates when time is tightest.</p>
-      </div>
-      <div class="trace-card reveal">
-        <span class="eyebrow">Interview-informed</span>
-        <h3>Guided Search</h3>
-        <p>Interviews surfaced how much students second-guess themselves without another set of eyes. It paces the process for students with a few months to plan, pairing listings with checklists and reminders so nothing slips.</p>
-      </div>
-      <div class="trace-card reveal">
-        <span class="eyebrow">Prototype-informed</span>
-        <h3>Just Browsing</h3>
-        <p>Paper-prototype testing showed even early-stage students wanted a low-pressure way to see what's out there. It surfaces listings without deadlines or urgency cues, so students can explore on their own time.</p>
-      </div>
-    </div>
-
-    <p class="trace-note">A heuristic evaluation pushed verification badges and priority labeling into every mode, so trust signals are never more than a glance away &mdash; a direct answer to the 45% of students who said reliable housing information was hard to find.</p>
-  </section>
-
-  <section class="cs-section reveal">
+    <p>A high-fidelity mobile prototype with three adaptive urgency modes, each one traced back to the research above rather than a guess at what students might want.</p>
     <div class="key-takeaways-card">
       <h2>Key Takeaways</h2>
       <ul>
-        <li>Research-driven design produces more intentional, user-centered outcomes.</li>
-        <li>Designing for urgency and emotional state leads to more empathetic interfaces.</li>
-        <li>Iterating based on usability feedback strengthens both flow and feature clarity.</li>
-        <li>A well-built design system accelerates decision-making across every screen.</li>
+        <li><strong>Narrow the user before designing.</strong> My instructor pushed me from &ldquo;how to find a house&rdquo; to students with days to decide, and that focus shaped every later choice.</li>
+        <li><strong>Let supporting tools support.</strong> The cost calculator and verification badges help the decision, but urgency leads the product.</li>
+        <li><strong>Keep a trail from research to design.</strong> Tracing each decision back to a survey or interview finding made the design easy to explain and defend, and peer reviewers noticed it.</li>
+        <li><strong>Design for the emotional state, not just the task.</strong> Calm layouts, one clear next step, and a community space so students know they aren&rsquo;t alone.</li>
       </ul>
     </div>
   </section>
@@ -409,7 +436,7 @@
     <div class="next-project">
       <div class="label">Previous Project</div>
       <a href="mr-whiskerworths.html">
-        <div class="thumb"><img src="../assets/mr-whiskerworths/whiskerworths-thumb.jpg" alt="Mr. Whiskerworth&#x27;s logo: a top hat and curled mustache above the wordmark, with a small bird perched below" loading="lazy"></div>
+        <div class="thumb"><img src="../assets/project-thumbs/mr-whiskerworths.jpg" alt="The Mr. Whiskerworth’s logo, a top hat above hand-lettered text, in dark green on yellow" loading="lazy" width="1200" height="600"></div>
         <div class="info">
           <span class="tag-pill">Visual &amp; Brand Design</span>
           <h3>Mr. Whiskerworth's</h3>
@@ -444,5 +471,19 @@
 </footer>
 
 <script src="../js/main.js?v=6"></script>
+<script>
+  (function () {
+    var vs = document.querySelectorAll('video[data-autoplay]');
+    if (!('IntersectionObserver' in window)) return;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting && !reduce) { v.play().catch(function () {}); } else { v.pause(); }
+      });
+    }, { threshold: 0.4 });
+    vs.forEach(function (v) { v.controls = reduce; io.observe(v); });
+  })();
+</script>
 </body>
 </html>
