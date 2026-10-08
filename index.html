@@ -166,41 +166,281 @@
     <div class="hiw-frame">
       <div class="hiw-head">
         <h2 class="work-title hiw-title">Why work with <em>me</em>.</h2>
-        <p class="hiw-intro">A mix of research, visual design, and spatial work. I switch between them depending on what the project actually needs.</p>
       </div>
 
-      <div class="hiw-grid">
-        <div class="hiw-tile">
-          <div class="hiw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M9 9v11"/></svg></div>
-          <h3>UX/UI &amp; Product</h3>
-          <p>From low-fidelity flows to polished design systems. I prototype quickly and validate with real people before declaring a solution final.</p>
-        </div>
-        <div class="hiw-tile">
-          <div class="hiw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2"/></svg></div>
-          <h3>Design Strategy</h3>
-          <p>Framing the right problem first. I align user needs with business goals long before pushing pixels.</p>
-        </div>
-        <div class="hiw-tile">
-          <div class="hiw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5L12 12l8-4.5M12 12v9"/></svg></div>
-          <h3>Spatial Design</h3>
-          <p>Environmental graphics, signage, and wayfinding for physical venues, paired with immersive VR game environments built in Unity.</p>
-        </div>
-        <div class="hiw-tile">
-          <div class="hiw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-11.9 7.8L3 21l1.7-6.1A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
-          <h3>Storytelling</h3>
-          <p>Character design, narrative flows, and visual world-building that give complex ideas a relatable voice.</p>
-        </div>
-        <div class="hiw-tile">
-          <div class="hiw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg></div>
-          <h3>UX Research</h3>
-          <p>Qualitative interviews and usability evaluations. I ground design choices in evidence rather than assumptions.</p>
-        </div>
-        <div class="hiw-tile">
-          <div class="hiw-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l7.5-9.5c.7-.9 2-1 2.8-.2.8.8.7 2.1-.2 2.8L11 16"/><path d="M9 15c-1.7 0-3 1.3-3.3 3C5.4 19.6 4.3 21 3 21c1.6 0 3.8-.4 5-1.6.9-.9 1-2 1-3.4z"/></svg></div>
-          <h3>Illustration</h3>
-          <p>Custom visual assets and brand art that bring human warmth and personality to digital experiences.</p>
-        </div>
-      </div>
+<style>
+  /* Why work with me: one sentence, six hand-drawn marks, and a small piece of real work behind each word */
+  .an-wrap { position: relative; max-width: 880px; margin: 44px auto 0; }
+  .an-statement { text-align: center; font-family: var(--font-serif); font-size: clamp(26px, 4.1vw, 44px); line-height: 1.55; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance; margin: 0; }
+  .nb { white-space: nowrap; display: inline-block; }
+  .lt { display: inline-block; transition: transform .6s cubic-bezier(.2,.9,.25,1.15); will-change: transform; }
+  .pw { display: inline-block; white-space: nowrap; }
+  .an { position: relative; display: inline-block; white-space: nowrap; padding: 0 .12em; line-height: 1.2; color: var(--ink-soft); transition: color .5s ease, transform .6s cubic-bezier(.2,.9,.25,1.15); cursor: default; border-radius: 6px; }
+  .an.on, .an.hot { color: var(--ink); }
+  .an:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+  .an svg { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+  .an svg path { fill: none; stroke: var(--mk, var(--ink)); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke-dashoffset .9s cubic-bezier(.5,.1,.2,1); }
+  .an-select { --gx: calc(var(--grow, 0) * 9px); --gy: calc(var(--grow, 0) * 3px); }
+  .an-select::before { content: ""; position: absolute; inset: calc(-.06em - var(--gy)) calc(-.04em - var(--gx)); border: 1.5px solid var(--mk, var(--ink)); opacity: 0; transform: scale(1.08); transition: opacity .35s ease, transform .5s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .an-select.on::before { opacity: 1; transform: scale(1); }
+  .an-select i { position: absolute; width: 7px; height: 7px; background: var(--bg); border: 1.5px solid var(--mk, var(--ink)); opacity: 0; transition: opacity .3s ease .35s; pointer-events: none; }
+  .an-select.on i { opacity: 1; }
+  .an-select i:nth-of-type(1) { left: calc(-.04em - 4px - var(--gx)); top: calc(-.06em - 4px - var(--gy)); }
+  .an-select i:nth-of-type(2) { right: calc(-.04em - 4px - var(--gx)); top: calc(-.06em - 4px - var(--gy)); }
+  .an-select i:nth-of-type(3) { left: calc(-.04em - 4px - var(--gx)); bottom: calc(-.06em - 4px - var(--gy)); }
+  .an-select i:nth-of-type(4) { right: calc(-.04em - 4px - var(--gx)); bottom: calc(-.06em - 4px - var(--gy)); }
+  .an .dim { position: absolute; right: calc(-.04em - var(--gx, 0px)); top: calc(100% + .14em + var(--gy, 0px)); padding: 3px 8px; border-radius: 6px; background: var(--mk, var(--ink)); color: #fff; font: 700 11px/1.3 var(--font); letter-spacing: .02em; font-style: normal; white-space: nowrap; opacity: 0; transform: translateY(-4px); transition: opacity .25s ease, transform .3s cubic-bezier(.2,.9,.25,1.2); pointer-events: none; }
+  .an.hot .dim { opacity: 1; transform: none; }
+  .an-frame { transform-style: preserve-3d; transition: color .5s ease, transform .18s ease-out; will-change: transform; }
+  .an-frame.hot i:nth-of-type(1) { transform: translate(calc(-.14em - var(--ex, 0px)),-.14em); }
+  .an-frame.hot i:nth-of-type(2) { transform: translate(calc(.14em + var(--ex, 0px)),-.14em); }
+  .an-frame.hot i:nth-of-type(3) { transform: translate(calc(-.14em - var(--ex, 0px)),.14em); }
+  .an-frame.hot i:nth-of-type(4) { transform: translate(calc(.14em + var(--ex, 0px)),.14em); }
+  .an-frame i { position: absolute; width: .32em; height: .32em; border: 0 solid var(--mk, var(--ink)); opacity: 0; transition: opacity .3s ease, transform .5s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .an-frame.on i { opacity: 1; transform: none; }
+  .an-frame.on.hot i:nth-of-type(1) { transform: translate(calc(-.14em - var(--ex, 0px)),-.14em); }
+  .an-frame.on.hot i:nth-of-type(2) { transform: translate(calc(.14em + var(--ex, 0px)),-.14em); }
+  .an-frame.on.hot i:nth-of-type(3) { transform: translate(calc(-.14em - var(--ex, 0px)),.14em); }
+  .an-frame.on.hot i:nth-of-type(4) { transform: translate(calc(.14em + var(--ex, 0px)),.14em); }
+  .an-frame i:nth-of-type(1) { left: -.08em; top: -.02em; border-width: 2px 0 0 2px; transform: translate(.2em,.2em); }
+  .an-frame i:nth-of-type(2) { right: -.08em; top: -.02em; border-width: 2px 2px 0 0; transform: translate(-.2em,.2em); }
+  .an-frame i:nth-of-type(3) { left: -.08em; bottom: -.02em; border-width: 0 0 2px 2px; transform: translate(.2em,-.2em); }
+  .an-frame i:nth-of-type(4) { right: -.08em; bottom: -.02em; border-width: 0 2px 2px 0; transform: translate(-.2em,-.2em); }
+  .an[data-p="0"] { --mk: #4741A6; }
+  .an[data-p="1"] { --mk: #C0378A; }
+  .an[data-p="2"] { --mk: #1F8F9A; }
+  .an[data-p="3"] { --mk: #E3A400; }
+  .an[data-p="4"] { --mk: #2A4BA8; }
+  .an[data-p="5"] { --mk: #D05A7C; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* the proof card: one card that glides from word to word */
+  .proof { position: absolute; left: 0; top: 0; z-index: 5; width: min(250px, 72vw); border-radius: 16px; background: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 18px 44px rgba(22,21,29,.18); overflow: hidden; pointer-events: none;
+    opacity: 0; transform: translate(0,0) scale(.94); transform-origin: 50% 100%; transition: opacity .25s ease, transform .45s cubic-bezier(.2,.9,.25,1.15); }
+  .proof.show { opacity: 1; }
+  .proof.below { transform-origin: 50% 0; }
+  .proof .pf { display: none; }
+  .proof .pf.cur { display: block; animation: pf-in .35s ease both; }
+  @keyframes pf-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .pf-media { position: relative; aspect-ratio: 16 / 10; background: var(--bg-soft); overflow: hidden; }
+  .pf-media img, .pf-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pf-media--stat { background: #f1effa; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 28px; padding: 0 16px; }
+  .pf-media--stat .hw-stat { display: flex; flex-direction: column; gap: 6px; }
+  .pf-media--stat .hw-stat b { font-family: var(--font-serif); font-weight: 400; font-size: 52px; line-height: 1; letter-spacing: -.02em; color: #4741a6; }
+  .pf-media--stat .hw-stat span { font: 700 10.5px/1.3 var(--font); letter-spacing: .09em; text-transform: uppercase; color: #2e2870; }
+  .proof .pf:nth-child(1) { --c: #4741A6; }
+  .proof .pf:nth-child(2) { --c: #C0378A; }
+  .proof .pf:nth-child(3) { --c: #1F8F9A; }
+  .proof .pf:nth-child(4) { --c: #E3A400; }
+  .proof .pf:nth-child(5) { --c: #2A4BA8; }
+  .proof .pf:nth-child(6) { --c: #D05A7C; }
+  .pf-cap b::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--c, var(--ink)); margin-right: 7px; vertical-align: 1px; }
+  .pf-cap { padding: 11px 14px 13px; font-family: var(--font); font-size: 12.5px; line-height: 1.4; color: var(--ink-soft); letter-spacing: 0; text-align: left; }
+  .pf-cap b { display: block; color: var(--ink); font-size: 13px; margin-bottom: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    .an svg path, .an-select::before, .an-select i, .an-frame, .an-frame i, .an .dim, .proof, .proof .pf.cur, .lt { transition: none; animation: none; }
+  }
+</style>
+
+<div class="an-wrap" id="an-wrap">
+  <p class="an-statement" id="an">
+    Most problems don&rsquo;t belong to one discipline. So I move between
+    <span class="nb"><span class="an" data-t="circle" data-p="0" tabindex="0">research<span class="sr-only"> (WayHome: a survey of 302 UW&ndash;Madison students and 3 in-depth interviews)</span></span>,</span>
+    <span class="nb"><span class="an an-select" data-p="1" tabindex="0">interfaces<i></i><i></i><i></i><i></i><em class="dim" aria-hidden="true"></em><span class="sr-only"> (Dolled Up VR: VR interactions scripted and tested in Unity, learned from scratch)</span></span>,</span>
+    <span class="nb"><span class="an" data-t="arrow" data-p="2" tabindex="0">strategy<span class="sr-only"> (Imagin8V Park: a site visit to Milwaukee and conversations with stakeholders surfaced the untold neighborhood stories that became the project)</span></span>,</span>
+    <span class="nb"><span class="an an-frame" data-p="3" tabindex="0">spaces<i></i><i></i><i></i><i></i><span class="sr-only"> (Flipped: a full brand and wayfinding system for a real trampoline park)</span></span>,</span>
+    <span class="nb"><span class="an" data-t="wave" data-p="4" tabindex="0">stories<span class="sr-only"> (AQS: a motion comic about Pakistan&rsquo;s water crisis)</span></span></span>
+    and <span class="nb"><span class="an" data-t="spark" data-p="5" tabindex="0">characters<span class="sr-only"> (How Do We Love?: Cubot, a heart-propellered robot designed and modeled in 3D)</span></span>,</span>
+    and let the problem decide which one leads.
+  </p>
+
+  <div class="proof" id="proof" aria-hidden="true">
+    <div class="pf"><div class="pf-media"><img src="assets/project-thumbs/wayhome.jpg" alt="" width="1200" height="600"></div><div class="pf-cap"><b>WayHome</b>Began with 302 student surveys and 3 in-depth interviews.</div></div>
+    <div class="pf"><div class="pf-media"><video muted loop playsinline preload="none" poster="assets/proof/dolledup-xr-poster.jpg"><source src="assets/dolled-up/dolled-up-xr-sim.mp4" type="video/mp4"></video></div><div class="pf-cap"><b>Dolled Up VR</b>Walking, turning and grabbing, scripted and tested in Unity. Learned from scratch.</div></div>
+    <div class="pf"><div class="pf-media"><img src="assets/proof/milwaukee-visit.jpg" alt="" loading="lazy" width="562" height="351"></div><div class="pf-cap"><b>Imagin8V Park</b>On site in Milwaukee, listening to stakeholders surfaced the untold stories that became the project.</div></div>
+    <div class="pf"><div class="pf-media"><img src="assets/proof/flipped-space.jpg" alt="" loading="lazy" width="640" height="400"></div><div class="pf-cap"><b>Flipped</b>A full brand and wayfinding system, built for a real trampoline park.</div></div>
+    <div class="pf"><div class="pf-media"><img src="assets/proof/aqs-awakening.jpg" alt="" loading="lazy" width="640" height="400"></div><div class="pf-cap"><b>AQS</b>A motion comic that gives Pakistan&rsquo;s water crisis a human face.</div></div>
+    <div class="pf"><div class="pf-media"><img src="assets/how-do-we-love/hdwl-cubot-sage.jpg" alt="" loading="lazy" width="1200" height="1200" style="object-position:50% 40%"><video muted loop playsinline preload="none" style="position:absolute;inset:0;object-position:50% 40%"><source src="assets/how-do-we-love/hdwl-cubot-hover.webm" type="video/webm"><source src="assets/how-do-we-love/hdwl-cubot-hover.mp4" type="video/mp4"></video></div><div class="pf-cap"><b>How Do We Love?</b>Cubot, a heart-propellered robot designed and modeled in 3D.</div></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var wrap = document.getElementById("an-wrap"), an = document.getElementById("an");
+  if (!wrap || !an) return;
+  var words = Array.prototype.slice.call(an.querySelectorAll(".an"));
+  /* split the sentence into letters (each word stays unbreakable) so single letters can be shoved aside */
+  function letters(str) {
+    var f = document.createDocumentFragment();
+    str.split(/(\s+)/).forEach(function (t) {
+      if (!t) return;
+      if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(" ")); return; }
+      var w = document.createElement("span"); w.className = "pw";
+      t.split("").forEach(function (c) { var l = document.createElement("span"); l.className = "lt"; l.textContent = c; w.appendChild(l); });
+      f.appendChild(w);
+    });
+    return f;
+  }
+  (function split(node) {
+    Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+      if (n.nodeType === 3) { if (n.textContent.trim()) n.parentNode.replaceChild(letters(n.textContent), n); }
+      else if (n.nodeType === 1 && !/sr-only|dim/.test(n.className) && n.tagName !== "I" && n.tagName !== "svg") split(n);
+    });
+  })(an);
+  var card = document.getElementById("proof"), pfs = Array.prototype.slice.call(card.querySelectorAll(".pf"));
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NS = "http://www.w3.org/2000/svg", tourTimer = null, touring = false, openIdx = -1, shownAt = 0;
+
+  /* hand-drawn marks, built in real pixels so strokes never distort */
+  function mark(el) {
+    var old = el.querySelector("svg"); if (old) old.remove();
+    var t = el.getAttribute("data-t"); if (!t) return;
+    var w = el.offsetWidth, h = el.offsetHeight, d = "", ox = 0, oy = 0, vw = w, vh = h;
+    if (t === "circle") {
+      ox = -w * 0.1; oy = -h * 0.08; vw = w * 1.2; vh = h * 1.16;
+      d = "M" + (vw*.1) + " " + (vh*.55) + " C " + (vw*.04) + " " + (vh*.15) + ", " + (vw*.4) + " " + (vh*.02) + ", " + (vw*.7) + " " + (vh*.05) + " C " + (vw*.98) + " " + (vh*.1) + ", " + (vw*1.0) + " " + (vh*.78) + ", " + (vw*.64) + " " + (vh*.94) + " C " + (vw*.34) + " " + (vh*1.06) + ", " + (vw*.02) + " " + (vh*.86) + ", " + (vw*.1) + " " + (vh*.45);
+    } else if (t === "arrow") {
+      oy = h * 0.88; vh = h * 0.22;
+      d = "M0 " + (vh*.6) + " C " + (vw*.3) + " " + (vh*.1) + ", " + (vw*.6) + " " + (vh*.9) + ", " + (vw*.98) + " " + (vh*.45) + " M" + (vw*.9) + " " + (vh*.05) + " L" + vw + " " + (vh*.45) + " L" + (vw*.91) + " " + (vh*.95);
+    } else if (t === "wave") {
+      oy = h * 0.9; vh = h * 0.2; var n = Math.max(3, Math.round(w / 22)), step = w / n;
+      d = "M0 " + (vh/2); for (var i = 0; i < n; i++) { d += " q " + (step/4) + " " + (i%2?vh/1.2:-vh/1.2) + " " + (step/2) + " 0 t " + (step/2) + " 0"; }
+    } else if (t === "spark") {
+      var sz = h * 0.42; ox = w - sz * 0.1; oy = -sz * 0.35; vw = sz; vh = sz;
+      d = "M" + sz/2 + " 0 C " + sz*.54 + " " + sz*.36 + ", " + sz*.64 + " " + sz*.46 + ", " + sz + " " + sz/2 + " C " + sz*.64 + " " + sz*.54 + ", " + sz*.54 + " " + sz*.64 + ", " + sz/2 + " " + sz + " C " + sz*.46 + " " + sz*.64 + ", " + sz*.36 + " " + sz*.54 + ", 0 " + sz/2 + " C " + sz*.36 + " " + sz*.46 + ", " + sz*.46 + " " + sz*.36 + ", " + sz/2 + " 0 Z";
+    }
+    var svg = document.createElementNS(NS, "svg"), p = document.createElementNS(NS, "path");
+    svg.setAttribute("viewBox", "0 0 " + vw + " " + vh); svg.setAttribute("width", vw); svg.setAttribute("height", vh);
+    svg.style.left = ox + "px"; svg.style.top = oy + "px"; svg.setAttribute("aria-hidden", "true");
+    p.setAttribute("d", d); svg.appendChild(p); el.appendChild(svg);
+    var len = p.getTotalLength(); p.style.strokeDasharray = len; p.style.strokeDashoffset = el.classList.contains("on") ? 0 : len;
+  }
+  function markAll() { words.forEach(mark); if (openIdx > -1) place(openIdx); }
+  function redraw(el) {
+    var p = el.querySelector("svg path"); if (!p) return;
+    var len = p.getTotalLength(); p.style.transition = "none"; p.style.strokeDashoffset = len; void p.getBoundingClientRect(); p.style.transition = ""; p.style.strokeDashoffset = 0;
+  }
+
+  /* interfaces: the selection box resizes and its size tag updates, like a design tool */
+  function dimAnim(el) {
+    var d = el.querySelector(".dim"); if (!d) return;
+    var w = el.offsetWidth, h = el.offsetHeight;
+    if (reduce) { d.textContent = w + " \u00d7 " + h; return; }
+    var t0 = performance.now();
+    (function f(t) {
+      var k = Math.min((t - t0) / 900, 1), e = Math.sin(k * Math.PI);
+      d.textContent = Math.round(w + e * 18) + " \u00d7 " + Math.round(h + e * 6);
+      el.style.setProperty("--grow", e.toFixed(3));
+      if (k < 1) requestAnimationFrame(f); else el.style.removeProperty("--grow");
+    })(t0);
+  }
+  /* spaces: the word swells and shoves everything around it out of the way */
+  var spaceEl = an.querySelector(".an-frame");
+  /* plain letters move one by one; the other marked words slide as whole units so their marks travel with them */
+  var pushables = Array.prototype.slice.call(an.querySelectorAll(".lt, .an")).filter(function (e) { return e !== spaceEl && !(spaceEl && spaceEl.contains(e)) && !(e.classList.contains("lt") && e.closest(".an")); });
+  var pushed = false, SCALE = 1.16;
+  var spaceLetters = spaceEl ? Array.prototype.slice.call(spaceEl.querySelectorAll(".lt")) : [];
+  var GAP = 7; /* px each letter of "spaces" drifts apart, so the box grows sideways */
+  function setSpace() {}
+  function push(on) {
+    if (reduce || !spaceEl) return;
+    if (!on) {
+      if (!pushed) return; pushed = false;
+      pushables.concat(spaceLetters).forEach(function (e) { e.style.transform = ""; e.style.transitionDelay = ""; });
+      spaceEl.style.removeProperty("--ex"); return;
+    }
+    if (pushed) return; pushed = true;
+    var n = spaceLetters.length, half = (n - 1) * GAP / 2;
+    spaceLetters.forEach(function (e, i) { e.style.transform = "translateX(" + ((i - (n - 1) / 2) * GAP).toFixed(1) + "px)"; });
+    spaceEl.style.setProperty("--ex", half.toFixed(1) + "px");
+    var sr = spaceEl.getBoundingClientRect(), sx = sr.left + sr.width / 2, sy = sr.top + sr.height / 2, room = half + 10;
+    pushables.forEach(function (e) {
+      var r = e.getBoundingClientRect(), dx = r.left + r.width / 2 - sx, dy = r.top + r.height / 2 - sy;
+      if (Math.abs(dy) > sr.height * 0.6) return;          /* other lines stay put: only this line makes room */
+      var side = dx < 0 ? -1 : 1, d = Math.abs(dx);
+      var f = room * (0.45 + 0.55 * Math.exp(-d / 240));    /* nearest letters travel furthest */
+      e.style.transitionDelay = Math.min(d / 4000, 0.12).toFixed(3) + "s";
+      e.style.transform = "translateX(" + (side * f).toFixed(1) + "px)";
+    });
+  }
+  /* spaces: the word tilts in 3D toward the pointer */
+  var space = an.querySelector(".an-frame");
+  if (space && !reduce) {
+    space.addEventListener("pointermove", function (e) {
+      if (e.pointerType !== "mouse") return;
+      var r = space.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5;
+      if (pushed) setSpace((dx * 26).toFixed(1), (-dy * 22).toFixed(1));
+    });
+
+  }
+
+  /* the proof card */
+  function place(i) {
+    var el = words[i], wr = wrap.getBoundingClientRect(), r = el.getBoundingClientRect();
+    var cw = card.offsetWidth, ch = card.offsetHeight;
+    var x = r.left - wr.left + r.width / 2 - cw / 2;
+    x = Math.max(0, Math.min(wrap.clientWidth - cw, x));
+    var above = r.top - ch - 16 > -wr.top * 0 && (r.top > ch + 24);
+    var y = above ? r.top - wr.top - ch - 14 : r.bottom - wr.top + 14;
+    card.classList.toggle("below", !above);
+    card.style.transform = "translate(" + x + "px," + y + "px) scale(1)";
+  }
+  function show(i) {
+    openIdx = i; shownAt = Date.now();
+    pfs.forEach(function (p, n) { p.classList.toggle("cur", n === i); var v = p.querySelector("video"); if (v) { if (n === i) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else v.pause(); } });
+    words.forEach(function (w, n) { w.classList.toggle("hot", n === i); });
+    if (!card.classList.contains("show")) { card.style.transition = "opacity .25s ease"; place(i); void card.offsetWidth; card.style.transition = ""; }
+    place(i);
+    card.classList.add("show");
+    redraw(words[i]);
+    if (words[i].classList.contains("an-select")) dimAnim(words[i]);
+    push(words[i] === spaceEl);
+  }
+  function hide() {
+    push(false);
+    openIdx = -1; card.classList.remove("show"); words.forEach(function (w) { w.classList.remove("hot"); });
+    pfs.forEach(function (p) { var v = p.querySelector("video"); if (v) v.pause(); });
+  }
+  function stopTour() { touring = false; clearTimeout(tourTimer); }
+
+  words.forEach(function (w, i) {
+    w.addEventListener("pointerenter", function (e) { if (e.pointerType !== "mouse") return; stopTour(); show(i); });
+    w.addEventListener("pointerleave", function (e) { if (e.pointerType !== "mouse") return; hide(); });
+    w.addEventListener("focus", function () { if (!w.matches(":focus-visible")) return; stopTour(); show(i); });
+    w.addEventListener("blur", function () { if (w.classList.contains("hot")) hide(); });
+    w.addEventListener("click", function (e) {
+      e.stopPropagation(); stopTour();
+      if (Date.now() - shownAt < 250) return;           // a mouse hover already opened it
+      if (openIdx === i) hide(); else show(i);
+    });
+  });
+  document.addEventListener("click", function () { if (openIdx > -1) hide(); });
+
+  /* one gentle tour so people see the words are alive, then it rests */
+  function tour() {
+    if (reduce) return;
+    touring = true; var i = 0;
+    (function next() {
+      if (!touring) return;
+      if (i >= words.length) { hide(); touring = false; return; }
+      show(i); i++; tourTimer = setTimeout(next, 2100);
+    })();
+  }
+
+  function reveal() {
+    words.forEach(function (w, i) {
+      setTimeout(function () { w.classList.add("on"); var p = w.querySelector("path"); if (p) p.style.strokeDashoffset = 0; }, reduce ? 0 : 450 + i * 650);
+    });
+    if (!reduce) setTimeout(tour, 450 + words.length * 650 + 900);
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+    markAll(); window.addEventListener("resize", markAll);
+    if (reduce || !("IntersectionObserver" in window)) {
+      words.forEach(function (w) { w.classList.add("on"); }); markAll();
+    } else new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { reveal(); o.disconnect(); } }, { threshold: 0.6 }).observe(an);
+  });
+})();
+</script>
 
       <style>
     .tk2 .tk-block { max-width: 820px; margin: 0 auto 30px; text-align: center; }
