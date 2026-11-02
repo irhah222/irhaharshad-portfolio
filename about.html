@@ -14,11 +14,17 @@
     .ab-eyebrow { display: block; margin-bottom: 20px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
     .ab-statement { font-family: var(--font-serif); font-weight: 400; font-size: clamp(24px, 3.3vw, 40px); line-height: 1.28; letter-spacing: -0.005em; color: var(--ink); max-width: 28em; margin: 0; text-wrap: pretty; }
     .ab-sub { margin: 26px 0 0; max-width: 56ch; font-size: 16.5px; line-height: 1.7; color: var(--ink-soft); }
-    .ab-intro .btn { margin-top: 28px; }
+    .ab-intro .btn { margin-top: 32px; }
 
     .ab-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px clamp(36px, 6vw, 80px); align-items: center; }
     .ab-intro .ab-statement, .ab-intro .ab-sub { font-family: var(--font); font-weight: 400; font-size: 17px; line-height: 1.75; letter-spacing: 0; color: var(--ink-soft); max-width: 58ch; margin: 0; }
     .ab-intro .ab-sub { margin-top: 16px; }
+    /* About hierarchy: lead paragraph, body copy, quiet aside */
+    .ab-intro .ab-statement { font-size: clamp(18px, 1.55vw, 21px); line-height: 1.55; font-weight: 400; color: var(--ink); max-width: 560px; text-wrap: pretty; }
+    .ab-intro .ab-statement strong { font-weight: 600; }
+    .ab-intro .ab-sub { font-size: 16px; line-height: 1.75; max-width: 560px; margin-top: 22px; text-wrap: pretty; }
+    .ab-intro .ab-sub strong { font-weight: 600; color: var(--ink); }
+    .ab-intro .ab-aside { font-size: 14.5px; line-height: 1.7; color: var(--ink-faint); margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(22,21,29,0.12); max-width: 560px; }
     .ab-photo { margin: 0; width: clamp(220px, 24vw, 280px); }
     .ab-photo .id-card-block { margin: 0; }
     .ab-photo figcaption { margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--ink); text-align: center; }
@@ -109,10 +115,10 @@
   <section class="ab-intro reveal">
     <div class="ab-intro-text">
       <span class="ab-eyebrow">About me</span>
-      <p class="ab-statement">Hi! I&rsquo;m Irhah, a multidisciplinary product designer with 4 years of professional design experience across brand, visual, and experience design. I enjoy working at the intersection of thoughtful problem-solving and visual storytelling, turning ideas into digital products and experiences people can connect with.</p>
+      <p class="ab-statement">Hi! I&rsquo;m Irhah, a <strong>multidisciplinary product designer</strong> with 4 years of professional design experience across brand, visual, and experience design. I enjoy working at the intersection of thoughtful problem-solving and visual storytelling, turning ideas into digital products and experiences people can connect with.</p>
       <p class="ab-sub">My background in communication design has shaped how I approach product design: I think about the bigger picture, from understanding people and identifying opportunities to shaping interactions, building visual systems, and bringing concepts to life through prototyping. I&rsquo;ve led a team of 5 designers across 6 brands, worked with cross-functional teams, and explored hands-on development using tools like Unity and Claude Code.</p>
-      <p class="ab-sub">I recently completed my Master&rsquo;s in Design + Innovation at UW&ndash;Madison, where I&rsquo;ve been exploring product design, emerging technology, and new ways to build meaningful experiences. I&rsquo;m especially interested in AI-enabled products, rapid prototyping, and the possibilities that emerge when design and technology come together.</p>
-      <p class="ab-sub">Outside of design, you&rsquo;ll probably find me playing games, watching anime and Studio Ghibli films, sipping tea, hanging out with cats, or getting lost in nature.</p>
+      <p class="ab-sub">I recently completed my Master&rsquo;s in Design + Innovation at UW&ndash;Madison, where I&rsquo;ve been exploring product design, emerging technology, and new ways to build meaningful experiences. I&rsquo;m especially interested in <strong>AI&#8209;enabled products, rapid prototyping</strong>, and the possibilities that emerge when design and technology come together.</p>
+      <p class="ab-sub ab-aside">Outside of design, you&rsquo;ll probably find me playing games, watching anime and Studio Ghibli films, sipping tea, hanging out with cats, or getting lost in nature.</p>
       <a class="btn btn-primary" href="assets/Irhah-Arshad-Resume.pdf" target="_blank" rel="noopener">View Resume</a>
     </div>
     <figure class="ab-photo">
