@@ -730,7 +730,7 @@
     document.querySelectorAll("[data-fields]").forEach(function (fieldsEl) {
       fieldsEl.innerHTML =
         '<p class="field-line"><span class="field-label">Role:</span> Product Designer</p>' +
-        '<p class="field-line"><span class="field-label">Status:</span> Open to opportunities</p>' +
+        '<p class="field-line"><span class="field-label">Status:</span> Open to product &amp; brand roles</p>' +
         '<p class="field-line"><span class="field-label">Loves:</span> <span data-loves-typed></span><span class="caret"></span></p>';
     });
 
