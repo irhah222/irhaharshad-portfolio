@@ -52,11 +52,14 @@
   });
 
 
-  /* ---------- Deep link: /#brand jumps to the Brand & Visual row ---------- */
+  /* ---------- Deep link: /#brand opens the Brand & Visual tab ---------- */
   if (window.location.hash === "#brand") {
     window.addEventListener("load", function () {
-      var b = document.getElementById("brand");
-      if (b) b.scrollIntoView();
+      var tab = document.querySelector('.cat-tab[data-filter="visual"]');
+      if (!tab) return;
+      tab.click();
+      var t = document.querySelector(".work-title");
+      if (t) t.scrollIntoView();
     });
   }
 
