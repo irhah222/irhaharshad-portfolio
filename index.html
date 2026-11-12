@@ -71,7 +71,7 @@
     </button>
     <button class="cat-tab" data-filter="experience">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>
-      Experience Design
+      Product &amp; Experience
     </button>
     <button class="cat-tab" data-filter="visual">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9.9-1.7-.5-.5-.5-1.3.1-1.7.6-.4 1.5-.2 2.1.3.7.6 1.9.3 2.2-.6A9 9 0 0 0 12 3z"/><circle cx="7.5" cy="11" r="1.1" fill="currentColor" stroke="none"/><circle cx="11" cy="7.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="9" r="1.1" fill="currentColor" stroke="none"/></svg>
@@ -79,7 +79,14 @@
     </button>
   </div>
 
+  <style>
+    .row-label { grid-column: 1 / -1; flex: 0 0 100%; text-align: left; margin: 0; padding-top: var(--gap-sm, 12px); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border-top: 1px solid rgba(52,50,62,0.14); scroll-margin-top: 150px; }
+    #brand.row-label { margin-top: 28px; padding-top: 28px; }
+    .row-label:first-child { border-top: 0; padding-top: 0; }
+  </style>
   <section id="work" class="project-grid">
+
+    <h3 class="row-label" data-category="experience">Product &amp; Experience Design</h3>
 
     <a class="project-card" href="case-studies/wayhome.html" data-category="experience">
       <div class="thumb"><img src="assets/wayhome/wayhome-app-mockup.jpg" alt="The WayHome logo splash screen on a phone mockup, tilted against a soft purple-to-pink gradient"></div>
@@ -129,6 +136,8 @@
       </div>
     </a>
 
+    <h3 class="row-label" id="brand" data-category="visual">Brand &amp; Visual Design</h3>
+
     <a class="project-card" href="case-studies/flipped.html" data-category="visual">
       <div class="thumb thumb-flip-hover" role="img" aria-label="Flipped logo. Hover to flip the i.">
         <img class="flip-letters" src="assets/flipped/flipped-letters-only.png" alt="" aria-hidden="true">
@@ -142,21 +151,36 @@
       </div>
     </a>
 
-    <a class="project-card" href="case-studies/aqs.html" data-category="visual">
-      <div class="thumb"><img src="assets/aqs/aqs-eyes-shrine.jpg" alt="Shahmir's eyes over the shrine, silhouetted against the spirit world's cyan spiral"></div>
-      <div class="meta">
-        <span class="cat-label">Visual &amp; Brand Design</span>
-        <h3>AQS</h3>
-        <div class="cats">Motion Comic, Film Direction, Illustration</div>
-      </div>
-    </a>
-
     <a class="project-card" href="case-studies/mr-whiskerworths.html" data-category="visual">
       <div class="thumb"><img src="assets/mr-whiskerworths/whiskerworths-thumb.jpg" alt="Mr. Whiskerworth's logo: a top hat and curled mustache above the wordmark, with a small bird perched below"></div>
       <div class="meta">
         <span class="cat-label">Visual &amp; Brand Design</span>
         <h3>Mr. Whiskerworth's</h3>
         <div class="cats">Brand Identity, Packaging Design</div>
+      </div>
+    </a>
+
+    <a class="project-card" href="case-studies/how-do-we-love.html" data-category="visual">
+      <div class="thumb thumb-hover-video">
+        <img src="assets/how-do-we-love/hdwl-cubot-sage.jpg" alt="The heart-propellered companion robot, with heart-shaped eyes, flying against a soft sage green background">
+        <video class="hover-video" muted loop playsinline preload="metadata" aria-hidden="true">
+          <source src="assets/how-do-we-love/hdwl-cubot-hover.webm" type="video/webm">
+          <source src="assets/how-do-we-love/hdwl-cubot-hover.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="meta">
+        <span class="cat-label">Visual &amp; Brand Design</span>
+        <h3>How Do We Love?</h3>
+        <div class="cats">Brand System, Character Design, Narrative Film</div>
+      </div>
+    </a>
+
+    <a class="project-card" href="case-studies/aqs.html" data-category="visual">
+      <div class="thumb"><img src="assets/aqs/aqs-eyes-shrine.jpg" alt="Shahmir's eyes over the shrine, silhouetted against the spirit world's cyan spiral"></div>
+      <div class="meta">
+        <span class="cat-label">Visual &amp; Brand Design</span>
+        <h3>AQS</h3>
+        <div class="cats">Motion Comic, Film Direction, Illustration</div>
       </div>
     </a>
 

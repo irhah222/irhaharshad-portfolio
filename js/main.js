@@ -51,6 +51,15 @@
     });
   });
 
+
+  /* ---------- Deep link: /#brand jumps to the Brand & Visual row ---------- */
+  if (window.location.hash === "#brand") {
+    window.addEventListener("load", function () {
+      var b = document.getElementById("brand");
+      if (b) b.scrollIntoView();
+    });
+  }
+
   /* ---------- Section rail (scrollspy + smooth scroll) ---------- */
   var rail = document.querySelector(".section-rail");
   if (rail) {
